@@ -8,6 +8,10 @@ public class SmokeBomb implements Items{
       amount = 0;
    }
 
+   public SmokeBomb(int amount){
+      this.amount = amount;
+   }
+
    public void boost(Fighter fighter){ //Specified in class. Could increase HP or SP
       if (amount != 0){
          amount--;
