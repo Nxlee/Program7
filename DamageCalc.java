@@ -34,6 +34,7 @@ public class DamageCalc {
    }
 
    public void evasionChance(int evasion){
+      chanceEvasion = 1;
       int chance = 0;
       if (evasion == 0){ // miss chance = 1 in 50
          chance = (int)(Math.random() * 50) + 1;
