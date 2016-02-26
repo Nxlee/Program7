@@ -1,13 +1,23 @@
 public abstract class Fighter {
    private int hp;
    private int sp;
+   private int evasion;
    private Potion p;
+
 
 //Constructor for fighters
    public Fighter() {
       hp = 100;
       sp = 100;
+      evasion = 0;
       p = new Potion();
+   }
+
+   public Fighter(int hp, int sp, int evasion, int potions) {
+      this.hp = hp;
+      this.sp = sp;
+      this.evasion = evasion;
+      p = new Potion(potions);
    }
 
 //rest skip turn but gain 15 sp and hp
@@ -25,27 +35,29 @@ public abstract class Fighter {
       }
    }
 
-
-//fighter gets hurt... value based on damagecalc class
-   public void hurt(int value) {
-      hp -= value;
-      if(hp <= 0) {
-         //GameOver
-      }
-   }
-
-//recovers hp
+//Method to set HP
    public void setHP(int value) {
-      if(hp+value > 100) {
+      if(hp + value > 100) {
          hp= 100;
       } else {
          hp += value;
       }
    }
-//Lowers sp based on attack
-   public void useAttack(int value) {
-      sp -= value;
+
+//Method to set SP
+   public void setSP(int value) {
+      if(sp + value > 100) {
+         sp = 100;
+      } else {
+         sp += value;
+      }
    }
+
+//Method to set evasion
+   public void setEvasion(int value) {
+      evasion += value;
+   }
+
 //returns number of potions
    public int getPotions() {
       return p.getItem();
