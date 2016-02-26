@@ -1,13 +1,23 @@
 public abstract class Fighter {
    private int hp;
    private int sp;
+   private int evasion;
    private Potion p;
+
 
 //Constructor for fighters
    public Fighter() {
       hp = 100;
       sp = 100;
+      evasion = 0;
       p = new Potion();
+   }
+
+   public Fighter(int hp, int sp, int evasion, int potions) {
+      this.hp = hp;
+      this.sp = sp;
+      this.evasion = evasion;
+      p = new Potion(potions);
    }
 
 //rest skip turn but gain 15 sp and hp
@@ -42,6 +52,12 @@ public abstract class Fighter {
          sp += value;
       }
    }
+
+//Method to set evasion
+   public void setEvasion(int value) {
+      evasion += value;
+   }
+
 //returns number of potions
    public int getPotions() {
       return p.getItem();
