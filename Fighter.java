@@ -25,6 +25,15 @@ public abstract class Fighter {
       }
    }
 
+
+//fighter gets hurt... value based on damagecalc class
+   public void hurt(int value) {
+      hp -= value;
+      if(hp <= 0) {
+         //GameOver
+      }
+   }
+
 //recovers hp
    public void setHP(int value) {
       if(hp+value > 100) {
@@ -32,6 +41,10 @@ public abstract class Fighter {
       } else {
          hp += value;
       }
+   }
+//Lowers sp based on attack
+   public void useAttack(int value) {
+      sp -= value;
    }
 //returns number of potions
    public int getPotions() {

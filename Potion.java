@@ -1,5 +1,5 @@
 public class Potion implements Items{
-   
+
    private static final int HP = 25;
    private static final int COST = 50;
    private int amount;
@@ -22,7 +22,7 @@ public class Potion implements Items{
    public int getItem(){
       return amount;
    }
-   
+
    public int getCost(){ // returns the cost of the item
       return COST;
    }
