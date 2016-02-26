@@ -8,14 +8,21 @@ public class Potion implements Items{
       amount = 0;
    }
 
-   public void boost(){ //Specified in class. Could increase HP or SP
-      
+   public void boost(Fighter fighter){ //Specified in class. Could increase HP or SP
+      if (amount != 0){
+         amount--;
+         fighter.setHP(25);
+      }
    }
 
    public String getAbility(){ // String of what the specific item does
       return "This is a potion which will increase your HP by " + HP + " HP.";
    }
 
+   public int getItem(){
+      return amount;
+   }
+   
    public int getCost(){ // returns the cost of the item
       return COST;
    }
@@ -24,11 +31,6 @@ public class Potion implements Items{
       this.amount =+ amount;
    }
 
-   public void use(int amount){ //decrements the amount by the amount they used
-      if (amount == 0)
-         this.amount = 0;
-      else
-         this.amount =- amount;
-   }
+
 
 }
