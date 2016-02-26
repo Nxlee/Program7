@@ -8,10 +8,14 @@ public class Elixir{
       amount = 0;
    }
 
+   public Elixir(int amount){
+      this.amount = amount;
+   }
+
    public void boost(Fighter fighter){ //Specified in class. Could increase HP or SP
       if (amount != 0){
          amount--;
-         fighter.setSP(25);
+         fighter.setSP(SP);
       }
    }
 
