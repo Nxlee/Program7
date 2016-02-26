@@ -1,22 +1,22 @@
-public class Potion implements Items{
+public class Elixir{
 
-   private static final int HP = 25;
+   private static final int SP = 25;
    private static final int COST = 50;
    private int amount;
 
-   public Potion(){ //Default c
+   public Elixir(){ //Default c
       amount = 0;
    }
 
    public void boost(Fighter fighter){ //Specified in class. Could increase HP or SP
       if (amount != 0){
          amount--;
-         fighter.setHP(25);
+         fighter.setSP(25);
       }
    }
 
    public String getAbility(){ // String of what the specific item does
-      return "This is a potion which will increase your HP by " + HP + " HP.";
+      return "This is a potion which will increase your SP by " + SP + " SP.";
    }
 
    public int getItem(){
@@ -34,5 +34,8 @@ public class Potion implements Items{
    public String toString(){
       return "" + getClass().getName() + ": " + amount + " remaining.";
    }
+
+
+
 
 }
