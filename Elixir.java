@@ -11,7 +11,7 @@ public class Elixir{
    public void boost(Fighter fighter){ //Specified in class. Could increase HP or SP
       if (amount != 0){
          amount--;
-         fighter.setSP(25);
+         fighter.setSP(SP);
       }
    }
 

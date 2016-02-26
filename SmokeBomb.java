@@ -1,22 +1,26 @@
-public class Potion implements Items{
-
-   private static final int HP = 25;
+public class SmokeBomb implements Items{
+   
+   private static final int EVASION = 25;
    private static final int COST = 50;
    private int amount;
 
-   public Potion(){ //Default c
+   public SmokeBomb(){ //Default c
       amount = 0;
    }
 
    public void boost(Fighter fighter){ //Specified in class. Could increase HP or SP
       if (amount != 0){
          amount--;
-         fighter.setHP(HP);
+         fighter.setEvasion(EVASION);
       }
    }
 
+   public void end(Fighter fighter){ // to be called after a turn when it should be removed from play
+      fighter.setEvasion((-1) * EVASION);
+   }
+
    public String getAbility(){ // String of what the specific item does
-      return "This is a potion which will increase your HP by " + HP + " HP.";
+      return "This is a SmokeBomb  which will increase your Evasion  by " + EVASION + " Evasion.";
    }
 
    public int getItem(){
@@ -34,5 +38,6 @@ public class Potion implements Items{
    public String toString(){
       return "" + getClass().getName() + ": " + amount + " remaining.";
    }
+
 
 }
