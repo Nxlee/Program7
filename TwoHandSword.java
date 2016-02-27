@@ -5,6 +5,15 @@ public class TwoHandSword extends Weapon {
       super(50, 20);
    }
 
+
+
+   public int totalDamage(int attackType){
+      Calc.attackDamage(attackType);
+      return -1;
+   }
+
+
+
 /*
    public int totalDamage(int attackType){
       Calc.totalDamage(attackType
@@ -12,4 +21,5 @@ public class TwoHandSword extends Weapon {
    }
 
 */
+
 }
