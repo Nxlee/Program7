@@ -1,3 +1,7 @@
+/*
+* Version: 2
+*/
+
 public class DamageCalc {
    private int damage;
    private int chanceEvasion;
@@ -11,7 +15,7 @@ public class DamageCalc {
       calc the amount of damage that will be put on a fighter
    */
    public void attackDamage(int attackType){
-      int damage = 0;
+      //int damage = 0;
       //int chance = 0;
       
       //ATTACK TYPE 1
@@ -31,6 +35,8 @@ public class DamageCalc {
          int range = (15 - 10) + 1;
          damage = (int)(Math.random() * range) + 10; //damage wil be 5 - 10
       }
+      //System.out.println(damage);
+      //damage = 5; //testing
    }
 
    public void evasionChance(int evasion){
@@ -68,9 +74,12 @@ public class DamageCalc {
       if (evasion == 100){ // miss chnace = 1 in 1
          chanceEvasion = 0;
       }
+      //System.out.println(chanceEvasion);
+      //chanceEvasion = 1; //testing
    }
 
    public int totalDamage(){
+      //System.out.println( damage + " " + chanceEvasion);
       return damage * chanceEvasion;
    }
 }
