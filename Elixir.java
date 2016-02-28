@@ -1,4 +1,4 @@
-public class Elixir{
+public class Elixir implements Items{
 
    private static final int SP = 25;
    private static final int COST = 50;

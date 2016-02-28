@@ -1,5 +1,19 @@
 public class HolyStaff extends Weapon {
-   public HolyStaff() {
-      super(50, 30);
+   private DamageCalc Calc;
+   private static final int COST = 50;
+   private static final int POWER = 10;
+   //private int enemyEvasion;
+   
+   public HolyStaff(int enemyEvasion) {
+      super(COST, POWER, enemyEvasion);
+      Calc = new DamageCalc();
+   }
+
+   public int totalDamage(int attackType){
+      Calc.attackDamage(attackType);
+      Calc.evasionChance(getEnemyEvasion());
+      int damage = Calc.totalDamage();
+      //System.out.println(damage);
+      return damage;
    }
 }

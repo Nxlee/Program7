@@ -1,5 +1,24 @@
 public class ShortBow extends Weapon {
-   public ShortBow() {
-      super(25, 10);
+   private DamageCalc Calc;
+   //private int enemyEvasion;
+   private static final int COST = 25;
+   private static final int POWER = 10;
+
+   public ShortBow(int enemyEvasion) {
+      super(COST, POWER, enemyEvasion);
+      Calc = new DamageCalc();
+      
+      //this.enemyEvasion = super.enemyEvasion;
+      //setEnemyEvasion(enemyEvasion);
+
    }
+
+   public int totalDamage(int attackType){
+      Calc.attackDamage(attackType);
+      Calc.evasionChance(getEnemyEvasion());
+      int damage = Calc.totalDamage();
+      //System.out.println(damage);
+      return damage;
+   }
+
 }
