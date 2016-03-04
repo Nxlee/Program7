@@ -3,7 +3,7 @@ public abstract class Weapon {
    private int power;
    private int enemyEvasion;
 
-   public Weapon(int c, int p, int enemeyEvasion) {
+   public Weapon(int c, int p, int enemyEvasion) {
       cost = c;
       power = p;
       this.enemyEvasion = enemyEvasion;
