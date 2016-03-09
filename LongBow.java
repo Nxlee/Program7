@@ -22,7 +22,7 @@ public class LongBow extends Weapon {
    }
 
 
-   public int getCost(){
-      return COST;
-   }
+   //public int getCost(){
+   //   return COST;
+   //}
 }
