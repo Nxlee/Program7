@@ -29,9 +29,9 @@ public class Play {
          System.out.println("\n\n\n\nWelcome to Program 7, a turn by "
             + "turn text based game played against an AI");
          System.out.println("\nPlease select a class: \n(1) = Archer\n(2) = Warrior" 
-            + "\n(3) = mage");
+            + "\n(3) = Mage \n(4) Game Instructions");
 
-         playerClass = scanCheck(1, 3, scan);
+         playerClass = scanCheck(1, 4, scan);
          /*
             while(true) {
                if(scan.hasNextInt()) {
@@ -59,20 +59,37 @@ public class Play {
                + " and one with nature - like that one guy who keeps trying to get\n"
                + "you to do yoga with him because he says it makes you \"One with" 
                + " nature\" -- \"One with nature\" my ass");
+            break;
          } else if (playerClass == 2){
             fighter = new Warrior();
             System.out.print("\nYou have chosen to be the Warrior, master of the Blade" 
                + " and the stronger than a sterotypical frat boy");
+            break;
          } else if (playerClass == 3){
             fighter = new Mage();
             System.out.print("\nYou have chosen to be the Mage, master of the Staff" 
                + " and master of the elements; until the fire nation attacked");
+         } else if (playerClass == 4){ 
+            System.out.println("This is how to play Program 7:\n"
+               + "After leaving these instructions, you will be asked to chose a class:\n"
+               + "\tArcher \n\tWarrior \n\tMage \n\nEach class has its own stregths and"
+               + " perks, so choose wisely and experiment! \n\nAfter you choose a class"
+               + ", you will be brought to the Shop where you can purchase weapons and "
+               + "items for your battles.\nWhile in the shop, you have access to "
+               + money.getCash() + " gold, but be warned, this is a set amount and it" 
+               + "must last you through all three (3) roounds!\n\nAfter each round, your"
+               + " weapons inventory gets reset, so you must either buy another weapon or"
+               + " use the default Fist, which is the weakest in the game, but free. \n"
+               + "Your items inventory, however, does not reset after each round!\n\n"
+               + "The game has 3 rounds to it, each harder than before, that you must" 
+               + " survive in to win.\n\nThe entire game uses numbers to select options."
+               + "\n\nGood Luck!"); 
          } else {
             System.out.println("I'm not saying you broke the program, but like," 
             +  " you shouldn't see this...");
          }
 
-      break;
+      //break;
 
       }
 
@@ -335,7 +352,7 @@ public class Play {
                   choice = 2;
                }
 
-
+               
 
             }
 
@@ -347,6 +364,9 @@ public class Play {
             System.out.println("Ready to fight");
             break; //start fight
          }
+ 
+
+
          break;
          }
          //TO DO: Create a new constructor for fighter for enemies
@@ -504,9 +524,8 @@ public class Play {
                   }
 
                   if (Command == 3){
-                     System.out.println("rest");
-                     fighter.setHP(5);
-                     fighter.setSP(10);
+                     System.out.println("You feel rested!");
+                     fighter.rest();
                      //break;
                   }
               // }
@@ -577,9 +596,8 @@ public class Play {
                      }
 
                      if (Command == 2){
-                        System.out.println("rest");
-                        fighter.setHP(5);
-                        fighter.setSP(10);
+                        System.out.println("You feel rested!");
+                        fighter.rest();
                         holder = false;
                      }
                   usedItem = false;
@@ -598,7 +616,8 @@ public class Play {
 
          
       }//end in game
-      System.out.println("Congratulations! You have bested every opponent! Now leave...");
+      System.out.println("Congratulations! You have bested every opponent! Now leave...\n"
+         + "Your weapons inventory has been whiped clean!");
    }//end main
 
    public static int scanCheck(int min, int max, Scanner scan){

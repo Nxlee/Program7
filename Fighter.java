@@ -32,16 +32,16 @@ public class Fighter {
 
 //rest skip turn but gain 15 sp and hp
    public void rest() {
-      if(hp >= 85) {
+      if(hp >= 98) {
          hp= 100;
-      } else if(hp < 85) {
-         hp += 15;
+      } else if(hp < 98) {
+         hp += 2;
       }
 
-      if(sp >= 85) {
+      if(sp >= 90) {
          sp = 100;
-      } else if(sp < 85) {
-         sp += 15;
+      } else if(sp < 90) {
+         sp += 10;
       }
    }
 
