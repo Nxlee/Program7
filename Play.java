@@ -8,6 +8,8 @@ public class Play {
          passed = false;
          while(true) {
             //in shop. If key is pressed, break
+            System.out.println("Welcome to the Shop.");
+            System.out.println("What would you like to do? Buy or Exit");
             break;
          }
          while(!passed) {
