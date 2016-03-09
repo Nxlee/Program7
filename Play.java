@@ -10,7 +10,9 @@ public class Play {
       int playerClass = 0;
       List<Items> itemList = new ArrayList<Items>();
       List<Weapon> weaponList = new ArrayList<Weapon>();
-
+      boolean hasW1;
+      boolean hasW2;
+      boolean hasW3;
 
      // int choice = 69;
 
@@ -74,7 +76,9 @@ public class Play {
 
       while(gamesPlayed < gamesToPlay) {//In game
          weaponList.clear();
-
+         hasW1 = false;
+         hasW2 = false;
+         hasW3 = false;
          int choice = 0; 
          passed = false; 
          while(true) {
@@ -240,30 +244,42 @@ public class Play {
                if (buy == 1){ //weapon 1. works for all classes
                   if (money.getCash() < price1){
                      System.out.println("You do not have enough gold to buy this!");
-                  } else {
+                  }
+                  if(hasW1 == false && hasW2 == false) {
                      money.buyWeapon(W1);
                      System.out.println("\nRemaining balance: " + money.getCash());
                      weaponList.add(W1);
+                     hasW1 = true;
+                  } else {
+                     System.out.println("You already have a weapon!");
                   }
                }
 
                else if (buy == 2){ //weapon 2. works for all classes
                   if (money.getCash() < price2){
                      System.out.println("You do not have enough gold to buy this!");
-                  } else {
+                  }
+                  if(hasW1 == false && hasW2 == false) {
                      money.buyWeapon(W2);
                      System.out.println("\nRemaining balance: " + money.getCash());
                      weaponList.add(W2);
+                     hasW2 = true;
+                  } else {
+                     System.out.println("You already have a weapon!");
                   }
                }
 
                else if (buy == 3){ //weapon 3. works for all classes
                   if (money.getCash() < price3){
                      System.out.println("You do not have enough gold to buy this!");
-                  } else {
+                  }
+                  if(hasW3 == false) {
                      money.buyWeapon(W3);
                      System.out.println("\nRemaining balance: " + money.getCash());
                      weaponList.add(W3);
+                     hasW3 = true;
+                  } else {
+                     System.out.println("You already have this special weapon!");
                   }
                }
 

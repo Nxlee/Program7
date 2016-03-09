@@ -24,7 +24,10 @@ TO DO
 --------
 1. Check cash amount before buying
 2. Amount owned in shop for items
-
+3. Add a scanner loop for buying items and weapons outside of each class's shop. Just check for class after finding what weapon or item they wantto buy. decrease the amount of money that have. add the weapon to the arrayList
+4. When a weapon is bought, check the arrayList to make sure that they already dont own it3. Add a scanner loop for buying items and weapons outside of each class's shop. Just check for class after finding what weapon or item they wantto buy. decrease the amount of money that have. add the weapon to the arrayList
+4. When a weapon is bought, check the arrayList to make sure that they already dont own it3. Add a scanner loop for buying items and weapons outside of each class's shop. Just check for class after finding what weapon or item they wantto buy. decrease the amount of money that have. add the weapon to the arrayList
+4. When a weapon is bought, check the arrayList to make sure that they already dont own it
 
 
 
