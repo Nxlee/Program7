@@ -94,7 +94,9 @@ public class Play {
       }
 
       while(gamesPlayed < gamesToPlay) {//In game
-         weaponList.clear();
+         weaponList.clear(); //resets weapon list
+         fighter.setHP(fighter.getStartHP()); //resets HP
+         fighter.setSP(fighter.getStartSP()); //resets SP
          hasW1 = false;
          hasW2 = false;
          hasW3 = false;
@@ -379,8 +381,15 @@ public class Play {
          if(gamesPlayed == 2) {
             opp = new Mage();
          }
+
+         int turnCount = 1;
          while(!passed && gamesPlayed < 3) { //Fight time, once you win, passed = true;
-            while(true) { //player turn
+            //boolean trueVal = true;
+            boolean win = false;
+            boolean playerTurn = true;
+            while(playerTurn) { //player turn
+
+               System.out.println("Turn: " + turnCount);
                System.out.println("\nYou:\t\tHP: " + fighter.getHp() + "/100"
                   + "\tSP: " + fighter.getSp() + "/100" + "\tEvasion: " 
                   + fighter.getEvasion());
@@ -394,6 +403,7 @@ public class Play {
 
                int Command = 0;
                if(usedItem == false) {
+               
                   System.out.println("(1) Fight   (2) Use Item   (3) Rest");
                   Command = scanCheck(1,3,scan);
                   if(Command == 2) {
@@ -468,67 +478,88 @@ public class Play {
                      
                   }
 
+                  //while(true){
+                     if (Command == 1){//Chose to fight //ADD AMOUNT OF SP FOR EACH ATTACK
+                        System.out.println("Choose an attack:");
+                        System.out.println("(1) Basic Attack -- SP: " + fighter.basicSP() + "\n" 
+                           + "(2) Strong Attack -- SP: " + fighter.strongSP() + "\n"
+                           + "(3) Special Attack -- SP: " + fighter.specialSP() + "\n"
+                           + "(4) Return to previous menu");
 
-                  if (Command == 1){//Chose to fight //ADD AMOUNT OF SP FOR EACH ATTACK
-                     System.out.println("Choose an attack:");
-                     System.out.println("(1) Basic Attack\n" 
-                        + "(2) Strong Attack\n"
-                        + "(3) Special Attack\n"
-                        + "(4) Return to previous menu");
+                        damageDone = 0;
+                        attackType = 0;
+                        attackType = scanCheck(1,4,scan);
 
-                     damageDone = 0;
-                     attackType = 0;
-                     attackType = scanCheck(1,4,scan);
+                        if(attackType == 1){//uses BasicAttack
 
-                     if(attackType == 1){//uses BasicAttack
+                           damageDone = fighter.basicAttack();
+                           
+                           System.out.println("You issued " + damageDone + " damage with " 
+                              + fighter.getWeapon1Name() + "'s Basic attack!");
 
-                        damageDone = fighter.basicAttack();
-                        System.out.println("You did " + damageDone + " damage!");
-                        opp.setHP(damageDone);
-                        //holder = false;
-                     }
-
-                     if(attackType == 2){//Uses Strong attack
-                        if(fighter.getSp() - 10 >= 0) {
-                           damageDone = fighter.strongAttack();
-                           System.out.println("You did " + damageDone + " damage!");
-                           fighter.setSP(-10);
-                        } else {
-                           System.out.println("You don't have enough SP to use this move!");
-                        }
-                        //holder = false;
-                        opp.setHP(damageDone);
-                     }
-
-                     if(attackType == 3){//Uses Special Attack
-                        if(fighter.getSp() - 25 >= 0) {
-                           damageDone = fighter.specialAttack();
-                           System.out.println("You did " + damageDone + " damage!");
-                           //holder = false;
-                           fighter.setSP(-25);
                            opp.setHP(damageDone);
-                        } else {
-                           System.out.println("You don't have enough SP to use this move!");
+                           playerTurn = false;
+                           //break;
+                        }
+
+                        if(attackType == 2){//Uses Strong attack
+                           if(fighter.getSp() + fighter.strongSP() >= 0) {
+                              damageDone = fighter.strongAttack();
+
+                              System.out.println("You issued " + damageDone + " damage with " 
+                                 + fighter.getWeapon1Name() + "'s Strong attack!");
+
+                              fighter.setSP(fighter.strongSP());
+
+                              opp.setHP(damageDone);
+                              playerTurn = false;
+                              //break;
+                           } else {
+                              System.out.println("You don't have enough SP to use this move!");
+                           }
+                           //trueVal = false;
+
+                        }
+
+                        if(attackType == 3){//Uses Special Attack
+                           if(fighter.getSp() + fighter.specialSP() >= 0) {
+                              damageDone = fighter.specialAttack();
+
+                              System.out.println("You issued " + damageDone + " damage with " 
+                                 + fighter.getWeapon1Name() + "'s Special attack!");
+
+
+                              //trueVal = false;
+                              
+                              fighter.setSP(fighter.specialSP());
+                              opp.setHP(damageDone);
+                              playerTurn = false;
+                              //break;
+                           } else {
+                              System.out.println("You don't have enough SP to use this move!");
+                           }
+                        }
+
+                        if(attackType == 4){
+                        
                         }
                      }
 
-                     if(attackType == 4){
-                        
-                     }
-                     
                      if (opp.getHp() <= 0){
                         passed = true;
+                        win = true;
                         break;
                      }
 
-                  }
+                  //}
 
                   if (Command == 3){
                      System.out.println("You feel rested!");
                      fighter.rest();
+                     playerTurn = false;
                      //break;
                   }
-              // }
+                  //}
 
             //}
 
@@ -545,41 +576,54 @@ public class Play {
 
                      if (Command == 1){//Chose to fight //ADD AMOUNT OF SP FOR EACH ATTACK
                         System.out.println("Choose an attack:");
-                        System.out.println("(1) Basic Attack\n" 
-                           + "(2) Strong Attack\n"
-                           + "(3) Special Attack\n"
+                        System.out.println("(1) Basic Attack -- SP: " + fighter.basicSP() + "\n" 
+                           + "(2) Strong Attack -- SP: " + fighter.strongSP() + "\n"
+                           + "(3) Special Attack -- SP: " + fighter.specialSP() + "\n"
                            + "(4) Return to previous menu");
-
                         damageDone = 0;
                         attackType = 0;
                         attackType = scanCheck(1,4,scan);
 
                         if(attackType == 1){//uses BasicAttack
                            damageDone = fighter.basicAttack();
-                           System.out.println("You did " + damageDone + " damage!");
+                           
+                           System.out.println("You issued " + damageDone + " damage with " 
+                              + fighter.getWeapon1Name() + "'s Basic attack!");
+
                            opp.setHP(damageDone);
                            holder = false;
+                           playerTurn = false;
                         }
 
                         if(attackType == 2){//Uses Strong attack
-                           if(fighter.getSp() - 10 >= 0) {
+                           if(fighter.getSp() + fighter.strongSP() >= 0) {
                               damageDone = fighter.strongAttack();
-                              System.out.println("You did " + damageDone + " damage!");
-                              fighter.setSP(-10);
+                              
+                              System.out.println("You issued " + damageDone + " damage with " 
+                                 + fighter.getWeapon1Name() + "'s Strong attack!");
+
+
+                              fighter.setSP(fighter.strongSP());
                               opp.setHP(damageDone);
                               holder = false;
+                              playerTurn = false;
                            } else {
                               System.out.println("You don't have enough SP to use this move!");
                            }
                         }
 
                         if(attackType == 3){//Uses Special Attack
-                           if(fighter.getSp() - 25 >= 0) {
+                           if(fighter.getSp() + fighter.specialSP() >= 0) {
                               damageDone = fighter.specialAttack();
-                              System.out.println("You did " + damageDone + " damage!");
-                              fighter.setSP(-25);
+                              
+                              System.out.println("You issued " + damageDone + " damage with " 
+                                 + fighter.getWeapon1Name() + "'s Special attack!");
+
+                              fighter.setSP(fighter.specialSP());
                               opp.setHP(damageDone);
                               holder = false;
+                              playerTurn = false;
+
                            } else {
                               System.out.println("You don't have enough SP to use this move!");
                            }
@@ -591,6 +635,7 @@ public class Play {
 
                         if (opp.getHp() <= 0){
                            passed = true;
+                           win = true;
                            break;
                         }
                      }
@@ -599,19 +644,31 @@ public class Play {
                         System.out.println("You feel rested!");
                         fighter.rest();
                         holder = false;
+                        playerTurn = false;
                      }
                   usedItem = false;
+                  }
+                  if (opp.getHp() <= 0){
+                     passed = true;
+                     win = true;
+                     break;
                   }
 
                }
 
-
+            //turnCount++;
 
 
             }
-            //usedItem = false;
-            System.out.println ("Congratulations! You won game number: " + (gamesPlayed + 1));
-            gamesPlayed++;
+            turnCount++;
+
+            if (win){
+               System.out.println ("Congratulations! You won game number: " + (gamesPlayed + 1));
+               gamesPlayed++;
+            } else {
+            System.out.println("Didnt win yet");
+            }
+
          }//passed while loop
 
          

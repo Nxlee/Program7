@@ -1,17 +1,22 @@
 public class Fighter {
    private int hp;
    private int sp;
+   private static final int STARTHP = 80;
+   private static final int STARTSP = 80;
    private int evasion;
    private Potion p;
    private Elixir e;
    private SmokeBomb s;
    private Weapon normalWeapon;
    private Weapon specialWeapon;
+   private static final int BASICSP = 0;
+   private static final int STRONGSP = -10;
+   private static final int SPECIALSP = -20;
 
 //Constructor for fighters
    public Fighter() {
-      hp = 80;
-      sp = 80;
+      hp = STARTHP;
+      sp = STARTSP;
       evasion = 0;
       p = new Potion();
       e = new Elixir();
@@ -115,8 +120,13 @@ public class Fighter {
       s.boost(this);
    }
 
+   public int getStartHP(){
+      return STARTHP;
+   }
 
-
+   public int getStartSP(){
+      return STARTSP;
+   }
 
 //returns hp
    public int getHp() {
@@ -141,7 +151,26 @@ public class Fighter {
       specialWeapon = weapon;
    }
 
+   public String getWeapon1Name(){
+      return normalWeapon.toString();
+   }
+
+   public String getWeapon2Name(){
+      return specialWeapon.toString();
+   }
 //
+   public int basicSP(){
+      return BASICSP;
+   }
+
+   public int strongSP(){
+      return STRONGSP;
+   }
+
+   public int specialSP(){
+      return SPECIALSP;
+   }
+
 
    public int basicAttack(){
       return normalWeapon.totalDamage(1);
