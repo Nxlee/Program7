@@ -2,7 +2,7 @@ public class Archer extends Fighter {
    public Archer() {
       super();
    }
-
+/*
    public int basicAttack() {
       return 5;
    }
@@ -14,4 +14,5 @@ public class Archer extends Fighter {
    public int specialAttack() {
       return 15;
    }
+*/
 }

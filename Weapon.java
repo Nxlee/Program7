@@ -2,11 +2,14 @@ public abstract class Weapon {
    private int cost;
    private int power;
    private int enemyEvasion;
+   private DamageCalc Calc;
+
 
    public Weapon(int c, int p, int enemyEvasion) {
       cost = c;
       power = p;
       this.enemyEvasion = enemyEvasion;
+      Calc = new DamageCalc();
    }
 
    public Weapon(){
@@ -33,5 +36,14 @@ public abstract class Weapon {
 
    public String toString(){
       return "" + getClass().getName(); 
+   }
+
+
+   public int totalDamage(int attackType){
+      Calc.attackDamage(attackType);
+      Calc.evasionChance(getEnemyEvasion());
+      int damage = Calc.totalDamage();
+      //System.out.println(damage);
+      return damage;
    }
 }

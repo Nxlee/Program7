@@ -4,7 +4,7 @@ public class Warrior extends Fighter{
    public Warrior() {
       super();
    }
-
+/*
    public int basicAttack() {
       return 5;
    }
@@ -16,5 +16,5 @@ public class Warrior extends Fighter{
    public int specialAttack() {
       return 15;
    }
-
+*/
 }

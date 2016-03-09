@@ -2,7 +2,7 @@ public class Mage extends Fighter {
    public Mage() {
       super();
    }
-
+/*
    public int basicAttack() {
       return 5;
    }
@@ -14,4 +14,5 @@ public class Mage extends Fighter {
    public int specialAttack() {
       return 15;
    }
+*/
 }
