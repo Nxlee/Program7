@@ -38,5 +38,8 @@ public class Potion implements Items{
    public String toString(){
       return "" + getClass().getName() + ": " + amount + " remaining.";
    }
-
+   
+   public int does(){
+      return HP;
+   }
 }

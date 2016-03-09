@@ -7,5 +7,5 @@ public interface Items {
    public void buy(int amount); //increments the amount by the amount they bought
    //public void use(int amount); //decrements the amount by the amount they used
    public String toString();
-
+   public int does();
 }
