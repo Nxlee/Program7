@@ -21,4 +21,8 @@ public class LongBow extends Weapon {
       return damage;
    }
 
+
+   public int getCost(){
+      return COST;
+   }
 }
