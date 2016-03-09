@@ -65,7 +65,11 @@ public class Fighter {
 
 //Method to set evasion
    public void setEvasion(int value) {
-      evasion += value;
+      if(evasion + value > 100) {
+         evasion = 100;
+      } else {
+         evasion += value;
+      }
    }
 
 //returns number of potions

@@ -36,7 +36,7 @@ public class SmokeBomb implements Items{
    }
 
    public void buy(int amount){ //increments the amount by the amount they bought
-      this.amount =+ amount;
+      this.amount = this.amount + amount;
    }
 
    public String toString(){
