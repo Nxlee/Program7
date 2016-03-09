@@ -13,11 +13,13 @@ public class Play {
       boolean hasW1;
       boolean hasW2;
       boolean hasW3;
+      boolean usedItem = false;
 
      // int choice = 69;
 
       Scanner scan = new Scanner(System.in);
-      Fighter fighter;
+      Fighter fighter = null;
+      Fighter opp = null;
       Cash money = new Cash();
 
 
@@ -327,12 +329,40 @@ public class Play {
          //}
          if(choice == 2) {
             System.out.println("Ready to fight");
-            break;
+            break; //start fight
          }
          break;
          }
-         while(!passed) {
-            //play against AI, once you win, passed = true.
+         //TO DO: Create a new constructor for fighter for enemies
+         if(gamesPlayed == 0) {
+            opp = new Archer();
+         }
+         if(gamesPlayed == 1) {
+            opp = new Warrior();
+         }
+         if(gamesPlayed == 2) {
+            opp = new Mage();
+         }
+         while(!passed) { //Fight time, once you win, passed = true;
+            while(true) { //player turn
+               System.out.println("You:\t\tHP: " + fighter.getHp()
+                  + "\tSP: " + fighter.getSp());
+               System.out.println("Opponent:\tHP: " + opp.getHp()
+                  + "\tSP: " + opp.getSp());
+               System.out.println("\nWhat would you like to do?");
+               if(usedItem = false) {
+                  System.out.println("(1) Fight   (2) Use Item   (3) Rest");
+                  int Command = scanCheck(1,3,scan);
+                  if(Command == 2) {
+                     //List options for items and use item
+                     usedItem = true;
+                  }
+               } else {
+                  System.out.println("(1) Fight   (2) Rest");
+                  int Command = scanCheck(1,2,scan);
+               }
+            }
+            //usedItem = false;
          }
       }
    }
