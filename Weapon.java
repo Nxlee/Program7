@@ -9,6 +9,12 @@ public abstract class Weapon {
       this.enemyEvasion = enemyEvasion;
    }
 
+   public Weapon(){
+      cost = 0;
+      power = 0;
+      enemyEvasion = 0;
+   }
+
    public int getCost() {
       return cost;
    }
@@ -23,5 +29,9 @@ public abstract class Weapon {
 
    public void setEnemyEvasion(int enemyEvasion){
       this.enemyEvasion = enemyEvasion;
+   }
+
+   public String toString(){
+      return "" + getClass().getName(); 
    }
 }

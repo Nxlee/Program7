@@ -36,7 +36,7 @@ public class Elixir implements Items{
    }
 
    public String toString(){
-      return "" + getClass().getName() + ": " + amount + " remaining.";
+      return "" + getClass().getName(); // + ": " + amount + " remaining";
    }
 
    public int does(){

@@ -13,7 +13,8 @@ public class Cash{
    }
 
    public int buyItem(Items item){
-      return cashAmount - item.getCost();
+      cashAmount = cashAmount - item.getCost();
+      return cashAmount;
    }
 
    public int getCash(){

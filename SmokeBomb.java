@@ -40,7 +40,7 @@ public class SmokeBomb implements Items{
    }
 
    public String toString(){
-      return "" + getClass().getName() + ": " + amount + " remaining.";
+      return "" + getClass().getName();// + ": " + amount + " remaining";
    }
 
    public int does(){
