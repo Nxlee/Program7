@@ -21,19 +21,19 @@ public class DamageCalc {
       //ATTACK TYPE 1
       if (attackType == 1){ //damage will be 1-5
          int range = (5 - 1) + 1;
-         damage = (int)(Math.random() * range) + 1; //damage wil be 1 -5
+         damage = -1 * ((int)(Math.random() * range) + 1); //damage wil be 1 -5
       }
 
       //ATTACK TYPE 2
       if (attackType == 2){ //damage will be 5-10
          int range = (10 - 5) + 1;
-         damage = (int)(Math.random() * range) + 5; //damage wil be 5 - 10
+         damage = -1 * ((int)(Math.random() * range) + 5); //damage wil be 5 - 10
       }
 
       //ATTACK TYPE 3
       if (attackType == 3){ //damage will be 10-15
          int range = (15 - 10) + 1;
-         damage = (int)(Math.random() * range) + 10; //damage wil be 5 - 10
+         damage = -1 * ((int)(Math.random() * range) + 10); //damage wil be 5 - 10
       }
       //System.out.println(damage);
       //damage = 5; //testing
