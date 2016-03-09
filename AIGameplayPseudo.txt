@@ -1,0 +1,32 @@
+System.out("GAME START")
+**OPTIONAL - list enemy class (i.e. VS.Warrior)
+while(!passed)
+      {
+while(Player turn)
+   {
+System.out.println(Your  HP: ___ MP: ____)
+System.out.println(Opponent "HP___ MP ____)
+
+Skip Line
+
+System.out.println(What do you want to do?:(1) fight, (2) item (3) rest
+Can only use 1 item, then fight or rest
+   }
+Enemy code for damage calc
+if enemy health <= 0, passed = true
+       }
+
+
+
+
+
+TO DO
+--------
+1. Check cash amount before buying
+2. Amount owned in shop for items
+
+
+
+
+
+
