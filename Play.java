@@ -464,23 +464,32 @@ public class Play {
 
                         damageDone = fighter.basicAttack();
                         System.out.println("You did " + damageDone + " damage!");
-                           
                         opp.setHP(damageDone);
                         //holder = false;
                      }
 
                      if(attackType == 2){//Uses Strong attack
-                        damageDone = fighter.strongAttack();
-                        System.out.println("You did " + damageDone + " damage!");
+                        if(fighter.getSp() - 10 >= 0) {
+                           damageDone = fighter.strongAttack();
+                           System.out.println("You did " + damageDone + " damage!");
+                           fighter.setSP(-10);
+                        } else {
+                           System.out.println("You don't have enough SP to use this move!");
+                        }
                         //holder = false;
                         opp.setHP(damageDone);
                      }
 
                      if(attackType == 3){//Uses Special Attack
-                        damageDone = fighter.specialAttack();
-                        System.out.println("You did " + damageDone + " damage!");
-                        //holder = false;
-                        opp.setHP(damageDone);
+                        if(fighter.getSp() - 25 >= 0) {
+                           damageDone = fighter.specialAttack();
+                           System.out.println("You did " + damageDone + " damage!");
+                           //holder = false;
+                           fighter.setSP(-25);
+                           opp.setHP(damageDone);
+                        } else {
+                           System.out.println("You don't have enough SP to use this move!");
+                        }
                      }
 
                      if(attackType == 4){
@@ -496,6 +505,8 @@ public class Play {
 
                   if (Command == 3){
                      System.out.println("rest");
+                     fighter.setHP(5);
+                     fighter.setSP(10);
                      //break;
                   }
               // }
@@ -532,17 +543,27 @@ public class Play {
                         }
 
                         if(attackType == 2){//Uses Strong attack
-                           damageDone = fighter.strongAttack();
-                           System.out.println("You did " + damageDone + " damage!");
-                           opp.setHP(damageDone);
-                           holder = false;
+                           if(fighter.getSp() - 10 >= 0) {
+                              damageDone = fighter.strongAttack();
+                              System.out.println("You did " + damageDone + " damage!");
+                              fighter.setSP(-10);
+                              opp.setHP(damageDone);
+                              holder = false;
+                           } else {
+                              System.out.println("You don't have enough SP to use this move!");
+                           }
                         }
 
                         if(attackType == 3){//Uses Special Attack
-                           damageDone = fighter.specialAttack();
-                           System.out.println("You did " + damageDone + " damage!");
-                           opp.setHP(damageDone);
-                           holder = false;
+                           if(fighter.getSp() - 25 >= 0) {
+                              damageDone = fighter.specialAttack();
+                              System.out.println("You did " + damageDone + " damage!");
+                              fighter.setSP(-25);
+                              opp.setHP(damageDone);
+                              holder = false;
+                           } else {
+                              System.out.println("You don't have enough SP to use this move!");
+                           }
                         }
 
                         if(attackType == 4){
@@ -557,6 +578,8 @@ public class Play {
 
                      if (Command == 2){
                         System.out.println("rest");
+                        fighter.setHP(5);
+                        fighter.setSP(10);
                         holder = false;
                      }
                   usedItem = false;
