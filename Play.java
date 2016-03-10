@@ -69,6 +69,7 @@ public class Play {
             fighter = new Mage();
             System.out.print("\nYou have chosen to be the Mage, master of the Staff" 
                + " and master of the elements; until the fire nation attacked");
+            break;
          } else if (playerClass == 4){ 
             System.out.println("This is how to play Program 7:\n"
                + "After leaving these instructions, you will be asked to chose a class:\n"
@@ -699,12 +700,13 @@ public class Play {
 
             }
 
+         System.out.println("Your weapons inventory has been wiped clean");
+
          }//passed while loop
 
-         
+
       }//end in game
-      System.out.println("Congratulations! You have bested every opponent! Now leave...\n"
-         + "Your weapons inventory has been whiped clean!");
+      System.out.println("You have bested every opponent! Now leave...\n");
    }//end main
 
    public static int scanCheck(int min, int max, Scanner scan){
