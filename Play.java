@@ -749,7 +749,7 @@ public class Play {
             if(opp.getSp() <= 30) {
                return 3;
             } else {
-               n = 2;
+               n = 1;
             }
          }
          if(n == 2) {
