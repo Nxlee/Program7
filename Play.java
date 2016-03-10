@@ -672,8 +672,30 @@ public class Play {
                System.out.println ("Congratulations! You won game number: " + (gamesPlayed + 1));
                gamesPlayed++;
             } else {
-            
+
+
+
+
+
+
+
             //THE ENEMY's shit needs to go here in a while loop!
+
+
+               int damageDone = opp.basicAttack();
+               System.out.println("The enemy issued " + damageDone + " damage with their "
+                  + opp.getWeapon1Name() + "'s Basic attack!");
+
+               fighter.setHP(damageDone);
+
+
+
+
+
+
+
+
+
 
             }
 
