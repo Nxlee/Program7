@@ -42,7 +42,7 @@ public abstract class Weapon {
    public int totalDamage(int attackType){
       Calc.attackDamage(attackType);
       Calc.evasionChance(getEnemyEvasion());
-      int damage = Calc.totalDamage();
+      int damage = Calc.totalDamage() * (power/10);
       //System.out.println(damage);
       return damage;
    }

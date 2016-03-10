@@ -95,6 +95,7 @@ public class Play {
 
       while(gamesPlayed < gamesToPlay) {//In game
          weaponList.clear(); //resets weapon list
+         weaponList.add(new Fist(0));
          fighter.setHP(fighter.getStartHP()); //resets HP
          fighter.setSP(fighter.getStartSP()); //resets SP
          hasW1 = false;
@@ -148,6 +149,9 @@ public class Play {
 
                if (weaponList.size() == 0){
                   System.out.println("Your weapon inventory is currently empty");
+               } else if (weaponList.get(0).getClass().getName().equals("Fist") &&
+                     weaponList.size() == 1){
+                  System.out.println("Your only weapons are your bare hands!");
                } else {
                   System.out.println(weaponList);
                }
@@ -279,7 +283,7 @@ public class Play {
                   if(hasW1 == false && hasW2 == false) {
                      money.buyWeapon(W1);
                      System.out.println("\nRemaining balance: " + money.getCash());
-                     weaponList.add(W1);
+                     weaponList.set(0, W1);
                      fighter.addWeapon1(W1);
                      hasW1 = true;
                   } else {
@@ -294,7 +298,7 @@ public class Play {
                   if(hasW1 == false && hasW2 == false) {
                      money.buyWeapon(W2);
                      System.out.println("\nRemaining balance: " + money.getCash());
-                     weaponList.add(W2);
+                     weaponList.set(0, W2);
                      fighter.addWeapon1(W2);
                      hasW2 = true;
                   } else {

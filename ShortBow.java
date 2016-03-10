@@ -12,7 +12,7 @@ public class ShortBow extends Weapon {
       //setEnemyEvasion(enemyEvasion);
 
    }
-
+/*
    public int totalDamage(int attackType){
       Calc.attackDamage(attackType);
       Calc.evasionChance(getEnemyEvasion());
@@ -20,5 +20,5 @@ public class ShortBow extends Weapon {
       //System.out.println(damage);
       return damage;
    }
-
+*/
 }

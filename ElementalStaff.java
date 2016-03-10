@@ -12,7 +12,7 @@ public class ElementalStaff extends Weapon {
       //setEnemyEvasion(enemyEvasion);
 
    }
-
+/*
    public int totalDamage(int attackType){
       Calc.attackDamage(attackType);
       Calc.evasionChance(getEnemyEvasion());
@@ -20,5 +20,6 @@ public class ElementalStaff extends Weapon {
       //System.out.println(damage);
       return damage;
    }
+*/
 
 }

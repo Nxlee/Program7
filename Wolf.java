@@ -2,7 +2,7 @@ public class Wolf extends Weapon {
    private DamageCalc Calc;
    //private int enemyEvasion;
    private static final int COST = 75;
-   private static final int POWER = 2;
+   private static final int POWER = 5;
 
    public Wolf(int enemyEvasion) {
       super(COST, POWER, enemyEvasion);
@@ -12,7 +12,7 @@ public class Wolf extends Weapon {
       //setEnemyEvasion(enemyEvasion);
 
    }
-
+/*
    public int totalDamage(int attackType){
       Calc.attackDamage(attackType);
       Calc.evasionChance(getEnemyEvasion());
@@ -20,5 +20,5 @@ public class Wolf extends Weapon {
       //System.out.println(damage);
       return damage;
    }
-
+*/
 }

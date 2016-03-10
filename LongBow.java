@@ -2,7 +2,7 @@ public class LongBow extends Weapon {
    private DamageCalc Calc;
    //private int enemyEvasion;
    private static final int COST = 50;
-   private static final int POWER = 25;
+   private static final int POWER = 20;
 
    public LongBow(int enemyEvasion) {
       super(COST, POWER, enemyEvasion);
@@ -12,7 +12,7 @@ public class LongBow extends Weapon {
       //setEnemyEvasion(enemyEvasion);
 
    }
-
+/*
    public int totalDamage(int attackType){
       Calc.attackDamage(attackType);
       Calc.evasionChance(getEnemyEvasion());
@@ -20,7 +20,7 @@ public class LongBow extends Weapon {
       //System.out.println(damage);
       return damage;
    }
-
+*/
 
    //public int getCost(){
    //   return COST;

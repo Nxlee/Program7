@@ -16,7 +16,7 @@ public class TwoHandSword extends Weapon {
       //setEnemyEvasion(enemyEvasion);
 
    }
-
+/*
    public int totalDamage(int attackType){
       Calc.attackDamage(attackType);
       Calc.evasionChance(getEnemyEvasion());
@@ -24,5 +24,5 @@ public class TwoHandSword extends Weapon {
       //System.out.println(damage);
       return damage;
    }
-
+*/
 }

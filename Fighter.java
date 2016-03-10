@@ -21,7 +21,7 @@ public class Fighter {
       p = new Potion();
       e = new Elixir();
       s = new SmokeBomb();
-      normalWeapon = null;
+      normalWeapon = new Fist(0);
       specialWeapon = null;
    }
 

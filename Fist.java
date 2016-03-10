@@ -12,7 +12,7 @@ public class Fist extends Weapon {
       //setEnemyEvasion(enemyEvasion);
 
    }
-
+/*
    public int totalDamage(int attackType){
       Calc.attackDamage(attackType);
       Calc.evasionChance(getEnemyEvasion());
@@ -20,7 +20,7 @@ public class Fist extends Weapon {
       //System.out.println(damage);
       return damage;
    }
-
+*/
 
    //public int getCost(){
    //   return COST;

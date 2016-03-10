@@ -2,7 +2,7 @@ public class OneHandSword extends Weapon {
    private DamageCalc Calc;
    //private int enemyEvasion;
    private static final int COST = 50;
-   private static final int POWER = 20;
+   private static final int POWER = 10;
 
    public OneHandSword(int enemyEvasion) {
       super(COST, POWER, enemyEvasion);
@@ -10,7 +10,7 @@ public class OneHandSword extends Weapon {
       //this.enemyEvasion = enemyEvasion;
 
    }
-
+/*
    public int totalDamage(int attackType){
       Calc.attackDamage(attackType);
       Calc.evasionChance(getEnemyEvasion());
@@ -18,5 +18,5 @@ public class OneHandSword extends Weapon {
       //System.out.println(damage);
       return damage;
    }
-
+*/
 }
