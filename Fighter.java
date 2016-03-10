@@ -146,6 +146,8 @@ public class Fighter {
       hp = STARTHP;
       sp = STARTSP;
       evasion = STARTEVASION;
+      normalWeapon = new Fist(0);
+      specialWeapon = null;
    }
 
    public void addWeapon1(Weapon weapon){
