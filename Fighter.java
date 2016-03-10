@@ -27,13 +27,15 @@ public class Fighter {
    }
 
    public Fighter(int hp, int sp, int evasion, int potions, 
-            int elixirs, int bombs) {
+            int elixirs, int bombs, Weapon nWeap, Weapon sWeap) {
       this.hp = hp;
       this.sp = sp;
       this.evasion = evasion;
       p = new Potion(potions);
       e = new Elixir(elixirs);
       s = new SmokeBomb(bombs);
+      normalWeapon = nWeap;
+      specialWeapon = sWeap;
    }
 
 //rest skip turn but gain 15 sp and hp

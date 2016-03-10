@@ -4,6 +4,9 @@ public class Warrior extends Fighter{
    public Warrior() {
       super();
    }
+   public Warrior(boolean b) {
+      super(100,100,0,5,5,2, new OneHandSword(0), new Shield(0));
+   }
 /*
    public int basicAttack() {
       return 5;

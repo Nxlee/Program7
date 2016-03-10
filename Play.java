@@ -379,13 +379,13 @@ public class Play {
          }
          //TO DO: Create a new constructor for fighter for enemies
          if(gamesPlayed == 0) {
-            opp = new Archer();
+            opp = new Archer(true);
          }
          if(gamesPlayed == 1) {
-            opp = new Warrior();
+            opp = new Warrior(true);
          }
          if(gamesPlayed == 2) {
-            opp = new Mage();
+            opp = new Mage(true);
          }
 
          int turnCount = 1;
