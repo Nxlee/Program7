@@ -1,9 +1,10 @@
 public class Fighter {
    private int hp;
    private int sp;
-   private static final int STARTHP = 80;
-   private static final int STARTSP = 80;
    private int evasion;
+   private static final int STARTHP = 100;
+   private static final int STARTSP = 100;
+   private static final int STARTEVASION = 0;
    private Potion p;
    private Elixir e;
    private SmokeBomb s;
@@ -141,7 +142,11 @@ public class Fighter {
       return evasion;
    }
 
-
+   public void reset(){
+      hp = STARTHP;
+      sp = STARTSP;
+      evasion = STARTEVASION;
+   }
 
    public void addWeapon1(Weapon weapon){
       normalWeapon = weapon;

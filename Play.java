@@ -96,8 +96,10 @@ public class Play {
       while(gamesPlayed < gamesToPlay) {//In game
          weaponList.clear(); //resets weapon list
          weaponList.add(new Fist(0));
-         fighter.setHP(fighter.getStartHP()); //resets HP
-         fighter.setSP(fighter.getStartSP()); //resets SP
+         //fighter.setHP(fighter.getStartHP()); //resets HP
+         //fighter.setSP(fighter.getStartSP()); //resets SP
+         //fighter.setEvasion(0);
+         fighter.reset();
          hasW1 = false;
          hasW2 = false;
          hasW3 = false;
@@ -393,7 +395,7 @@ public class Play {
             boolean playerTurn = true;
             while(playerTurn) { //player turn
 
-               System.out.println("Turn: " + turnCount);
+               System.out.println("\nTurn: " + turnCount);
                System.out.println("\nYou:\t\tHP: " + fighter.getHp() + "/100"
                   + "\tSP: " + fighter.getSp() + "/100" + "\tEvasion: " 
                   + fighter.getEvasion());
@@ -670,7 +672,9 @@ public class Play {
                System.out.println ("Congratulations! You won game number: " + (gamesPlayed + 1));
                gamesPlayed++;
             } else {
-            System.out.println("Didnt win yet");
+            
+            //THE ENEMY's shit needs to go here in a while loop!
+
             }
 
          }//passed while loop
