@@ -1,8 +1,9 @@
 import java.util.Scanner;
 import java.util.List;
 import java.util.ArrayList;
-
+import java.util.Random;
 public class Play {
+   private static Fighter opp = null;
    public static void main(String[] args) {
       int gamesPlayed = 0;
       int gamesToPlay = 3;
@@ -19,7 +20,7 @@ public class Play {
 
       Scanner scan = new Scanner(System.in);
       Fighter fighter = null;
-      Fighter opp = null;
+      //Fighter opp = null;
       Cash money = new Cash();
 
 
@@ -681,15 +682,32 @@ public class Play {
 
 
             //THE ENEMY's shit needs to go here in a while loop!
+            int eMove = enemyMove(gamesPlayed);
+               if(eMove == 3) {
+                  System.out.println("The enemy rests.");
+                  opp.rest();
+               }
+               if(eMove == 2) {
+                  int damageDone = opp.specialAttack();
+                  System.out.println("The enemy issued " + damageDone + " damage with their "
+                     + opp.getWeapon1Name() + "'s Special attack!");
+                  fighter.setHP(damageDone);
+                  opp.setSP(-25);
+               }
+               if(eMove == 1) {
+                  int damageDone = opp.strongAttack();
+                  System.out.println("The enemy issued " + damageDone + " damage with their "
+                     + opp.getWeapon1Name() + "'s Strong attack!");
+                  fighter.setHP(damageDone);
+                  opp.setSP(-10);
+               }
+               if(eMove == 0) {
+                  int damageDone = opp.basicAttack();
+                  System.out.println("The enemy issued " + damageDone + " damage with their "
+                     + opp.getWeapon1Name() + "'s Basic attack!");
 
-
-               int damageDone = opp.basicAttack();
-               System.out.println("The enemy issued " + damageDone + " damage with their "
-                  + opp.getWeapon1Name() + "'s Basic attack!");
-
-               fighter.setHP(damageDone);
-
-
+                  fighter.setHP(damageDone);
+               }
 
 
 
@@ -700,7 +718,7 @@ public class Play {
 
             }
 
-         System.out.println("Your weapons inventory has been wiped clean");
+         //System.out.println("Your weapons inventory has been wiped clean");
 
          }//passed while loop
 
@@ -708,6 +726,69 @@ public class Play {
       }//end in game
       System.out.println("You have bested every opponent! Now leave...\n");
    }//end main
+
+   private static int enemyMove(int level) {
+      Random rand = new Random();
+      //boolean usedItem = false;
+      if(level == 0) { //Random AI for level 1
+         while(true) {
+            if(opp.getHp() <= 25 && opp.getPotions() > 0) { //use potion if hp < 25
+               System.out.println("Enemy used potion!");
+               opp.usePotion();
+               break;
+            }
+            if(opp.getSp() <= 25 && opp.getElixir() > 0) { //"" but with elixir
+               System.out.println("Enemy used elixir!");
+               opp.useElixir();
+               break;
+            }
+            break;
+         }
+         int n = rand.nextInt(4);
+         if(n == 3) {
+            if(opp.getSp() <= 30) {
+               return 3;
+            } else {
+               n = 2;
+            }
+         }
+         if(n == 2) {
+            if(opp.getSp() >= 25) {
+               return 2;
+            } else if (opp.getSp() >= 10) {
+               return 1;
+            } else {
+               return 0;
+            }
+         }
+
+         if(n == 1) {
+            if(opp.getSp() >= 10) {
+               return 1;
+            } else {
+               return 0;
+            }
+         }
+         if(n == 0) {
+            return 0;
+         }
+
+      }
+      if(level == 1) {
+      //level 2
+      }
+      if(level == 2) {
+      //level 3
+      }
+      return 0;
+   }
+
+
+
+
+
+
+
 
    public static int scanCheck(int min, int max, Scanner scan){
       int innerChoice = 0;
