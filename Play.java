@@ -5,6 +5,7 @@ import java.util.Random;
 public class Play {
    private static Fighter opp = null;
    private static boolean lost = false;
+   private static int attackCount = 0;
    public static void main(String[] args) {
       int gamesPlayed = 0;
       int gamesToPlay = 3;
@@ -381,10 +382,10 @@ public class Play {
          }
          //TO DO: Create a new constructor for fighter for enemies
          if(gamesPlayed == 0) {
-            opp = new Archer(true);
+            opp = new Warrior(true);
          }
          if(gamesPlayed == 1) {
-            opp = new Warrior(true);
+            opp = new Archer(true);
          }
          if(gamesPlayed == 2) {
             opp = new Mage(true);
@@ -760,7 +761,7 @@ public class Play {
    private static int enemyMove(int level) {
       Random rand = new Random();
       //boolean usedItem = false;
-      if(level == 0) { //Random AI for level 1
+      if(level == 1) { //Random AI for level 1
          while(true) {
             if(opp.getHp() <= 25 && opp.getPotions() > 0) { //use potion if hp < 25
                System.out.println("Enemy used potion!");
@@ -779,7 +780,7 @@ public class Play {
             if(opp.getSp() <= 30) {
                return 3;
             } else {
-               n = 1;
+               n = 2;
             }
          }
          if(n == 2) {
@@ -804,8 +805,47 @@ public class Play {
          }
 
       }
-      if(level == 1) {
-      //level 2
+      if(level == 0) {
+         while(true) {
+            if(opp.getHp() <= 25 && opp.getPotions() > 0) { //use potion if hp < 25
+               System.out.println("Enemy used potion!");
+               opp.usePotion();
+               break;
+            }
+            if(opp.getSp() <= 25 && opp.getElixir() > 0) { //"" but with elixir
+               System.out.println("Enemy used elixir!");
+               opp.useElixir();
+               break;
+            }
+            break;
+         }
+         if(attackCount == 0) {
+            if(opp.getSp() >= 25) {
+               attackCount++;
+               return 2;
+            } else if(opp.getSp() >= 10) {
+               attackCount++;
+               return 1;
+            } else {
+               attackCount++;
+               return 0;
+            }
+         }
+         if(attackCount == 1) {
+            if(opp.getSp() >= 10) {
+               attackCount++;
+               return 1;
+            } else {
+               attackCount++;
+               return 0;
+            }
+         }
+         if(attackCount < 4) {
+            attackCount++;
+            return 3;
+         }
+         attackCount = 0;
+         return 0;
       }
       if(level == 2) {
       //level 3
