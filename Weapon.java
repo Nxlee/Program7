@@ -40,9 +40,12 @@ public abstract class Weapon {
 
 
    public int totalDamage(int attackType){
-      Calc.attackDamage(attackType);
+      double multi = (((double)power)/10);
+      System.out.println("This is multi: " + multi);
+      Calc.attackDamage(attackType, multi);
       Calc.evasionChance(getEnemyEvasion());
-      int damage = (int)(Calc.totalDamage() * (((double)power)/10));
+      int damage = (Calc.totalDamage());
+
       //System.out.println(damage);
       return damage;
    }

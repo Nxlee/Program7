@@ -14,26 +14,38 @@ public class DamageCalc {
 
       calc the amount of damage that will be put on a fighter
    */
-   public void attackDamage(int attackType){
+   public void attackDamage(int attackType, double multi){
       //int damage = 0;
       //int chance = 0;
       
       //ATTACK TYPE 1
       if (attackType == 1){ //damage will be 1-5
-         int range = (5 - 1) + 1;
-         damage = -1 * ((int)(Math.random() * range) + 1); //damage wil be 1 -5
+         if (
+            int range = (int)((5*(multi) - 1) + 1); //multi = .5, range = 3
+         damage = -1 * ((int)(Math.random() * range) + 1);//damage wil be 1 -5
       }
 
       //ATTACK TYPE 2
       if (attackType == 2){ //damage will be 5-10
-         int range = (10 - 5) + 1;
-         damage = -1 * ((int)(Math.random() * range) + 5); //damage wil be 5 - 10
+         if (multi < 1){
+            int range = (int)((10*(multi) - 5*(multi)) + 1); //range = 2
+            damage = -1 * ((int)(Math.random() * range) + 3);
+         } else {
+            int range = (int)((10*(multi) - 5) + 1);
+            damage = -1 * ((int)(Math.random() * range) + 5); //damage wil be 5 - 10
+         }
       }
 
       //ATTACK TYPE 3
       if (attackType == 3){ //damage will be 10-15
-         int range = (15 - 10) + 1;
-         damage = -1 * ((int)(Math.random() * range) + 10); //damage wil be 5 - 10
+
+         if (multi < 1){
+            int range = (int)((15*(multi) -1) + 1);
+            damage = -1 * ((int)(Math.random() * range) + 3); 
+         } else {
+            int range = (int)((15*(multi) - 10) + 1);
+            damage = -1 * ((int)(Math.random() * range) + 10); //damage wil be 5 - 10
+         }
       }
       //System.out.println(damage);
       //damage = 5; //testing

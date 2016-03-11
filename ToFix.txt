@@ -9,3 +9,9 @@
 - incorporate evasion
 
 - incorporate the special weapons per class
+
+- persistant high score
+
+- pvp
+
+- 3 AIs
