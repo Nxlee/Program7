@@ -733,15 +733,20 @@ public class Play {
             }
 
          //System.out.println("Your weapons inventory has been wiped clean");
-
+            if(lost == true) {
+               break;
+            }
          }//passed while loop
-
+            if(lost == true) {
+               break;
+            }
 
       }//end in game
-      if(lost == true); {
-         System.out.println("GG no re.");
+      if(lost == true) {
+         System.out.println("\n\nGG no re.");
+      } else {
+         System.out.println("You have bested every opponent! Now leave...\n");
       }
-      System.out.println("You have bested every opponent! Now leave...\n");
    }//end main
 
    private static int enemyMove(int level) {
