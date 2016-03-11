@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Random;
 public class Play {
    private static Fighter opp = null;
+   private static boolean lost = false;
    public static void main(String[] args) {
       int gamesPlayed = 0;
       int gamesToPlay = 3;
@@ -15,7 +16,6 @@ public class Play {
       boolean hasW2;
       boolean hasW3;
       boolean usedItem = false;
-
      // int choice = 69;
 
       Scanner scan = new Scanner(System.in);
@@ -692,6 +692,10 @@ public class Play {
                   System.out.println("The enemy issued " + damageDone + " damage with their "
                      + opp.getWeapon1Name() + "'s Special attack!");
                   fighter.setHP(damageDone);
+                  if(fighter.getHp() <= 0) {
+                     //System.out.println("GG no re");
+                     lost = true;
+                  }
                   opp.setSP(-25);
                }
                if(eMove == 1) {
@@ -699,6 +703,10 @@ public class Play {
                   System.out.println("The enemy issued " + damageDone + " damage with their "
                      + opp.getWeapon1Name() + "'s Strong attack!");
                   fighter.setHP(damageDone);
+                  if(fighter.getHp() <= 0) {
+                     //System.out.println("GG no re");
+                     lost = true;
+                  }
                   opp.setSP(-10);
                }
                if(eMove == 0) {
@@ -707,9 +715,15 @@ public class Play {
                      + opp.getWeapon1Name() + "'s Basic attack!");
 
                   fighter.setHP(damageDone);
+                  if(fighter.getHp() <= 0) {
+                     //System.out.println("GG no re");
+                     lost = true;
+                  }
                }
 
-
+               if(lost == true) {
+                  break;
+               }
 
 
 
@@ -724,6 +738,9 @@ public class Play {
 
 
       }//end in game
+      if(lost == true); {
+         System.out.println("GG no re.");
+      }
       System.out.println("You have bested every opponent! Now leave...\n");
    }//end main
 
