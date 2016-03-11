@@ -6,6 +6,7 @@ public class Play {
    private static Fighter opp = null;
    private static boolean lost = false;
    private static int attackCount = 0;
+   private static int playerMove = 0; //Keeps track of player's move for mage AI
    public static void main(String[] args) {
       int gamesPlayed = 0;
       int gamesToPlay = 3;
