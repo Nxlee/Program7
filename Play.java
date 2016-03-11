@@ -680,11 +680,11 @@ public class Play {
 
             }
             int useSpecial = fighter.useSpecialWeapon(hasW3);
-            int shieldBlock;
+            int shieldBlock = 0;
             if (!win){
                if (playerClass == 2){
                   shieldBlock = useSpecial;
-                  System.out.println("Your Shield blocked 5 damage!");
+                  //System.out.println("Your Shield blocked 5 damage!");
                } else if (playerClass == 1){
                   opp.setHP((-1) * useSpecial);
                   System.out.println("Your wolf companion totally fucked that guy's face up!"
@@ -695,6 +695,9 @@ public class Play {
                }
             }
             turnCount++;
+
+
+
 
             if (opp.getHp() <= 0){
                passed = true;
@@ -721,9 +724,34 @@ public class Play {
                   opp.rest();
                }
                if(eMove == 2) {
-                  int damageDone = opp.specialAttack();
-                  System.out.println("The enemy issued " + damageDone + " damage with their "
+                  
+                  int damageDone;
+                  int orig;
+                  int blocked = 0;
+
+                  if (shieldBlock != 0){
+                     damageDone = opp.specialAttack();
+                     orig = damageDone;
+                     if ((-1)*damageDone < shieldBlock){
+                        blocked = (-1) * damageDone;
+                        damageDone = 0;
+                     } else {
+                        damageDone += shieldBlock;
+                        blocked = (orig - damageDone) * (-1);
+                     }
+                  } else {
+                     damageDone = opp.specialAttack();
+                     orig = damageDone;
+                  }
+
+                  System.out.println("The enemy issued " + orig + " damage with their "
                      + opp.getWeapon1Name() + "'s Special attack!");
+                  if (shieldBlock != 0){
+                     System.out.println("But you blocked " + blocked + " of their damage"
+                        + " with your shield");
+                  }
+
+
                   fighter.setHP(damageDone);
                   if(fighter.getHp() <= 0) {
                      //System.out.println("GG no re");
@@ -732,9 +760,33 @@ public class Play {
                   opp.setSP(-25);
                }
                if(eMove == 1) {
-                  int damageDone = opp.strongAttack();
-                  System.out.println("The enemy issued " + damageDone + " damage with their "
+
+                  int damageDone;
+                  int orig;
+                  int blocked = 0;
+
+                  if (shieldBlock != 0){
+                     damageDone = opp.strongAttack();
+                     orig = damageDone;
+                     if ((-1)*damageDone < shieldBlock){
+                        blocked = (-1) * damageDone;
+                        damageDone = 0;
+                     } else {
+                        damageDone += shieldBlock;
+                        blocked = (orig - damageDone) * (-1);
+                     }
+                  } else {
+                     damageDone = opp.strongAttack();
+                     orig = damageDone;
+                  }
+
+                  System.out.println("The enemy issued " + orig + " damage with their "
                      + opp.getWeapon1Name() + "'s Strong attack!");
+                  if (shieldBlock != 0){
+                     System.out.println("But you blocked " + blocked + " of their damage"
+                        + " with your shield");
+                  }
+
                   fighter.setHP(damageDone);
                   if(fighter.getHp() <= 0) {
                      //System.out.println("GG no re");
@@ -743,9 +795,33 @@ public class Play {
                   opp.setSP(-10);
                }
                if(eMove == 0) {
-                  int damageDone = opp.basicAttack();
-                  System.out.println("The enemy issued " + damageDone + " damage with their "
+
+
+                  int damageDone;
+                  int orig;
+                  int blocked = 0;
+
+                  if (shieldBlock != 0){
+                     damageDone = opp.basicAttack();
+                     orig = damageDone;
+                     if ((-1)*damageDone < shieldBlock){
+                        blocked = (-1) * damageDone;
+                        damageDone = 0;
+                     } else {
+                        damageDone += shieldBlock;
+                        blocked = (orig - damageDone) * (-1);
+                     }
+                  } else {
+                     damageDone = opp.basicAttack();
+                     orig = damageDone;
+                  }
+
+                  System.out.println("The enemy issued " + orig + " damage with their "
                      + opp.getWeapon1Name() + "'s Basic attack!");
+                  if (shieldBlock != 0){
+                     System.out.println("But you blocked " + blocked + " of their damage"
+                        + " with your shield");
+                  }
 
                   fighter.setHP(damageDone);
                   if(fighter.getHp() <= 0) {
