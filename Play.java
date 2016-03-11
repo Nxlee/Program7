@@ -725,9 +725,17 @@ public class Play {
                   break;
                }
 
-
-
-
+               /*
+               try {
+                  boolean sleeping = true;
+                  while (sleeping){
+                     Thread.sleep(1000);
+                     sleeping = false;
+                  }
+               } catch (Exception e){
+                  Thread.currentThread().interrupt();
+               }
+               */
 
 
             }
@@ -828,6 +836,13 @@ public class Play {
 
          if(innerChoice >= min && innerChoice <= max) {
             System.out.println("=====================");
+            /*
+            try {
+               Thread.sleep(200);
+            } catch (Exception e){
+               Thread.currentThread().interrupt();
+            }
+            */
             return innerChoice;
          } else {
             System.out.println("Wrong Command, Dipshit");
