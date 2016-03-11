@@ -7,6 +7,7 @@ public class Play {
    private static boolean lost = false;
    private static int attackCount = 0;
    private static int playerMove = 0; //Keeps track of player's move for mage AI
+   private static Fighter fighter = null;
    public static void main(String[] args) {
       int gamesPlayed = 0;
       int gamesToPlay = 3;
@@ -30,7 +31,7 @@ public class Play {
      // int choice = 69;
 
       Scanner scan = new Scanner(System.in);
-      Fighter fighter = null;
+      //Fighter fighter = null;
       //Fighter opp = null;
       Cash money = new Cash();
 
@@ -393,6 +394,7 @@ public class Play {
          //TO DO: Create a new constructor for fighter for enemies
          if(gamesPlayed == 0) {
             opp = new Warrior(true);
+            //opp = new Mage(true);
          }
          if(gamesPlayed == 1) {
             opp = new Archer(true);
@@ -512,7 +514,7 @@ public class Play {
                         if(attackType == 1){//uses BasicAttack
 
                            damageDone = fighter.basicAttack();
-                           
+                           playerMove = 1;
                            System.out.println("You issued " + damageDone + " damage with " 
                               + fighter.getWeapon1Name() + "'s Basic attack!");
 
@@ -529,7 +531,7 @@ public class Play {
                                  + fighter.getWeapon1Name() + "'s Strong attack!");
 
                               fighter.setSP(fighter.strongSP());
-
+                              playerMove = 2;
                               opp.setHP(damageDone);
                               playerTurn = false;
                               //break;
@@ -549,7 +551,7 @@ public class Play {
 
 
                               //trueVal = false;
-                              
+                              playerMove = 3;
                               fighter.setSP(fighter.specialSP());
                               opp.setHP(damageDone);
                               playerTurn = false;
@@ -575,6 +577,7 @@ public class Play {
                   if (Command == 3){
                      System.out.println("You feel rested!");
                      fighter.rest();
+                     playerMove = 0;
                      playerTurn = false;
                      //break;
                   }
@@ -608,7 +611,7 @@ public class Play {
                            
                            System.out.println("You issued " + damageDone + " damage with " 
                               + fighter.getWeapon1Name() + "'s Basic attack!");
-
+                           playerMove = 1;
                            opp.setHP(damageDone);
                            holder = false;
                            playerTurn = false;
@@ -620,7 +623,7 @@ public class Play {
                               
                               System.out.println("You issued " + damageDone + " damage with " 
                                  + fighter.getWeapon1Name() + "'s Strong attack!");
-
+                              playerMove = 2;
 
                               fighter.setSP(fighter.strongSP());
                               opp.setHP(damageDone);
@@ -640,6 +643,7 @@ public class Play {
 
                               fighter.setSP(fighter.specialSP());
                               opp.setHP(damageDone);
+                              playerMove = 3;
                               holder = false;
                               playerTurn = false;
 
@@ -662,6 +666,7 @@ public class Play {
                      if (Command == 2){
                         System.out.println("You feel rested!");
                         fighter.rest();
+                        playerMove = 0;
                         holder = false;
                         playerTurn = false;
                      }
@@ -983,7 +988,71 @@ public class Play {
          return 0;
       }
       if(level == 2) {
-      //level 3
+         while(true) {
+            if(opp.getHp() <= 65 && opp.getPotions() > 4) { //use potion if hp < 25
+               System.out.println("Enemy used potion!");
+               opp.usePotion();
+               break;
+            }
+            if(opp.getHp() <= 35 && opp.getPotions() <= 4) {
+               System.out.println("Enemy used potion!");
+               opp.usePotion();
+               break;
+            }
+            if(opp.getSp() <= (-1)*opp.specialSP() && opp.getElixir() > 0) { //"" but with elixir
+               System.out.println("Enemy used elixir!");
+               opp.useElixir();
+               break;
+            }
+            break;
+         }
+         if(playerMove == 0) { //if rests, go all out unless they have more than 20hp
+            if(opp.getSp() >= (-1)*opp.specialSP()) {
+               return 2;
+            } else if(opp.getSp() >= (-1)*opp.strongSP()) {
+               return 1;
+            } else if(fighter.getHp() <= 20){
+               return 0;
+            } else {
+               return 3;
+            }
+         }
+         if(playerMove == 1) { //basic attack, rest if Sp is less than or equal to 30
+            if(opp.getSp() <= 30) {
+               return 3;
+            } else {
+            return 2;
+            }
+         }
+         //strong attack
+         if(playerMove == 2) {
+            if(opp.getHp() <=50) {
+               if(opp.getSp() >= (-1)*opp.specialSP()) {
+                  return 2;
+               } else if (opp.getSp() >= (-1)*opp.strongSP()) {
+                  return 1;
+               } else {
+                  return 3;
+               }
+            }
+            if(opp.getHp() > 50) {
+               if(opp.getSp() >= (-1)*opp.specialSP()) {
+                  return 2;
+               } else if(opp.getSp() >= (-1)*opp.strongSP()) {
+                  return 1;
+               } else {
+                  return 0;
+               }
+            }
+         }
+         //special attack retaliate if possible, otherwise rest
+         if(playerMove == 3) {
+            if(opp.getSp() >= (-1)*opp.specialSP()) {
+               return 2;
+            } else {
+               return 3;
+            }
+         }
       }
       return 0;
    }

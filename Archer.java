@@ -3,7 +3,7 @@ public class Archer extends Fighter {
       super();
    }
    public Archer(boolean b) {
-      super(100,100,0,5,5,2,new ShortBow(0), new Wolf(0));
+      super(100,100,0,3,3,2,new ShortBow(0), new Wolf(0));
    }
 
 /*
