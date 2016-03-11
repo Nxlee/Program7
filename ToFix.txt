@@ -1,0 +1,11 @@
+- bug where on second game, items left over from the first game will not be deleted from the item list when used. Pretty sure it works still though, just the array list doesnt do shiz
+
+- Nerf the attacks
+
+- finsih the AIs
+
+- Make it so that the program does something if you lose
+
+- incorporate evasion
+
+- incorporate the special weapons per class
