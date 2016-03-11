@@ -192,4 +192,13 @@ public class Fighter {
    public int specialAttack(){
       return normalWeapon.totalDamage(3);
    }
+   
+   public int useSpecialWeapon(boolean hasW3){
+      if (!hasW3){
+         return 0;
+      } else {
+         return 5;
+      }
+   }
+
 }

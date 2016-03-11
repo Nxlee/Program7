@@ -1,7 +1,7 @@
 public class Cash{
 
    private int cashAmount;
-   private static final int startAmount = 500;
+   private static final int startAmount = 700;
 
    public Cash(){
       cashAmount = startAmount;

@@ -17,6 +17,7 @@ public class Play {
       boolean hasW2;
       boolean hasW3;
       boolean usedItem = false;
+      //int shieldBlock;
 
 
       Potion potion = new Potion();
@@ -677,7 +678,29 @@ public class Play {
 
 
             }
+            int useSpecial = fighter.useSpecialWeapon(hasW3);
+            int shieldBlock;
+            if (!win){
+               if (playerClass == 2){
+                  shieldBlock = useSpecial;
+                  System.out.println("Your Shield blocked 5 damage!");
+               } else if (playerClass == 1){
+                  opp.setHP((-1) * useSpecial);
+                  System.out.println("Your wolf companion totally fucked that guy's face up!"
+                     + " He lost like 5 damage!");
+               } else if (playerClass == 3){
+                  //fighter.setHP(useSpecial);
+                  //System.out.println("Your Healing Staff healed you by 5 HP!");
+               }
+            }
             turnCount++;
+
+            if (opp.getHp() <= 0){
+               passed = true;
+               win = true;
+               break;
+            }
+
 
             if (win){
                System.out.println ("Congratulations! You won game number: " + (gamesPlayed + 1));
@@ -745,6 +768,17 @@ public class Play {
                   Thread.currentThread().interrupt();
                }
                */
+               
+
+
+
+
+
+               //MAGE HEALINGSTAFF
+               if (playerClass == 3){
+                  fighter.setHP(useSpecial);
+                  System.out.println("Your Healing Staff healed you by 5 HP!");
+               }
 
 
             }
@@ -776,7 +810,7 @@ public class Play {
                opp.usePotion();
                break;
             }
-            if(opp.getSp() <= 25 && opp.getElixir() > 0) { //"" but with elixir
+            if(opp.getSp() <= (-1)*opp.specialSP() && opp.getElixir() > 0) { //"" but with elixir
                System.out.println("Enemy used elixir!");
                opp.useElixir();
                break;
@@ -792,9 +826,9 @@ public class Play {
             }
          }
          if(n == 2) {
-            if(opp.getSp() >= 25) {
+            if(opp.getSp() >= (-1)*opp.specialSP()) {
                return 2;
-            } else if (opp.getSp() >= 10) {
+            } else if (opp.getSp() >= (-1)*opp.strongSP()) {
                return 1;
             } else {
                return 0;
@@ -802,7 +836,7 @@ public class Play {
          }
 
          if(n == 1) {
-            if(opp.getSp() >= 10) {
+            if(opp.getSp() >= (-1)*opp.strongSP()) {
                return 1;
             } else {
                return 0;
@@ -820,7 +854,7 @@ public class Play {
                opp.usePotion();
                break;
             }
-            if(opp.getSp() <= 25 && opp.getElixir() > 0) { //"" but with elixir
+            if(opp.getSp() <= (-1)*opp.specialSP() && opp.getElixir() > 0) { //"" but with elixir
                System.out.println("Enemy used elixir!");
                opp.useElixir();
                break;
@@ -828,10 +862,10 @@ public class Play {
             break;
          }
          if(attackCount == 0) {
-            if(opp.getSp() >= 25) {
+            if(opp.getSp() >= (-1)*opp.specialSP()) {
                attackCount++;
                return 2;
-            } else if(opp.getSp() >= 10) {
+            } else if(opp.getSp() >= (-1)*opp.strongSP()) {
                attackCount++;
                return 1;
             } else {
@@ -840,7 +874,7 @@ public class Play {
             }
          }
          if(attackCount == 1) {
-            if(opp.getSp() >= 10) {
+            if(opp.getSp() >= (-1)*opp.strongSP()) {
                attackCount++;
                return 1;
             } else {
