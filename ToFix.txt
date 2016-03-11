@@ -21,7 +21,7 @@
 
 PRIORITIES RIGHT NOW: Put an X in the [] when done
 1) Special Item Effects for enemy and shield [x]
-2) Mage AI []
+2) Mage AI [X]
 3) Evasion []
 4) High Scores(based on turns big score - turns passed algorithm) []
 GOAL: 1-4 DONE BY FRIDAY
