@@ -682,10 +682,10 @@ public class Play {
             int useSpecial = fighter.useSpecialWeapon(hasW3);
             int shieldBlock = 0;
             if (!win){
-               if (playerClass == 2){
+               if (playerClass == 2 && hasW3){
                   shieldBlock = useSpecial;
                   //System.out.println("Your Shield blocked 5 damage!");
-               } else if (playerClass == 1){
+               } else if (playerClass == 1 && hasW3){
                   opp.setHP((-1) * useSpecial);
                   System.out.println("Your wolf companion totally fucked that guy's face up!"
                      + " He lost like 5 damage!");
@@ -702,7 +702,7 @@ public class Play {
             if (opp.getHp() <= 0){
                passed = true;
                win = true;
-               break;
+               //break;
             }
 
 
@@ -714,11 +714,12 @@ public class Play {
 
 
 
+         
 
 
 
             //THE ENEMY's shit needs to go here in a while loop!
-            int eMove = enemyMove(gamesPlayed);
+               int eMove = enemyMove(gamesPlayed);
                if(eMove == 3) {
                   System.out.println("The enemy rests.");
                   opp.rest();
@@ -830,6 +831,21 @@ public class Play {
                   }
                }
 
+               int oppUseSpecial = opp.useSpecialWeapon(true);
+               //int shieldBlock = 0;
+               //System.out.println("ENEMY SPECIAL: " + gamesPlayed);
+
+               if (gamesPlayed == 1){
+                  fighter.setHP((-1) * oppUseSpecial);
+                  System.out.println("The enemy's wolf companion totally fucked your face up!"
+                     + " You lost like 5 damage!");
+               } else if (gamesPlayed == 2){
+                  opp.setHP(oppUseSpecial);
+                  System.out.println("The enemy's Healing Staff healed him by 5 HP!");
+               }
+
+
+
                if(lost == true) {
                   break;
                }
@@ -852,7 +868,7 @@ public class Play {
 
 
                //MAGE HEALINGSTAFF
-               if (playerClass == 3){
+               if (playerClass == 3 && hasW3){
                   fighter.setHP(useSpecial);
                   System.out.println("Your Healing Staff healed you by 5 HP!");
                }
