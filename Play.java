@@ -763,7 +763,7 @@ public class Play {
                      //System.out.println("GG no re");
                      lost = true;
                   }
-                  opp.setSP(-25);
+                  opp.setSP(-20);
                }
                if(eMove == 1) {
 
