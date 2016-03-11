@@ -17,6 +17,14 @@ public class Play {
       boolean hasW2;
       boolean hasW3;
       boolean usedItem = false;
+
+
+      Potion potion = new Potion();
+      Elixir elixir = new Elixir();
+      SmokeBomb smokeBomb = new SmokeBomb();
+
+
+
      // int choice = 69;
 
       Scanner scan = new Scanner(System.in);
@@ -113,9 +121,9 @@ public class Play {
          Weapon W2 = null;
          Weapon W3 = null;
 
-         Potion potion = new Potion();
-         Elixir elixir = new Elixir();
-         SmokeBomb smokeBomb = new SmokeBomb();
+         //Potion potion = new Potion();
+         //Elixir elixir = new Elixir();
+         //SmokeBomb smokeBomb = new SmokeBomb();
 
 
          while(true) {
