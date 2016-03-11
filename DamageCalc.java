@@ -20,15 +20,19 @@ public class DamageCalc {
       
       //ATTACK TYPE 1
       if (attackType == 1){ //damage will be 1-5
-         if (
-            int range = (int)((5*(multi) - 1) + 1); //multi = .5, range = 3
+         int range;
+         if (multi < 1){
+            range = 3; //multi = .5, range = 3
+         } else {
+            range = (int)((5*(multi) - 1) + 1);
+         }
          damage = -1 * ((int)(Math.random() * range) + 1);//damage wil be 1 -5
       }
 
       //ATTACK TYPE 2
       if (attackType == 2){ //damage will be 5-10
          if (multi < 1){
-            int range = (int)((10*(multi) - 5*(multi)) + 1); //range = 2
+            int range = 5; //range = 2
             damage = -1 * ((int)(Math.random() * range) + 3);
          } else {
             int range = (int)((10*(multi) - 5) + 1);
@@ -40,8 +44,8 @@ public class DamageCalc {
       if (attackType == 3){ //damage will be 10-15
 
          if (multi < 1){
-            int range = (int)((15*(multi) -1) + 1);
-            damage = -1 * ((int)(Math.random() * range) + 3); 
+            int range = 6;
+            damage = -1 * ((int)(Math.random() * range) + 7); 
          } else {
             int range = (int)((15*(multi) - 10) + 1);
             damage = -1 * ((int)(Math.random() * range) + 10); //damage wil be 5 - 10
