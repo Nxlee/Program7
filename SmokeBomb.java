@@ -1,6 +1,6 @@
 public class SmokeBomb implements Items{
    
-   private static final int EVASION = 25;
+   private static final int EVASION = 10;
    private static final int COST = 50;
    private int amount;
 

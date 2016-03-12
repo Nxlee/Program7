@@ -411,7 +411,8 @@ public class Play {
             //W1.setEnemyEvasion(opp.getEvasion());
             //W2.setEnemyEvasion(opp.getEvasion());
             //W3.setEnemyEvasion(opp.getEvasion());
-
+            boolean hasEvasion = false;
+            int trackSmoke = 0;
             boolean win = false;
             boolean playerTurn = true;
             while(playerTurn) { //player turn
@@ -493,6 +494,8 @@ public class Play {
                                  itemList.remove(smokeBomb);
                               }
                            }
+
+
 
                            if (use ==4){
                               toUse = false;
@@ -705,6 +708,21 @@ public class Play {
                   //System.out.println("Your Healing Staff healed you by 5 HP!");
                }
             }
+            
+            if (fighter.getEvasion() > 0 && !hasEvasion){
+               trackSmoke = turnCount;
+               hasEvasion = true;
+            } else if (fighter.getEvasion() == 0){
+               hasEvasion = false;
+               trackSmoke = 0;
+            }
+            System.out.println(turnCount % 2);
+            if (trackSmoke > 0){
+               if (turnCount % trackSmoke == 2){
+                  fighter.setEvasion(-5);
+               }
+            }
+            
             turnCount++;
 
 

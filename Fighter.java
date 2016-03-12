@@ -75,6 +75,8 @@ public class Fighter {
    public void setEvasion(int value) {
       if(evasion + value > 100) {
          evasion = 100;
+      } else if (evasion + value < 0){
+         evasion = 0;
       } else {
          evasion += value;
       }
