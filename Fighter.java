@@ -144,6 +144,11 @@ public class Fighter {
       return evasion;
    }
 
+   public void setEvasions(int evasionVal){
+      normalWeapon.setEnemyEvasion(evasionVal);
+      //specialWeapon.setEnemyEvasion(evasionVal);
+   }
+
    public void reset(){
       hp = STARTHP;
       sp = STARTSP;

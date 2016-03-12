@@ -406,6 +406,12 @@ public class Play {
          int turnCount = 1;
          while(!passed && gamesPlayed < 3) { //Fight time, once you win, passed = true;
             //boolean trueVal = true;
+
+            fighter.setEvasions(opp.getEvasion());
+            //W1.setEnemyEvasion(opp.getEvasion());
+            //W2.setEnemyEvasion(opp.getEvasion());
+            //W3.setEnemyEvasion(opp.getEvasion());
+
             boolean win = false;
             boolean playerTurn = true;
             while(playerTurn) { //player turn
@@ -717,7 +723,7 @@ public class Play {
             } else {
 
 
-
+            opp.setEvasions(fighter.getEvasion());
 
          
 
