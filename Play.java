@@ -2,12 +2,16 @@ import java.util.Scanner;
 import java.util.List;
 import java.util.ArrayList;
 import java.util.Random;
+import java.io.FileWriter;
+import java.io.IOException;
 public class Play {
    private static Fighter opp = null;
    private static boolean lost = false;
    private static int attackCount = 0;
    private static int playerMove = 0; //Keeps track of player's move for mage AI
    private static Fighter fighter = null;
+   private static int turnCount;
+   private static int totalCount;
    public static void main(String[] args) {
       int gamesPlayed = 0;
       int gamesToPlay = 3;
@@ -403,7 +407,7 @@ public class Play {
             opp = new Mage(true);
          }
 
-         int turnCount = 1;
+         turnCount = 1;
          while(!passed && gamesPlayed < 3) { //Fight time, once you win, passed = true;
             //boolean trueVal = true;
 
@@ -724,6 +728,7 @@ public class Play {
             }
             
             turnCount++;
+            totalCount++;
 
 
 
@@ -917,8 +922,32 @@ public class Play {
       }//end in game
       if(lost == true) {
          System.out.println("\n\nGG no re.");
+         //String playerName = scan.nextLine();
+         //System.out.println(playerName);
+         System.out.println("What is your name?");
+         String playerName = scan.nextLine();
+         double highScore = ((double)money.getCash()+ 100)/(double)(totalCount) * 10000;
+         try{
+            FileWriter fw = new FileWriter("HighScores.txt", true);
+            fw.write(highScore + " - " + playerName);
+            fw.flush();
+            fw.close();
+         } catch (IOException ex) {
+            System.out.println("Error writing highscore");
+         }
       } else {
-         System.out.println("You have bested every opponent! Now leave...\n");
+         System.out.println("You have bested every opponent!\n");
+         System.out.println("What is your name?");
+         String playerName = scan.nextLine();
+         double highScore = ((double)money.getCash()+ 100)/(double)(totalCount) * 10000;
+         try{
+            FileWriter fw = new FileWriter("HighScores.txt", true);
+            fw.write(highScore + " - " + playerName);
+            fw.flush();
+            fw.close();
+         } catch (IOException ex) {
+            System.out.println("Error writing highscore");
+         }
       }
    }//end main
 
