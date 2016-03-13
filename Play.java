@@ -4,6 +4,9 @@ import java.util.ArrayList;
 import java.util.Random;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.BufferedReader;
+import java.io.FileReader;
+
 public class Play {
    private static Fighter opp = null;
    private static boolean lost = false;
@@ -46,9 +49,9 @@ public class Play {
          System.out.println("\n\n\n\nWelcome to Program 7, a turn by "
             + "turn text based game played against an AI");
          System.out.println("\nPlease select a class: \n(1) = Archer\n(2) = Warrior" 
-            + "\n(3) = Mage \n(4) Game Instructions");
+            + "\n(3) = Mage \n(4) - Game Instructions\n(5) - HighScores");
 
-         playerClass = scanCheck(1, 4, scan);
+         playerClass = scanCheck(1, 5, scan);
          /*
             while(true) {
                if(scan.hasNextInt()) {
@@ -102,6 +105,85 @@ public class Play {
                + "The game has 3 rounds to it, each harder than before, that you must" 
                + " survive in to win.\n\nThe entire game uses numbers to select options."
                + "\n\nGood Luck!"); 
+         } else if (playerClass == 5){
+            System.out.println("HighScores:");
+
+
+            try {
+               //BufferedReader br = new BufferedReader(new FileReader("HighScores.txt"));
+               //StringBuilder sb = new StringBuilder();
+               String prevHigh = "";
+               String everything = "";
+               String highLine = "";
+               BufferedReader br = new BufferedReader(new FileReader("HighScores.txt"));
+               String add = br.readLine();
+               List<String> scores = new ArrayList<String>();
+
+               while (add != null){
+                  scores.add(add);
+                  add = br.readLine();
+               }
+
+               int i = 0;
+               boolean sort = true;
+
+               while (sort){
+                  int min = i;
+
+                  for (int j = i + 1; j < scores.size(); j++){
+                     if (scores.get(j).compareTo(scores.get(min)) < 0){
+                        min = j;
+                     }
+                  }
+
+                  if (min != i){
+                     String temp = scores.get(i);
+                     scores.set(i, scores.get(min));
+                     scores.set(min, temp);
+                  }
+
+                  if (i >= scores.size()){
+                     sort = false;
+                  } else {
+                     i++;
+                  }
+
+               }
+
+               //System.out.println(scores);
+               if (scores.size() <= 5){
+                  for (int x = scores.size() - 1; x >= 0; x--){
+                     System.out.println(scores.get(x));
+                  }
+               } else {
+                  for (int x = scores.size() - 1; x >= scores.size() - 5; x--){
+                     System.out.println(scores.get(x));
+                  }
+               }
+/*
+
+               for (int x = 0; x < 5; x++){
+                  BufferedReader br = new BufferedReader(new FileReader("HighScores.txt"));
+                  //StringBuilder sb = new StringBuilder();
+                  String line = br.readLine();
+                  //ring highLine = "";
+
+                  while (line != null){
+                     if (line.compareTo(highLine) > 0){
+                        highLine = line;
+                     }
+                     //System.out.println("Hello" + x);
+                     line = br.readLine();
+                  }
+                  System.out.println(highLine);
+                  br.close();
+               }
+*/
+            } catch (IOException e){
+               System.out.println("Could not print highscores");
+            }
+
+
          } else {
             System.out.println("I'm not saying you broke the program, but like," 
             +  " you shouldn't see this...");
@@ -929,7 +1011,7 @@ public class Play {
          double highScore = ((double)money.getCash()+ 100)/(double)(totalCount) * 10000;
          try{
             FileWriter fw = new FileWriter("HighScores.txt", true);
-            fw.write(highScore + " - " + playerName);
+            fw.write(highScore + " - " + playerName + "\n");
             fw.flush();
             fw.close();
          } catch (IOException ex) {
@@ -942,7 +1024,7 @@ public class Play {
          double highScore = ((double)money.getCash()+ 100)/(double)(totalCount) * 10000;
          try{
             FileWriter fw = new FileWriter("HighScores.txt", true);
-            fw.write(highScore + " - " + playerName);
+            fw.write(highScore + " - " + playerName + "\n");
             fw.flush();
             fw.close();
          } catch (IOException ex) {
