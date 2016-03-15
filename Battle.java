@@ -15,19 +15,7 @@ public class Battle {
    private static Fighter fighter = null;
    private static int turnCount;
    private static int totalCount;
-   private static Scanner scan = new Scanner(System.in);
    public static void main(String[] args) {
-      System.out.println("What gamemode would you like to play?\n(1) Single Player " +
-         "(2) MultiPlayer");
-      int play = scanCheck(1,2, scan);
-      if(play == 1) {
-         SinglePlay();
-      }
-      if(play == 2) {
-         //
-      }
-   }
-   public static void SinglePlay() {
       int gamesPlayed = 0;
       int gamesToPlay = 3;
       boolean passed;
@@ -49,7 +37,7 @@ public class Battle {
 
      // int choice = 69;
 
-      //Scanner scan = new Scanner(System.in);
+      Scanner scan = new Scanner(System.in);
       //Fighter fighter = null;
       //Fighter opp = null;
       Cash money = new Cash();
