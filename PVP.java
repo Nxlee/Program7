@@ -19,13 +19,21 @@ public class PVP {
       int gamesPlayed = 0;
       int gamesToPlay = 3;
       boolean passed;
-      int playerClass = 0;
-      List<Items> itemList = new ArrayList<Items>();
-      List<Weapon> weaponList = new ArrayList<Weapon>();
-      boolean hasW1;
-      boolean hasW2;
-      boolean hasW3;
-      boolean usedItem = false;
+      int playerClass1 = 0;
+      int playerClass2 = 0;
+      List<Items> itemList1 = new ArrayList<Items>();
+      List<Weapon> weaponList1 = new ArrayList<Weapon>();
+      List<Items> itemList1 = new ArrayList<Items>();
+      List<Weapon> weaponList1 = new ArrayList<Weapon>();
+      boolean has1W1;
+      boolean has1W2;
+      boolean has1W3;
+      boolean 1usedItem = false;
+
+      boolean has2W1;
+      boolean has2W2;
+      boolean has2W3;
+      boolean 2usedItem = false;
       //int shieldBlock;
 
 
@@ -40,14 +48,15 @@ public class PVP {
       Scanner scan = new Scanner(System.in);
       //Fighter fighter = null;
       //Fighter opp = null;
-      Cash money = new Cash();
+      Cash money1 = new Cash();
+      Cash money2 = new Cash();
 
 
       while (true){ // pick a class
          //int choice = 0; 
 
          System.out.println("\n\n\n\nWelcome to Program 7, a turn by "
-            + "turn text based game played against an AI");
+            + "turn text based game played against your friend");
          System.out.println("\nPlease select a class: \n(1) = Archer\n(2) = Warrior" 
             + "\n(3) = Mage \n(4) - Game Instructions\n(5) - HighScores");
 
