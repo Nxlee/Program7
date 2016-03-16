@@ -8,14 +8,43 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 
 public class PVP {
-   private static Fighter opp = null;
-   private static boolean lost = false;
-   private static int attackCount = 0;
-   private static int playerMove = 0; //Keeps track of player's move for mage AI
+   private static int playerClass1;
+   private static int playerClass2;
+   private static Fighter fighter2 = null;
    private static Fighter fighter = null;
    private static int turnCount;
    private static int totalCount;
-   public static void main(String[] args) {
+   private static String player1;
+   private static String player2;
+   private static Scanner scan = new Scanner(System.in);
+   public static void playPVP() {
+      PlayerSelection();
+
+
+
+
+   }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   /*
       int gamesPlayed = 0;
       int gamesToPlay = 3;
       boolean passed;
@@ -50,154 +79,6 @@ public class PVP {
       //Fighter opp = null;
       Cash money1 = new Cash();
       Cash money2 = new Cash();
-
-
-      while (true){ // pick a class
-         //int choice = 0; 
-
-         System.out.println("\n\n\n\nWelcome to Program 7, a turn by "
-            + "turn text based game played against your friend");
-         System.out.println("\nPlease select a class: \n(1) = Archer\n(2) = Warrior" 
-            + "\n(3) = Mage \n(4) - Game Instructions\n(5) - HighScores");
-
-         playerClass1 = scanCheck(1, 5, scan);
-         /*
-            while(true) {
-               if(scan.hasNextInt()) {
-                  playerClass1 = scan.nextInt();
-                  scan.nextLine();
-               } else if (scan.hasNextDouble()) {
-                  scan.nextLine();
-                  //System.out.println("Wrong Command, Dipshit");
-               } else if (scan.hasNext()) {
-                  scan.nextLine();
-                  //System.out.println("Wrong Command, Dipshit");
-               }
-
-               if(playerClass1 >= 1 && playerClass <= 3) {
-                  break;
-               } else {
-                  System.out.println("Wrong Command, Dipshit");
-               }
-            }
-         */
-
-         if (playerClass1 == 1){
-            fighter = new Archer();
-            System.out.print("\nYou have chosen to be the Archer, master of the Bow" 
-               + " and one with nature - like that one guy who keeps trying to get\n"
-               + "you to do yoga with him because he says it makes you \"One with" 
-               + " nature\" -- \"One with nature\" my ass");
-            break;
-         } else if (playerClass1 == 2){
-            fighter = new Warrior();
-            System.out.print("\nYou have chosen to be the Warrior, master of the Blade" 
-               + " and the stronger than a sterotypical frat boy");
-            break;
-         } else if (playerClass1 == 3){
-            fighter = new Mage();
-            System.out.print("\nYou have chosen to be the Mage, master of the Staff" 
-               + " and master of the elements; until the fire nation attacked");
-            break;
-         } else if (playerClass1 == 4){ 
-            System.out.println("This is how to play Program 7:\n"
-               + "After leaving these instructions, you will be asked to chose a class:\n"
-               + "\tArcher \n\tWarrior \n\tMage \n\nEach class has its own stregths and"
-               + " perks, so choose wisely and experiment! \n\nAfter you choose a class"
-               + ", you will be brought to the Shop where you can purchase weapons and "
-               + "items for your battles.\nWhile in the shop, you have access to "
-               + money1.getCash() + " gold, but be warned, this is a set amount and it" 
-               + "must last you through all three (3) roounds!\n\nAfter each round, your"
-               + " weapons inventory gets reset, so you must either buy another weapon or"
-               + " use the default Fist, which is the weakest in the game, but free. \n"
-               + "Your items inventory, however, does not reset after each round!\n\n"
-               + "The game has 3 rounds to it, each harder than before, that you must" 
-               + " survive in to win.\n\nThe entire game uses numbers to select options."
-               + "\n\nGood Luck!"); 
-         } else if (playerClass1 == 5){
-            System.out.println("HighScores:");
-
-
-            try {
-               //BufferedReader br = new BufferedReader(new FileReader("HighScores.txt"));
-               //StringBuilder sb = new StringBuilder();
-               String prevHigh = "";
-               String everything = "";
-               String highLine = "";
-               BufferedReader br = new BufferedReader(new FileReader("HighScores.txt"));
-               String add = br.readLine();
-               List<String> scores = new ArrayList<String>();
-
-               while (add != null){
-                  scores.add(add);
-                  add = br.readLine();
-               }
-
-               int i = 0;
-               boolean sort = true;
-
-               while (sort){
-                  int min = i;
-
-                  for (int j = i + 1; j < scores.size(); j++){
-                     if (scores.get(j).compareTo(scores.get(min)) < 0){
-                        min = j;
-                     }
-                  }
-
-                  if (min != i){
-                     String temp = scores.get(i);
-                     scores.set(i, scores.get(min));
-                     scores.set(min, temp);
-                  }
-
-                  if (i >= scores.size()){
-                     sort = false;
-                  } else {
-                     i++;
-                  }
-
-               }
-
-               //System.out.println(scores);
-               if (scores.size() <= 5){
-                  for (int x = scores.size() - 1; x >= 0; x--){
-                     System.out.println(scores.get(x));
-                  }
-               } else {
-                  for (int x = scores.size() - 1; x >= scores.size() - 5; x--){
-                     System.out.println(scores.get(x));
-                  }
-               }
-/*
-
-               for (int x = 0; x < 5; x++){
-                  BufferedReader br = new BufferedReader(new FileReader("HighScores.txt"));
-                  //StringBuilder sb = new StringBuilder();
-                  String line = br.readLine();
-                  //ring highLine = "";
-
-                  while (line != null){
-                     if (line.compareTo(highLine) > 0){
-                        highLine = line;
-                     }
-                     //System.out.println("Hello" + x);
-                     line = br.readLine();
-                  }
-                  System.out.println(highLine);
-                  br.close();
-               }
-*/
-            } catch (IOException e){
-               System.out.println("Could not print highscores");
-            }
-
-
-         } else {
-            System.out.println("I'm not saying you broke the program, but like," 
-            +  " you shouldn't see this...");
-         }
-
       //break;
 
       }
@@ -254,7 +135,7 @@ public class PVP {
                }
             }
             */
-
+/*
             while(choice == 1) {
                System.out.println("\n\nReady to buy! \nYou have " + money1.getCash() + " gold\n");
 
@@ -290,7 +171,7 @@ public class PVP {
                Elixir elixir = new Elixir();
                SmokeBomb smokeBomb = new SmokeBomb();
 */
-               System.out.println("\n");
+/*               System.out.println("\n");
 
                if (playerClass1 == 1){ //archer
                   W1 = new ShortBow(0);
@@ -844,149 +725,7 @@ public class PVP {
 
 
             //THE ENEMY's shit needs to go here in a while loop!
-               int eMove = enemyMove(gamesPlayed);
-               if(eMove == 3) {
-                  System.out.println("The enemy rests.");
-                  opp.rest();
-               }
-               if(eMove == 2) {
-                  
-                  int damageDone;
-                  int orig;
-                  int blocked = 0;
-
-                  if (shieldBlock != 0){
-                     damageDone = opp.specialAttack();
-                     orig = damageDone;
-                     if ((-1)*damageDone < shieldBlock){
-                        blocked = (-1) * damageDone;
-                        damageDone = 0;
-                     } else {
-                        damageDone += shieldBlock;
-                        blocked = (orig - damageDone) * (-1);
-                     }
-                  } else {
-                     damageDone = opp.specialAttack();
-                     orig = damageDone;
-                  }
-
-                  System.out.println("The enemy issued " + orig + " damage with their "
-                     + opp.getWeapon1Name() + "'s Special attack!");
-                  if (shieldBlock != 0){
-                     System.out.println("But you blocked " + blocked + " of their damage"
-                        + " with your shield");
-                  }
-
-
-                  fighter.setHP(damageDone);
-                  if(fighter.getHp() <= 0) {
-                     //System.out.println("GG no re");
-                     lost = true;
-                  }
-                  opp.setSP(-20);
-               }
-               if(eMove == 1) {
-
-                  int damageDone;
-                  int orig;
-                  int blocked = 0;
-
-                  if (shieldBlock != 0){
-                     damageDone = opp.strongAttack();
-                     orig = damageDone;
-                     if ((-1)*damageDone < shieldBlock){
-                        blocked = (-1) * damageDone;
-                        damageDone = 0;
-                     } else {
-                        damageDone += shieldBlock;
-                        blocked = (orig - damageDone) * (-1);
-                     }
-                  } else {
-                     damageDone = opp.strongAttack();
-                     orig = damageDone;
-                  }
-
-                  System.out.println("The enemy issued " + orig + " damage with their "
-                     + opp.getWeapon1Name() + "'s Strong attack!");
-                  if (shieldBlock != 0){
-                     System.out.println("But you blocked " + blocked + " of their damage"
-                        + " with your shield");
-                  }
-
-                  fighter.setHP(damageDone);
-                  if(fighter.getHp() <= 0) {
-                     //System.out.println("GG no re");
-                     lost = true;
-                  }
-                  opp.setSP(-10);
-               }
-               if(eMove == 0) {
-
-
-                  int damageDone;
-                  int orig;
-                  int blocked = 0;
-
-                  if (shieldBlock != 0){
-                     damageDone = opp.basicAttack();
-                     orig = damageDone;
-                     if ((-1)*damageDone < shieldBlock){
-                        blocked = (-1) * damageDone;
-                        damageDone = 0;
-                     } else {
-                        damageDone += shieldBlock;
-                        blocked = (orig - damageDone) * (-1);
-                     }
-                  } else {
-                     damageDone = opp.basicAttack();
-                     orig = damageDone;
-                  }
-
-                  System.out.println("The enemy issued " + orig + " damage with their "
-                     + opp.getWeapon1Name() + "'s Basic attack!");
-                  if (shieldBlock != 0){
-                     System.out.println("But you blocked " + blocked + " of their damage"
-                        + " with your shield");
-                  }
-
-                  fighter.setHP(damageDone);
-                  if(fighter.getHp() <= 0) {
-                     //System.out.println("GG no re");
-                     lost = true;
-                  }
-               }
-
-               int oppUseSpecial = opp.useSpecialWeapon(true);
-               //int shieldBlock = 0;
-               //System.out.println("ENEMY SPECIAL: " + gamesPlayed);
-
-               if (gamesPlayed == 1){
-                  fighter.setHP((-1) * oppUseSpecial);
-                  System.out.println("The enemy's wolf companion totally fucked your face up!"
-                     + " You lost like 5 damage!");
-               } else if (gamesPlayed == 2){
-                  opp.setHP(oppUseSpecial);
-                  System.out.println("The enemy's Healing Staff healed him by 5 HP!");
-               }
-
-
-
-               if(lost == true) {
-                  break;
-               }
-
-               /*
-               try {
-                  boolean sleeping = true;
-                  while (sleeping){
-                     Thread.sleep(1000);
-                     sleeping = false;
-                  }
-               } catch (Exception e){
-                  Thread.currentThread().interrupt();
-               }
-               */
-               
+             
 
 
 
@@ -1013,200 +752,388 @@ public class PVP {
       }//end in game
       if(lost == true) {
          System.out.println("\n\nGG no re.");
-         //String playerName = scan.nextLine();
-         //System.out.println(playerName);
-         System.out.println("What is your name?");
-         String playerName = scan.nextLine();
-         double highScore = ((double)money1.getCash()+ 100)/(double)(totalCount) * 10000;
-         try{
-            FileWriter fw = new FileWriter("HighScores.txt", true);
-            fw.write(highScore + " - " + playerName + "\n");
-            fw.flush();
-            fw.close();
-         } catch (IOException ex) {
-            System.out.println("Error writing highscore");
-         }
-      } else {
-         System.out.println("You have bested every opponent!\n");
-         System.out.println("What is your name?");
-         String playerName = scan.nextLine();
-         double highScore = ((double)money1.getCash()+ 100)/(double)(totalCount) * 10000;
-         try{
-            FileWriter fw = new FileWriter("HighScores.txt", true);
-            fw.write(highScore + " - " + playerName + "\n");
-            fw.flush();
-            fw.close();
-         } catch (IOException ex) {
-            System.out.println("Error writing highscore");
-         }
-      }
+      } 
    }//end main
+*/
 
-   private static int enemyMove(int level) {
-      Random rand = new Random();
-      //boolean usedItem1 = false;
-      if(level == 1) { //Random AI for level 1
-         while(true) {
-            if(opp.getHp() <= 25 && opp.getPotions() > 0) { //use potion if hp < 25
-               System.out.println("Enemy used potion!");
-               opp.usePotion();
-               break;
-            }
-            if(opp.getSp() <= (-1)*opp.specialSP() && opp.getElixir() > 0) { //"" but with elixir
-               System.out.println("Enemy used elixir!");
-               opp.useElixir();
-               break;
-            }
-            break;
-         }
-         int n = rand.nextInt(4);
-         if(n == 3) {
-            if(opp.getSp() <= 30) {
-               return 3;
-            } else {
-               n = 2;
-            }
-         }
-         if(n == 2) {
-            if(opp.getSp() >= (-1)*opp.specialSP()) {
-               return 2;
-            } else if (opp.getSp() >= (-1)*opp.strongSP()) {
-               return 1;
-            } else {
-               return 0;
-            }
-         }
+   public static void PlayerSelection() {
 
-         if(n == 1) {
-            if(opp.getSp() >= (-1)*opp.strongSP()) {
-               return 1;
-            } else {
-               return 0;
-            }
-         }
-         if(n == 0) {
-            return 0;
-         }
+      while (true) { // pick a class
 
-      }
-      if(level == 0) {
-         while(true) {
-            if(opp.getHp() <= 25 && opp.getPotions() > 0) { //use potion if hp < 25
-               System.out.println("Enemy used potion!");
-               opp.usePotion();
-               break;
-            }
-            if(opp.getSp() <= (-1)*opp.specialSP() && opp.getElixir() > 0) { //"" but with elixir
-               System.out.println("Enemy used elixir!");
-               opp.useElixir();
-               break;
-            }
+         System.out.println("\n\n\n\nWelcome to Program 7, a turn by "
+            + "turn text based game played against your friend");
+
+         System.out.println("What is your name, young Hero 1?");
+         player1 = scan.nextLine();
+
+
+         System.out.println("\nPlease select a class: \n(1) = Archer\n(2) = Warrior" 
+            + "\n(3) = Mage \n(4) - Game Instructions");
+
+         playerClass1 = scanCheck(1, 5, scan);
+
+         if (playerClass1 == 1){
+            fighter = new Archer();
+            System.out.print("\nYou have chosen to be the Archer, master of the Bow" 
+               + " and one with nature - like that one guy who keeps trying to get\n"
+               + "you to do yoga with him because he says it makes you \"One with" 
+               + " nature\" -- \"One with nature\" my ass");
             break;
-         }
-         if(attackCount == 0) {
-            if(opp.getSp() >= (-1)*opp.specialSP()) {
-               attackCount++;
-               return 2;
-            } else if(opp.getSp() >= (-1)*opp.strongSP()) {
-               attackCount++;
-               return 1;
-            } else {
-               attackCount++;
-               return 0;
-            }
-         }
-         if(attackCount == 1) {
-            if(opp.getSp() >= (-1)*opp.strongSP()) {
-               attackCount++;
-               return 1;
-            } else {
-               attackCount++;
-               return 0;
-            }
-         }
-         if(attackCount < 4) {
-            attackCount++;
-            return 3;
-         }
-         attackCount = 0;
-         return 0;
-      }
-      if(level == 2) {
-         while(true) {
-            if(opp.getHp() <= 65 && opp.getPotions() > 4) { //use potion if hp < 25
-               System.out.println("Enemy used potion!");
-               opp.usePotion();
-               break;
-            }
-            if(opp.getHp() <= 35 && opp.getPotions() <= 4) {
-               System.out.println("Enemy used potion!");
-               opp.usePotion();
-               break;
-            }
-            if(opp.getSp() <= (-1)*opp.specialSP() && opp.getElixir() > 0) { //"" but with elixir
-               System.out.println("Enemy used elixir!");
-               opp.useElixir();
-               break;
-            }
+         } else if (playerClass1 == 2){
+            fighter = new Warrior();
+            System.out.print("\nYou have chosen to be the Warrior, master of the Blade" 
+               + " and the stronger than a sterotypical frat boy");
             break;
-         }
-         if(playerMove == 0) { //if rests, go all out unless they have more than 20hp
-            if(opp.getSp() >= (-1)*opp.specialSP()) {
-               return 2;
-            } else if(opp.getSp() >= (-1)*opp.strongSP()) {
-               return 1;
-            } else if(fighter.getHp() <= 20){
-               return 0;
-            } else {
-               return 3;
-            }
-         }
-         if(playerMove == 1) { //basic attack, rest if Sp is less than or equal to 30
-            if(opp.getSp() <= 30) {
-               return 3;
-            } else {
-            return 2;
-            }
-         }
-         //strong attack
-         if(playerMove == 2) {
-            if(opp.getHp() <=50) {
-               if(opp.getSp() >= (-1)*opp.specialSP()) {
-                  return 2;
-               } else if (opp.getSp() >= (-1)*opp.strongSP()) {
-                  return 1;
-               } else {
-                  return 3;
-               }
-            }
-            if(opp.getHp() > 50) {
-               if(opp.getSp() >= (-1)*opp.specialSP()) {
-                  return 2;
-               } else if(opp.getSp() >= (-1)*opp.strongSP()) {
-                  return 1;
-               } else {
-                  return 0;
-               }
-            }
-         }
-         //special attack retaliate if possible, otherwise rest
-         if(playerMove == 3) {
-            if(opp.getSp() >= (-1)*opp.specialSP()) {
-               return 2;
-            } else {
-               return 3;
-            }
-         }
-      }
-      return 0;
+         } else if (playerClass1 == 3){
+            fighter = new Mage();
+            System.out.print("\nYou have chosen to be the Mage, master of the Staff" 
+               + " and master of the elements; until the fire nation attacked");
+            break;
+         } else if (playerClass1 == 4){ 
+            /*
+            System.out.println("This is how to play Program 7:\n"
+               + "After leaving these instructions, you will be asked to chose a class:\n"
+               + "\tArcher \n\tWarrior \n\tMage \n\nEach class has its own stregths and"
+               + " perks, so choose wisely and experiment! \n\nAfter you choose a class"
+               + ", you will be brought to the Shop where you can purchase weapons and "
+               + "items for your battles.\nWhile in the shop, you have access to "
+               + money1.getCash() + " gold, but be warned, this is a set amount and it" 
+               + "must last you through all three (3) roounds!\n\nAfter each round, your"
+               + " weapons inventory gets reset, so you must either buy another weapon or"
+               + " use the default Fist, which is the weakest in the game, but free. \n"
+               + "Your items inventory, however, does not reset after each round!\n\n"
+               + "The game has 3 rounds to it, each harder than before, that you must" 
+               + " survive in to win.\n\nThe entire game uses numbers to select options."
+               + "\n\nGood Luck!"); 
+            */
+         } 
    }
 
+      while (true) { // pick a class
+
+         System.out.println("\n\n\n\nWelcome to Program 7, a turn by "
+            + "turn text based game played against your friend");
+
+         System.out.println("What is your name, young Hero 2?");
+         player2 = scan.nextLine();
+
+         System.out.println("\nPlease select a class: \n(1) = Archer\n(2) = Warrior" 
+            + "\n(3) = Mage \n(4) - Game Instructions");
+
+         playerClass2 = scanCheck(1, 5, scan);
+
+         if (playerClass2 == 1){
+            fighter2 = new Archer();
+            System.out.print("\nYou have chosen to be the Archer, master of the Bow" 
+               + " and one with nature - like that one guy who keeps trying to get\n"
+               + "you to do yoga with him because he says it makes you \"One with" 
+               + " nature\" -- \"One with nature\" my ass");
+            break;
+         } else if (playerClass2 == 2){
+            fighter2 = new Warrior();
+            System.out.print("\nYou have chosen to be the Warrior, master of the Blade" 
+               + " and the stronger than a sterotypical frat boy");
+            break;
+         } else if (playerClass2 == 3){
+            fighter2 = new Mage();
+            System.out.print("\nYou have chosen to be the Mage, master of the Staff" 
+               + " and master of the elements; until the fire nation attacked");
+            break;
+         } else if (playerClass2 == 4){ 
+            /*
+            System.out.println("This is how to play Program 7:\n"
+               + "After leaving these instructions, you will be asked to chose a class:\n"
+               + "\tArcher \n\tWarrior \n\tMage \n\nEach class has its own stregths and"
+               + " perks, so choose wisely and experiment! \n\nAfter you choose a class"
+               + ", you will be brought to the Shop where you can purchase weapons and "
+               + "items for your battles.\nWhile in the shop, you have access to "
+               + money1.getCash() + " gold, but be warned, this is a set amount and it" 
+               + "must last you through all three (3) roounds!\n\nAfter each round, your"
+               + " weapons inventory gets reset, so you must either buy another weapon or"
+               + " use the default Fist, which is the weakest in the game, but free. \n"
+               + "Your items inventory, however, does not reset after each round!\n\n"
+               + "The game has 3 rounds to it, each harder than before, that you must" 
+               + " survive in to win.\n\nThe entire game uses numbers to select options."
+               + "\n\nGood Luck!"); 
+            */
+         } 
+      }
+   }
+
+   public static void ShopPhase() {
+      weaponList1.clear(); //resets weapon list
+         weaponList1.add(new Fist(0));
+         fighter.reset();
+         has1W1 = false;
+         has1W2 = false;
+         has1W3 = false;
+         int choice = 0; 
+         passed = false; 
+
+         Weapon W1 = null;
+         Weapon W2 = null;
+         Weapon W3 = null;
+
+         //Potion potion = new Potion();
+         //Elixir elixir = new Elixir();
+         //SmokeBomb smokeBomb = new SmokeBomb();
 
 
+         while(true) {
+            //in shop. If key is pressed, break
+            System.out.println("\n\nWelcome to the Shop.\nHere you can purchase"
+               + " weapons and items for your fight!" );
+            System.out.println("Please note: you will lose your weapons after each match,"
+               + " but not items.");
+            System.out.println("\nWhat would you like to do?");
+            System.out.println("(1) Go to the store \n(2) Exit to fight");
+
+            choice = scanCheck(1, 2, scan);
+            while(true) {
+               if(scan.hasNextInt()) {
+                  choice = scan.nextInt();
+                  scan.nextLine();
+               } else if (scan.hasNextDouble()) {
+                  scan.nextLine();
+                  //System.out.println("Wrong Command, Dipshit");
+               } else if (scan.hasNext()) {
+                  scan.nextLine();
+                  //System.out.println("Wrong Command, Dipshit");
+               }
+
+               if(choice == 1 || choice == 2) {
+                  break;
+               } else {
+                  System.out.println("Wrong Command, Dipshit");
+               }
+            } 
+
+            while(choice == 1) {
+               System.out.println("\n\nReady to buy! \nYou have " + money1.getCash() + " gold\n");
+
+               if (weaponList1.size() == 0){
+                  System.out.println("Your weapon inventory is currently empty");
+               } else if (weaponList1.get(0).getClass().getName().equals("Fist") &&
+                     weaponList1.size() == 1){
+                  System.out.println("Your only weapons are your bare hands!");
+               } else {
+                  System.out.println(weaponList1);
+               }
+
+               if (itemList1.size() == 0){
+                  System.out.println("Your item inventory is currently empty");
+               } else {
+                  System.out.println(itemList1);
+               }
+
+               int buy = 0;
+               int price1 = 0;
+               int price2 = 0;
+               int price3 = 0;
+               int price4 = 0;
+               int price5 = 0;
+               int price6 = 0;
 
 
+               Weapon W1 = null;
+               Weapon W2 = null;
+               Weapon W3 = null;
+
+               Potion potion = new Potion();
+               Elixir elixir = new Elixir();
+               SmokeBomb smokeBomb = new SmokeBomb();
+
+               System.out.println("\n");
+
+               if (playerClass1 == 1){ //archer
+                  W1 = new ShortBow(0);
+                  W2 = new LongBow(0);
+                  W3 = new Wolf(0);
+
+                  System.out.println("Chose what you would like to buy: \nWeapons:");
+
+                     System.out.println("\t(1) Short Bow (Power: " + W1.getPower() + ")"
+                        + " -- PRICE: " + W1.getCost());
+
+                     System.out.println("\t(2) Long Bow (Power: " + W2.getPower() + ")"
+                        + " -- PRICE: " + W2.getCost());
+
+                     System.out.println("\t(3) Wolf (Power: " + W3.getPower() + ")"
+                        + " -- PRICE: " + W3.getCost());
 
 
+                  System.out.println("Items:");
+
+                     System.out.println("\t(4) Potion -- PRICE: " + potion.getCost() 
+                        + "\t\tHeals " + potion.does() + " HP (Hit Points)");
+                     System.out.println("\t(5) Elixir -- PRICE: " + elixir.getCost()
+                        + "\t\tRestores " + elixir.does() + " SP (Skill Points)");
+                     System.out.println("\t(6) SmokeBomb -- PRICE: " + smokeBomb.getCost()
+                        + "\tIncreases Evasion by " + smokeBomb.does());
+               }
+
+               else if (playerClass1 == 2){ //warrior
+                  W1 = new OneHandSword(0);
+                  W2 = new TwoHandSword(0);
+                  W3 = new Shield(0);
+
+                  System.out.println("Chose what you would like to buy: \nWeapons:");
+
+                     System.out.println("\t(1) One Hand Sword (Power: " + W1.getPower() + ")"
+                        + " -- PRICE: " + W1.getCost());
+
+                     System.out.println("\t(2) Two Hand Sword (Power: " + W2.getPower() + ")"
+                        + " -- PRICE: " + W2.getCost());
+
+                     System.out.println("\t(3) Shield (Power: " + W3.getPower() + ")"
+                        + " -- PRICE: " + W3.getCost());
+
+
+                  System.out.println("Items:");
+
+                     System.out.println("\t(4) Potion -- PRICE: " + potion.getCost() 
+                        + "\t\tHeals " + potion.does() + " HP (Hit Points)");
+                     System.out.println("\t(5) Elixir -- PRICE: " + elixir.getCost()
+                        + "\t\tRestores " + elixir.does() + " SP (Skill Points)");
+                     System.out.println("\t(6) SmokeBomb -- PRICE: " + smokeBomb.getCost()
+                        + "\tIncreases Evasion by " + smokeBomb.does());
+               }
+
+
+               else if (playerClass1 == 3){ //mage
+                  W1 = new ElementalStaff(0);
+                  W2 = new HolyStaff(0);
+                  W3 = new HealingStaff(0);
+
+                  System.out.println("Chose what you would like to buy: \nWeapons:");
+
+                     System.out.println("\t(1) Elemental Staff (Power: " + W1.getPower() + ")"
+                        + " -- PRICE: " + W1.getCost());
+
+                     System.out.println("\t(2) Holy Staff (Power: " + W2.getPower() + ")"
+                        + " -- PRICE: " + W2.getCost());
+
+                     System.out.println("\t(3) Healing Staff (Power: " + W3.getPower() + ")"
+                        + " -- PRICE: " + W3.getCost());
+
+
+                  System.out.println("Items:");
+
+                     System.out.println("\t(4) Potion -- PRICE: " + potion.getCost() 
+                        + "\t\tHeals " + potion.does() + " HP (Hit Points)");
+                     System.out.println("\t(5) Elixir -- PRICE: " + elixir.getCost()
+                        + "\t\tRestores " + elixir.does() + " SP (Skill Points)");
+                     System.out.println("\t(6) SmokeBomb -- PRICE: " + smokeBomb.getCost()
+                        + "\tIncreases Evasion by " + smokeBomb.does());
+               }
+
+               System.out.println("(7) exit");//option to exit
+
+               buy = scanCheck(1,7,scan); //checks the input
+
+               price1 = W1.getCost(); //gets the cost of the class's weapons
+               price2 = W2.getCost();
+               price3 = W3.getCost();
+
+               price4 = potion.getCost();
+               price5 = elixir.getCost();
+               price6 = smokeBomb.getCost();
+
+
+               if (buy == 1){ //weapon 1. works for all classes
+                  if (money1.getCash() < price1){
+                     System.out.println("You do not have enough gold to buy this!");
+                  }
+                  if(has1W1 == false && has1W2 == false) {
+                     money1.buyWeapon(W1);
+                     System.out.println("\nRemaining balance: " + money1.getCash());
+                     weaponList1.set(0, W1);
+                     fighter.addWeapon1(W1);
+                     has1W1 = true;
+                  } else {
+                     System.out.println("You already have a weapon!");
+                  }
+               }
+
+               else if (buy == 2){ //weapon 2. works for all classes
+                  if (money1.getCash() < price2){
+                     System.out.println("You do not have enough gold to buy this!");
+                  }
+                  if(has1W1 == false && has1W2 == false) {
+                     money1.buyWeapon(W2);
+                     System.out.println("\nRemaining balance: " + money1.getCash());
+                     weaponList1.set(0, W2);
+                     fighter.addWeapon1(W2);
+                     has1W2 = true;
+                  } else {
+                     System.out.println("You already have a weapon!");
+                  }
+               }
+
+               else if (buy == 3){ //weapon 3. works for all classes
+                  if (money1.getCash() < price3){
+                     System.out.println("You do not have enough gold to buy this!");
+                  }
+                  if(has1W3 == false) {
+                     money1.buyWeapon(W3);
+                     System.out.println("\nRemaining balance: " + money1.getCash());
+                     weaponList1.add(W3);
+                     fighter.addWeapon2(W3);
+                     has1W3 = true;
+                  } else {
+                     System.out.println("You already have this special weapon!");
+                  }
+               }
+
+               else if (buy == 4){ //weapon 4. works for all classes
+                  if (money1.getCash() < price4){
+                     System.out.println("You do not have enough gold to buy this!");
+                  } else {
+                     money1.buyItem(potion);
+                     System.out.println("\nRemaining balance: " + money1.getCash());
+                     itemList1.add(potion);
+                     fighter.addPotion();
+                  }
+               }
+
+               else if (buy == 5){ //weapon 5. works for all classes
+                  if (money1.getCash() < price5){
+                     System.out.println("You do not have enough gold to buy this!");
+                  } else {
+                     money1.buyItem(elixir);
+                     System.out.println("\nRemaining balance: " + money1.getCash());
+                     itemList1.add(elixir);
+                     fighter.addElixir();
+                  }
+               }
+
+               else if (buy == 6){ //weapon 6. works for all classes
+                  if (money1.getCash() < price6){
+                     System.out.println("You do not have enough gold to buy this!");
+                  } else {
+                     money1.buyItem(smokeBomb);
+                     System.out.println("\nRemaining balance: " + money1.getCash());
+                     itemList1.add(smokeBomb);
+                     fighter.addSmokeBomb();
+                  }
+               }
+
+               else if (buy == 7){
+                  choice = 2;
+               }
+
+
+            }
+         if(choice == 2) {
+            System.out.println("Ready to fight");
+            break; //start fight
+         }
+      }
+
+   }
+
+   public static void Battle() {
+   }
 
    public static int scanCheck(int min, int max, Scanner scan){
       int innerChoice = 0;

@@ -24,7 +24,7 @@ public class Play {
          SinglePlay();
       }
       if(play == 2) {
-         //
+         PVP.playPVP(); 
       }
    }
    public static void SinglePlay() {
