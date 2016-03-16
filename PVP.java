@@ -1744,12 +1744,12 @@ public class PVP {
 
 
             if (win1){
-               System.out.println ("Congratulations!" + player1 + "  won game number: " + (gamesPlayed + 1));
+               System.out.println ("Congratulations! " + player1 + "  won game number: " + (gamesPlayed + 1));
                gamesPlayed++;
                playerTurn = 0;
             } 
             if (win2){
-               System.out.println ("Congratulations!" + player2 + " won game number: " + (gamesPlayed + 1));
+               System.out.println ("Congratulations! " + player2 + " won game number: " + (gamesPlayed + 1));
                gamesPlayed++;
                playerTurn = 0;
             }
@@ -2100,11 +2100,11 @@ public class PVP {
 
 
             if (win1){
-               System.out.println ("Congratulations!" + player1 + "  won game number: " + (gamesPlayed + 1));
+               System.out.println ("Congratulations! " + player1 + "  won game number: " + (gamesPlayed + 1));
                gamesPlayed++;
             } 
             if (win2){
-               System.out.println ("Congratulations!" + player2 + " won game number: " + (gamesPlayed + 1));
+               System.out.println ("Congratulations! " + player2 + " won game number: " + (gamesPlayed + 1));
                gamesPlayed++;
             }else {
 
@@ -2120,11 +2120,12 @@ public class PVP {
             }
 
          }//passed while loop
-
-         if (fighter1GamesWon > fighter1GamesWon && gamesPlayed > 1){
+         
+         if (fighter1GamesWon > fighter2GamesWon){
             System.out.println(player1 + " beat " + player2 + "!");
             break;
-         } else {
+         }
+         if (fighter2GamesWon > fighter1GamesWon){
             System.out.println(player2 + " beat " + player1 + "!");
             break;
          }
