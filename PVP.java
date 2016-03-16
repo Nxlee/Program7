@@ -22,28 +22,35 @@ public class PVP {
    private static int gamesPlayed = 0;
    private static int gamesToPlay = 3;
    private static boolean passed;
-   private static int playerClass1 = 0;
-   private static int playerClass2 = 0;
+
    private static List<Items> itemList1 = new ArrayList<Items>();
    private static List<Weapon> weaponList1 = new ArrayList<Weapon>();
    private static List<Items> itemList2 = new ArrayList<Items>();
    private static List<Weapon> weaponList2 = new ArrayList<Weapon>();
+   private static Weapon W1;
+   private static Weapon W2;
+   private static Weapon W3;
    private static boolean has1W1;
    private static boolean has1W2;
    private static boolean has1W3;
    private static boolean usedItem1 = false;
+   private static Cash money1 = new Cash();
 
+   private static Weapon W12;
+   private static Weapon W22;
+   private static Weapon W32;
    private static boolean has2W1;
    private static boolean has2W2;
    private static boolean has2W3;
    private static boolean usedItem2 = false;
+   private static Cash money2;
 
 
 
 
    public static void playPVP() {
       PlayerSelection();
-
+      ShopPhase();
 
    }
 
@@ -892,9 +899,9 @@ public class PVP {
          int choice = 0; 
          passed = false; 
 
-         Weapon W1 = null;
-         Weapon W2 = null;
-         Weapon W3 = null;
+         W1 = null;
+         W2 = null;
+         W3 = null;
 
          //Potion potion = new Potion();
          //Elixir elixir = new Elixir();
@@ -911,25 +918,6 @@ public class PVP {
             System.out.println("(1) Go to the store \n(2) Exit to fight");
 
             choice = scanCheck(1, 2, scan);
-            while(true) {
-               if(scan.hasNextInt()) {
-                  choice = scan.nextInt();
-                  scan.nextLine();
-               } else if (scan.hasNextDouble()) {
-                  scan.nextLine();
-                  //System.out.println("Wrong Command, Dipshit");
-               } else if (scan.hasNext()) {
-                  scan.nextLine();
-                  //System.out.println("Wrong Command, Dipshit");
-               }
-
-               if(choice == 1 || choice == 2) {
-                  break;
-               } else {
-                  System.out.println("Wrong Command, Dipshit");
-               }
-            } 
-
             while(choice == 1) {
                System.out.println("\n\nReady to buy! \nYou have " + money1.getCash() + " gold\n");
 
@@ -957,9 +945,9 @@ public class PVP {
                int price6 = 0;
 
 
-               Weapon W1 = null;
-               Weapon W2 = null;
-               Weapon W3 = null;
+               W1 = null;
+               W2 = null;
+               W3 = null;
 
                Potion potion = new Potion();
                Elixir elixir = new Elixir();
@@ -1148,10 +1136,9 @@ public class PVP {
             }
          if(choice == 2) {
             System.out.println("Ready to fight");
-            break; //start fight
+            break; //To Player 2
          }
-      }
-
+         }
    }
 
    public static void Battle() {
