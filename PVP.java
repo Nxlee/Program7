@@ -17,7 +17,8 @@ public class PVP {
    private static String player1;
    private static String player2;
    private static Scanner scan = new Scanner(System.in);
-
+   private static fighter1GamesWon;
+   private static fighter1GamesWon;
 
    private static int gamesPlayed = 0;
    private static int gamesToPlay = 3;
@@ -42,6 +43,9 @@ public class PVP {
 
 
    public static void playPVP() {
+      fighter1GamesWon = 0;
+      fighter1GamesWon = 0;
+      
       PlayerSelection();
 
 
@@ -1154,9 +1158,1067 @@ public class PVP {
 
    }
 
+
+
+
+
    public static void Battle() {
+         turnCount = 1;
+         while(!passed && gamesPlayed < 3) { //Fight time, once you win, passed = true;
+            //boolean trueVal = true;
+
+
+            boolean hasEvasion = false;
+            int trackSmoke = 0;
+
+            boolean fighterWin = false;
+            boolean fighter2Win = false;
+            int playerTurn = 1;
+            
+            while(playerTurn == 1) { //player turn
+               
+               fighter.setEvasions(fighter2.getEvasion());
+               System.out.println("\nTurn: " + turnCount);
+               System.out.println("\nYou:\t\tHP: " + fighter.getHp() + "/100"
+                  + "\tSP: " + fighter.getSp() + "/100" + "\tEvasion: " 
+                  + fighter.getEvasion());
+               System.out.println("Opponent:\tHP: " + fighter2.getHp() + "/100"
+                  + "\tSP: " + fighter2.getSp() + "/100");
+               System.out.println("\nWhat would you like to do?");
+               
+               int damageDone;
+               int attackType;
+
+
+               int Command = 0;
+               if(usedItem1 == false) {
+               
+                  System.out.println("(1) Fight   (2) Use Item   (3) Rest");
+                  Command = scanCheck(1,3,scan);
+                  if(Command == 2) {
+                     if (itemList1.size() == 0){
+                        System.out.println("You have no items to use!");
+                     } else {
+                        int use = 0;
+                        System.out.println("Items: " + itemList1);
+                        //List options for items and use item
+                        System.out.println("What would you like to use?" 
+                           + "\n(1) Potion \n(2) Elixir\n(3) SmokeBomb\n"
+                           + "(4) No Item");
+
+                        boolean toUse = true;
+
+                        while(toUse){
+                           use = scanCheck(1,4,scan);
+                           
+                           if (use == 1){ //Potion
+                              if (fighter.getPotions() == 0){
+                                 System.out.println("You do not have any potions!");
+                                 System.out.println("What would you like to use?" 
+                                    + "\n(1) Potion \n(2) Elixir\n(3) SmokeBomb\n"
+                                    + "(4) No Item");
+                              } else {
+                                 fighter.usePotion();
+                                 System.out.println("Potions left: " + fighter.getPotions());
+                                 toUse = false;
+                                 usedItem1 = true;
+                                 itemList1.remove(potion);
+                              }
+                           }
+
+                           if (use == 2){ //elixir
+                              if (fighter.getElixir() == 0){
+                                 System.out.println("You do not have any elixirs!");
+                                 System.out.println("What would you like to use?" 
+                                    + "\n(1) Potion \n(2) Elixir\n(3) SmokeBomb\n"
+                                    + "(4) No Item");
+                              } else {
+                                 fighter.useElixir();
+                                 System.out.println("Elixirs left: " + fighter.getElixir());
+                                 toUse = false;
+                                 usedItem1 = true;
+                                 itemList1.remove(elixir);
+                              }
+                           }
+
+                           if (use == 3){ //smokeBomb
+                              if (fighter.getSmokeBomb() == 0){
+                                 System.out.println("You do not have any smoke bombs!");
+                                 System.out.println("What would you like to use?" 
+                                    + "\n(1) Potion \n(2) Elixir\n(3) SmokeBomb\n"
+                                    + "(4) No Item");
+                              } else {
+                                 fighter.useSmokeBomb();
+                                 System.out.println("Smoke Bombs left: " + fighter.getSmokeBomb());
+                                 toUse = false;
+                                 usedItem1 = true;
+                                 itemList1.remove(smokeBomb);
+                              }
+                           }
+
+
+
+                           if (use ==4){
+                              toUse = false;
+                           }
+
+                        }
+
+                     }
+                        //usedItem1 = true;
+                     
+                  }
+
+                  //while(true){
+                     if (Command == 1){//Chose to fight //ADD AMOUNT OF SP FOR EACH ATTACK
+                        System.out.println("Choose an attack:");
+                        System.out.println("(1) Basic Attack -- SP: " + fighter.basicSP() + "\n" 
+                           + "(2) Strong Attack -- SP: " + fighter.strongSP() + "\n"
+                           + "(3) Special Attack -- SP: " + fighter.specialSP() + "\n"
+                           + "(4) Return to previous menu");
+
+                        damageDone = 0;
+                        attackType = 0;
+                        attackType = scanCheck(1,4,scan);
+
+                        if(attackType == 1){//uses BasicAttack
+
+                           damageDone = fighter.basicAttack();
+                           //playerMove = 1;
+                           System.out.println("You issued " + damageDone + " damage with " 
+                              + fighter.getWeapon1Name() + "'s Basic attack!");
+
+                           fighter2.setHP(damageDone);
+                           playerTurn = 2;
+                           //break;
+                        }
+
+                        if(attackType == 2){//Uses Strong attack
+                           if(fighter.getSp() + fighter.strongSP() >= 0) {
+                              damageDone = fighter.strongAttack();
+
+                              System.out.println("You issued " + damageDone + " damage with " 
+                                 + fighter.getWeapon1Name() + "'s Strong attack!");
+
+                              fighter.setSP(fighter.strongSP());
+                              //playerMove = 2;
+                              fighter2.setHP(damageDone);
+                              playerTurn = 2;
+                              //break;
+                           } else {
+                              System.out.println("You don't have enough SP to use this move!");
+                           }
+                           //trueVal = false;
+
+                        }
+
+                        if(attackType == 3){//Uses Special Attack
+                           if(fighter.getSp() + fighter.specialSP() >= 0) {
+                              damageDone = fighter.specialAttack();
+
+                              System.out.println("You issued " + damageDone + " damage with " 
+                                 + fighter.getWeapon1Name() + "'s Special attack!");
+
+
+                              //trueVal = false;
+                              //playerMove = 3;
+                              fighter.setSP(fighter.specialSP());
+                              fighter2.setHP(damageDone);
+                              playerTurn = 2;
+                              //break;
+                           } else {
+                              System.out.println("You don't have enough SP to use this move!");
+                           }
+                        }
+
+                        if(attackType == 4){
+                        
+                        }
+                     }
+
+                     if (fighter2.getHp() <= 0){
+                        passed = true;
+                        fighterWin = true;
+                        break;
+                     }
+
+                  //}
+
+                  if (Command == 3){
+                     System.out.println("You feel rested!");
+                     fighter.rest();
+                     //playerMove = 0;
+                     playerTurn = 2;
+                     //break;
+                  }
+                  //}
+
+            //}
+
+
+
+
+
+               } else {
+                  boolean holder = true;
+                  while(holder == true){
+                     System.out.println("(1) Fight   (2) Rest");
+                     Command = scanCheck(1,2,scan);
+                  
+
+                     if (Command == 1){//Chose to fight //ADD AMOUNT OF SP FOR EACH ATTACK
+                        System.out.println("Choose an attack:");
+                        System.out.println("(1) Basic Attack -- SP: " + fighter.basicSP() + "\n" 
+                           + "(2) Strong Attack -- SP: " + fighter.strongSP() + "\n"
+                           + "(3) Special Attack -- SP: " + fighter.specialSP() + "\n"
+                           + "(4) Return to previous menu");
+                        damageDone = 0;
+                        attackType = 0;
+                        attackType = scanCheck(1,4,scan);
+
+                        if(attackType == 1){//uses BasicAttack
+                           damageDone = fighter.basicAttack();
+                           
+                           System.out.println("You issued " + damageDone + " damage with " 
+                              + fighter.getWeapon1Name() + "'s Basic attack!");
+                           //playerMove = 1;
+                           fighter2.setHP(damageDone);
+                           holder = false;
+                           playerTurn = 2;
+                        }
+
+                        if(attackType == 2){//Uses Strong attack
+                           if(fighter.getSp() + fighter.strongSP() >= 0) {
+                              damageDone = fighter.strongAttack();
+                              
+                              System.out.println("You issued " + damageDone + " damage with " 
+                                 + fighter.getWeapon1Name() + "'s Strong attack!");
+                              //playerMove = 2;
+
+                              fighter.setSP(fighter.strongSP());
+                              fighter2.setHP(damageDone);
+                              holder = false;
+                              playerTurn = 2;
+                           } else {
+                              System.out.println("You don't have enough SP to use this move!");
+                           }
+                        }
+
+                        if(attackType == 3){//Uses Special Attack
+                           if(fighter.getSp() + fighter.specialSP() >= 0) {
+                              damageDone = fighter.specialAttack();
+                              
+                              System.out.println("You issued " + damageDone + " damage with " 
+                                 + fighter.getWeapon1Name() + "'s Special attack!");
+
+                              fighter.setSP(fighter.specialSP());
+                              fighter2.setHP(damageDone);
+                              //playerMove = 3;
+                              holder = false;
+                              playerTurn = 2;
+
+                           } else {
+                              System.out.println("You don't have enough SP to use this move!");
+                           }
+                        }
+
+                        if(attackType == 4){
+                           
+                        }
+
+                        if (fighter2.getHp() <= 0){
+                           passed = true;
+                           fighterWin = true;
+                           break;
+                        }
+                     }
+
+                     if (Command == 2){
+                        System.out.println("You feel rested!");
+                        fighter.rest();
+                        //playerMove = 0;
+                        holder = false;
+                        playerTurn = 2;
+                     }
+                  usedItem1 = false;
+                  }
+                  if (fighter2.getHp() <= 0){
+                     passed = true;
+                     fighterWin = true;
+                     break;
+                  }
+
+               }
+
+            //turnCount++;
+
+
+            }
+            int useSpecial = fighter.useSpecialWeapon(has1W3);
+            int shieldBlock = 0;
+            if (!fighterWin){
+               if (playerClass1 == 2 && has1W3){
+                  shieldBlock = useSpecial;
+                  //System.out.println("Your Shield blocked 5 damage!");
+               } else if (playerClass1 == 1 && has1W3){
+                  fighter2.setHP((-1) * useSpecial);
+                  System.out.println("Your wolf companion totally fucked that guy's face up!"
+                     + " He fighterLost like 5 damage!");
+               } else if (playerClass1 == 3){
+                  //fighter.setHP(useSpecial);
+                  //System.out.println("Your Healing Staff healed you by 5 HP!");
+               }
+            }
+            
+            if (fighter.getEvasion() > 0 && !hasEvasion){
+               trackSmoke = turnCount;
+               hasEvasion = true;
+            } else if (fighter.getEvasion() == 0){
+               hasEvasion = false;
+               trackSmoke = 0;
+            }
+            System.out.println(turnCount % 2);
+            if (trackSmoke > 0){
+               if (turnCount % trackSmoke == 2){
+                  fighter.setEvasion(-5);
+               }
+            }
+            
+
+
+
+
+            while(playerTurn == 2) { //player turn
+               
+               fighter2.setEvasions(fighter2.getEvasion());
+               System.out.println("\nTurn: " + turnCount);
+               System.out.println("\nYou:\t\tHP: " + fighter2.getHp() + "/100"
+                  + "\tSP: " + fighter2.getSp() + "/100" + "\tEvasion: " 
+                  + fighter2.getEvasion());
+               System.out.println("Opponent:\tHP: " + fighter2.getHp() + "/100"
+                  + "\tSP: " + fighter2.getSp() + "/100");
+               System.out.println("\nWhat would you like to do?");
+               
+               int damageDone;
+               int attackType;
+
+
+               int Command = 0;
+               if(usedItem2 == false) {
+               
+                  System.out.println("(1) Fight   (2) Use Item   (3) Rest");
+                  Command = scanCheck(1,3,scan);
+                  if(Command == 2) {
+                     if (itemList2.size() == 0){
+                        System.out.println("You have no items to use!");
+                     } else {
+                        int use = 0;
+                        System.out.println("Items: " + itemList2);
+                        //List options for items and use item
+                        System.out.println("What would you like to use?" 
+                           + "\n(1) Potion \n(2) Elixir\n(3) SmokeBomb\n"
+                           + "(4) No Item");
+
+                        boolean toUse = true;
+
+                        while(toUse){
+                           use = scanCheck(1,4,scan);
+                           
+                           if (use == 1){ //Potion
+                              if (fighter2.getPotions() == 0){
+                                 System.out.println("You do not have any potions!");
+                                 System.out.println("What would you like to use?" 
+                                    + "\n(1) Potion \n(2) Elixir\n(3) SmokeBomb\n"
+                                    + "(4) No Item");
+                              } else {
+                                 fighter2.usePotion();
+                                 System.out.println("Potions left: " + fighter2.getPotions());
+                                 toUse = false;
+                                 usedItem2 = true;
+                                 itemList2.remove(potion);
+                              }
+                           }
+
+                           if (use == 2){ //elixir
+                              if (fighter2.getElixir() == 0){
+                                 System.out.println("You do not have any elixirs!");
+                                 System.out.println("What would you like to use?" 
+                                    + "\n(1) Potion \n(2) Elixir\n(3) SmokeBomb\n"
+                                    + "(4) No Item");
+                              } else {
+                                 fighter2.useElixir();
+                                 System.out.println("Elixirs left: " + fighter2.getElixir());
+                                 toUse = false;
+                                 usedItem2 = true;
+                                 itemList2.remove(elixir);
+                              }
+                           }
+
+                           if (use == 3){ //smokeBomb
+                              if (fighter2.getSmokeBomb() == 0){
+                                 System.out.println("You do not have any smoke bombs!");
+                                 System.out.println("What would you like to use?" 
+                                    + "\n(1) Potion \n(2) Elixir\n(3) SmokeBomb\n"
+                                    + "(4) No Item");
+                              } else {
+                                 fighter2.useSmokeBomb();
+                                 System.out.println("Smoke Bombs left: " + fighter2.getSmokeBomb());
+                                 toUse = false;
+                                 usedItem2 = true;
+                                 itemList2.remove(smokeBomb);
+                              }
+                           }
+
+
+
+                           if (use ==4){
+                              toUse = false;
+                           }
+
+                        }
+
+                     }
+                        //usedItem2 = true;
+                     
+                  }
+
+                  //while(true){
+                     if (Command == 1){//Chose to fight //ADD AMOUNT OF SP FOR EACH ATTACK
+                        System.out.println("Choose an attack:");
+                        System.out.println("(1) Basic Attack -- SP: " + fighter2.basicSP() + "\n" 
+                           + "(2) Strong Attack -- SP: " + fighter2.strongSP() + "\n"
+                           + "(3) Special Attack -- SP: " + fighter2.specialSP() + "\n"
+                           + "(4) Return to previous menu");
+
+                        damageDone = 0;
+                        attackType = 0;
+                        attackType = scanCheck(1,4,scan);
+
+                        if(attackType == 1){//uses BasicAttack
+
+                           damageDone = fighter2.basicAttack();
+                           //playerMove = 1;
+                           System.out.println("You issued " + damageDone + " damage with " 
+                              + fighter2.getWeapon1Name() + "'s Basic attack!");
+
+                           fighter22.setHP(damageDone);
+                           playerTurn = 2;
+                           //break;
+                        }
+
+                        if(attackType == 2){//Uses Strong attack
+                           if(fighter2.getSp() + fighter.strongSP() >= 0) {
+                              damageDone = fighter2.strongAttack();
+
+                              System.out.println("You issued " + damageDone + " damage with " 
+                                 + fighter2.getWeapon1Name() + "'s Strong attack!");
+
+                              fighter2.setSP(fighter.strongSP());
+                              //playerMove = 2;
+                              fighter22.setHP(damageDone);
+                              playerTurn = 2;
+                              //break;
+                           } else {
+                              System.out.println("You don't have enough SP to use this move!");
+                           }
+                           //trueVal = false;
+
+                        }
+
+                        if(attackType == 3){//Uses Special Attack
+                           if(fighter2.getSp() + fighter.specialSP() >= 0) {
+                              damageDone = fighter2.specialAttack();
+
+                              System.out.println("You issued " + damageDone + " damage with " 
+                                 + fighter2.getWeapon1Name() + "'s Special attack!");
+
+
+                              //trueVal = false;
+                              //playerMove = 3;
+                              fighter2.setSP(fighter.specialSP());
+                              fighter22.setHP(damageDone);
+                              playerTurn = 2;
+                              //break;
+                           } else {
+                              System.out.println("You don't have enough SP to use this move!");
+                           }
+                        }
+
+                        if(attackType == 4){
+                        
+                        }
+                     }
+
+                     if (fighter22.getHp() <= 0){
+                        passed = true;
+                        fighter2Win = true;
+                        break;
+                     }
+
+                  //}
+
+                  if (Command == 3){
+                     System.out.println("You feel rested!");
+                     fighter2.rest();
+                     //playerMove = 0;
+                     playerTurn = 2;
+                     //break;
+                  }
+                  //}
+
+            //}
+
+
+
+
+
+               } else {
+                  boolean holder = true;
+                  while(holder == true){
+                     System.out.println("(1) Fight   (2) Rest");
+                     Command = scanCheck(1,2,scan);
+                  
+
+                     if (Command == 1){//Chose to fight //ADD AMOUNT OF SP FOR EACH ATTACK
+                        System.out.println("Choose an attack:");
+                        System.out.println("(1) Basic Attack -- SP: " + fighter2.basicSP() + "\n" 
+                           + "(2) Strong Attack -- SP: " + fighter2.strongSP() + "\n"
+                           + "(3) Special Attack -- SP: " + fighter2.specialSP() + "\n"
+                           + "(4) Return to previous menu");
+                        damageDone = 0;
+                        attackType = 0;
+                        attackType = scanCheck(1,4,scan);
+
+                        if(attackType == 1){//uses BasicAttack
+                           damageDone = fighter2.basicAttack();
+                           
+                           System.out.println("You issued " + damageDone + " damage with " 
+                              + fighter2.getWeapon1Name() + "'s Basic attack!");
+                           //playerMove = 1;
+                           fighter22.setHP(damageDone);
+                           holder = false;
+                           playerTurn = 2;
+                        }
+
+                        if(attackType == 2){//Uses Strong attack
+                           if(fighter2.getSp() + fighter.strongSP() >= 0) {
+                              damageDone = fighter2.strongAttack();
+                              
+                              System.out.println("You issued " + damageDone + " damage with " 
+                                 + fighter2.getWeapon1Name() + "'s Strong attack!");
+                              //playerMove = 2;
+
+                              fighter2.setSP(fighter.strongSP());
+                              fighter22.setHP(damageDone);
+                              holder = false;
+                              playerTurn = 2;
+                           } else {
+                              System.out.println("You don't have enough SP to use this move!");
+                           }
+                        }
+
+                        if(attackType == 3){//Uses Special Attack
+                           if(fighter2.getSp() + fighter.specialSP() >= 0) {
+                              damageDone = fighter2.specialAttack();
+                              
+                              System.out.println("You issued " + damageDone + " damage with " 
+                                 + fighter2.getWeapon1Name() + "'s Special attack!");
+
+                              fighter2.setSP(fighter.specialSP());
+                              fighter22.setHP(damageDone);
+                              //playerMove = 3;
+                              holder = false;
+                              playerTurn = 2;
+
+                           } else {
+                              System.out.println("You don't have enough SP to use this move!");
+                           }
+                        }
+
+                        if(attackType == 4){
+                           
+                        }
+
+                        if (fighter22.getHp() <= 0){
+                           passed = true;
+                           fighter2Win = true;
+                           break;
+                        }
+                     }
+
+                     if (Command == 2){
+                        System.out.println("You feel rested!");
+                        fighter2.rest();
+                        //playerMove = 0;
+                        holder = false;
+                        playerTurn = 2;
+                     }
+                  usedItem2 = false;
+                  }
+                  if (fighter22.getHp() <= 0){
+                     passed = true;
+                     fighter2Win = true;
+                     break;
+                  }
+
+               }
+
+            //turnCount++;
+
+
+            }
+            int useSpecial = fighter2.useSpecialWeapon(has2W3);
+            int shieldBlock = 0;
+            if (!fighter2Win){
+               if (playerClass2 == 2 && has2W3){
+                  shieldBlock = useSpecial;
+                  //System.out.println("Your Shield blocked 5 damage!");
+               } else if (playerClass2 == 1 && has2W3){
+                  fighter22.setHP((-1) * useSpecial);
+                  System.out.println("Your wolf companion totally fucked that guy's face up!"
+                     + " He fighter2Lost like 5 damage!");
+               } else if (playerClass2 == 3){
+                  //fighter2.setHP(useSpecial);
+                  //System.out.println("Your Healing Staff healed you by 5 HP!");
+               }
+            }
+            
+            if (fighter2.getEvasion() > 0 && !hasEvasion){
+               trackSmoke = turnCount;
+               hasEvasion = true;
+            } else if (fighter2.getEvasion() == 0){
+               hasEvasion = false;
+               trackSmoke = 0;
+            }
+            System.out.println(turnCount % 2);
+            if (trackSmoke > 0){
+               if (turnCount % trackSmoke == 2){
+                  fighter2.setEvasion(-5);
+               }
+            }
+            
+
+
+            while(playerTurn == 2) { //player turn
+               
+               fighter2.setEvasions(fighter.getEvasion());
+               System.out.println("\nTurn: " + turnCount);
+               System.out.println("\nYou:\t\tHP: " + fighter2.getHp() + "/100"
+                  + "\tSP: " + fighter2.getSp() + "/100" + "\tEvasion: " 
+                  + fighter2.getEvasion());
+               System.out.println("Opponent:\tHP: " + fighter.getHp() + "/100"
+                  + "\tSP: " + fighter.getSp() + "/100");
+               System.out.println("\nWhat would you like to do?");
+               
+               int damageDone;
+               int attackType;
+
+
+               int Command = 0;
+               if(usedItem2 == false) {
+               
+                  System.out.println("(1) Fight   (2) Use Item   (3) Rest");
+                  Command = scanCheck(1,3,scan);
+                  if(Command == 2) {
+                     if (itemList2.size() == 0){
+                        System.out.println("You have no items to use!");
+                     } else {
+                        int use = 0;
+                        System.out.println("Items: " + itemList2);
+                        //List options for items and use item
+                        System.out.println("What would you like to use?" 
+                           + "\n(1) Potion \n(2) Elixir\n(3) SmokeBomb\n"
+                           + "(4) No Item");
+
+                        boolean toUse = true;
+
+                        while(toUse){
+                           use = scanCheck(1,4,scan);
+                           
+                           if (use == 1){ //Potion
+                              if (fighter2.getPotions() == 0){
+                                 System.out.println("You do not have any potions!");
+                                 System.out.println("What would you like to use?" 
+                                    + "\n(1) Potion \n(2) Elixir\n(3) SmokeBomb\n"
+                                    + "(4) No Item");
+                              } else {
+                                 fighter2.usePotion();
+                                 System.out.println("Potions left: " + fighter2.getPotions());
+                                 toUse = false;
+                                 usedItem2 = true;
+                                 itemList2.remove(potion);
+                              }
+                           }
+
+                           if (use == 2){ //elixir
+                              if (fighter2.getElixir() == 0){
+                                 System.out.println("You do not have any elixirs!");
+                                 System.out.println("What would you like to use?" 
+                                    + "\n(1) Potion \n(2) Elixir\n(3) SmokeBomb\n"
+                                    + "(4) No Item");
+                              } else {
+                                 fighter2.useElixir();
+                                 System.out.println("Elixirs left: " + fighter2.getElixir());
+                                 toUse = false;
+                                 usedItem2 = true;
+                                 itemList2.remove(elixir);
+                              }
+                           }
+
+                           if (use == 3){ //smokeBomb
+                              if (fighter2.getSmokeBomb() == 0){
+                                 System.out.println("You do not have any smoke bombs!");
+                                 System.out.println("What would you like to use?" 
+                                    + "\n(1) Potion \n(2) Elixir\n(3) SmokeBomb\n"
+                                    + "(4) No Item");
+                              } else {
+                                 fighter2.useSmokeBomb();
+                                 System.out.println("Smoke Bombs left: " + fighter2.getSmokeBomb());
+                                 toUse = false;
+                                 usedItem2 = true;
+                                 itemList2.remove(smokeBomb);
+                              }
+                           }
+
+
+
+                           if (use ==4){
+                              toUse = false;
+                           }
+
+                        }
+
+                     }
+                        //usedItem2 = true;
+                     
+                  }
+
+                  //while(true){
+                     if (Command == 1){//Chose to fight //ADD AMOUNT OF SP FOR EACH ATTACK
+                        System.out.println("Choose an attack:");
+                        System.out.println("(1) Basic Attack -- SP: " + fighter2.basicSP() + "\n" 
+                           + "(2) Strong Attack -- SP: " + fighter2.strongSP() + "\n"
+                           + "(3) Special Attack -- SP: " + fighter2.specialSP() + "\n"
+                           + "(4) Return to previous menu");
+
+                        damageDone = 0;
+                        attackType = 0;
+                        attackType = scanCheck(1,4,scan);
+
+                        if(attackType == 1){//uses BasicAttack
+
+                           damageDone = fighter2.basicAttack();
+                           //playerMove = 1;
+                           System.out.println("You issued " + damageDone + " damage with " 
+                              + fighter2.getWeapon1Name() + "'s Basic attack!");
+
+                           fighter.setHP(damageDone);
+                           playerTurn = 2;
+                           //break;
+                        }
+
+                        if(attackType == 2){//Uses Strong attack
+                           if(fighter2.getSp() + fighter.strongSP() >= 0) {
+                              damageDone = fighter2.strongAttack();
+
+                              System.out.println("You issued " + damageDone + " damage with " 
+                                 + fighter2.getWeapon1Name() + "'s Strong attack!");
+
+                              fighter2.setSP(fighter.strongSP());
+                              //playerMove = 2;
+                              fighter.setHP(damageDone);
+                              playerTurn = 2;
+                              //break;
+                           } else {
+                              System.out.println("You don't have enough SP to use this move!");
+                           }
+                           //trueVal = false;
+
+                        }
+
+                        if(attackType == 3){//Uses Special Attack
+                           if(fighter2.getSp() + fighter.specialSP() >= 0) {
+                              damageDone = fighter2.specialAttack();
+
+                              System.out.println("You issued " + damageDone + " damage with " 
+                                 + fighter2.getWeapon1Name() + "'s Special attack!");
+
+
+                              //trueVal = false;
+                              //playerMove = 3;
+                              fighter2.setSP(fighter.specialSP());
+                              fighter.setHP(damageDone);
+                              playerTurn = 2;
+                              //break;
+                           } else {
+                              System.out.println("You don't have enough SP to use this move!");
+                           }
+                        }
+
+                        if(attackType == 4){
+                        
+                        }
+                     }
+
+                     if (fighter.getHp() <= 0){
+                        passed = true;
+                        fighter2Win = true;
+                        break;
+                     }
+
+                  //}
+
+                  if (Command == 3){
+                     System.out.println("You feel rested!");
+                     fighter2.rest();
+                     //playerMove = 0;
+                     playerTurn = 2;
+                     //break;
+                  }
+                  //}
+
+            //}
+
+
+
+
+
+               } else {
+                  boolean holder = true;
+                  while(holder == true){
+                     System.out.println("(1) Fight   (2) Rest");
+                     Command = scanCheck(1,2,scan);
+                  
+
+                     if (Command == 1){//Chose to fight //ADD AMOUNT OF SP FOR EACH ATTACK
+                        System.out.println("Choose an attack:");
+                        System.out.println("(1) Basic Attack -- SP: " + fighter2.basicSP() + "\n" 
+                           + "(2) Strong Attack -- SP: " + fighter2.strongSP() + "\n"
+                           + "(3) Special Attack -- SP: " + fighter2.specialSP() + "\n"
+                           + "(4) Return to previous menu");
+                        damageDone = 0;
+                        attackType = 0;
+                        attackType = scanCheck(1,4,scan);
+
+                        if(attackType == 1){//uses BasicAttack
+                           damageDone = fighter2.basicAttack();
+                           
+                           System.out.println("You issued " + damageDone + " damage with " 
+                              + fighter2.getWeapon1Name() + "'s Basic attack!");
+                           //playerMove = 1;
+                           fighter.setHP(damageDone);
+                           holder = false;
+                           playerTurn = 2;
+                        }
+
+                        if(attackType == 2){//Uses Strong attack
+                           if(fighter2.getSp() + fighter.strongSP() >= 0) {
+                              damageDone = fighter2.strongAttack();
+                              
+                              System.out.println("You issued " + damageDone + " damage with " 
+                                 + fighter2.getWeapon1Name() + "'s Strong attack!");
+                              //playerMove = 2;
+
+                              fighter2.setSP(fighter.strongSP());
+                              fighter.setHP(damageDone);
+                              holder = false;
+                              playerTurn = 2;
+                           } else {
+                              System.out.println("You don't have enough SP to use this move!");
+                           }
+                        }
+
+                        if(attackType == 3){//Uses Special Attack
+                           if(fighter2.getSp() + fighter.specialSP() >= 0) {
+                              damageDone = fighter2.specialAttack();
+                              
+                              System.out.println("You issued " + damageDone + " damage with " 
+                                 + fighter2.getWeapon1Name() + "'s Special attack!");
+
+                              fighter2.setSP(fighter.specialSP());
+                              fighter.setHP(damageDone);
+                              //playerMove = 3;
+                              holder = false;
+                              playerTurn = 2;
+
+                           } else {
+                              System.out.println("You don't have enough SP to use this move!");
+                           }
+                        }
+
+                        if(attackType == 4){
+                           
+                        }
+
+                        if (fighter.getHp() <= 0){
+                           passed = true;
+                           fighter2Win = true;
+                           break;
+                        }
+                     }
+
+                     if (Command == 2){
+                        System.out.println("You feel rested!");
+                        fighter2.rest();
+                        //playerMove = 0;
+                        holder = false;
+                        playerTurn = 2;
+                     }
+                  usedItem2 = false;
+                  }
+                  if (fighter.getHp() <= 0){
+                     passed = true;
+                     fighter2Win = true;
+                     break;
+                  }
+
+               }
+
+            //turnCount++;
+
+
+            }
+            int useSpecial2 = fighter2.useSpecialWeapon(has2W3);
+            int shieldBlock2 = 0;
+            if (!fighter2Win){
+               if (playerClass2 == 2 && has2W3){
+                  shieldBlock2 = useSpecial2;
+                  //System.out.println("Your Shield block2ed 5 damage!");
+               } else if (playerClass2 == 1 && has2W3){
+                  fighter.setHP((-1) * useSpecial2);
+                  System.out.println("Your wolf companion totally fucked that guy's face up!"
+                     + " He fighter2Lost like 5 damage!");
+               } else if (playerClass2 == 3){
+                  //fighter2.setHP(useSpecial2);
+                  //System.out.println("Your Healing Staff healed you by 5 HP!");
+               }
+            }
+            
+            if (fighter2.getEvasion() > 0 && !hasEvasion){
+               trackSmoke = turnCount;
+               hasEvasion = true;
+            } else if (fighter2.getEvasion() == 0){
+               hasEvasion = false;
+               trackSmoke = 0;
+            }
+            System.out.println(turnCount % 2);
+            if (trackSmoke > 0){
+               if (turnCount % trackSmoke == 2){
+                  fighter2.setEvasion(-5);
+               }
+            }
+            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            turnCount++;
+            totalCount++;
+
+
+
+
+            if (fighter2.getHp() <= 0){
+               passed = true;
+               fighterWin = true;
+               //break;
+            }
+
+
+            if (fighterWin){
+               System.out.println ("Congratulations! You won game number: " + (gamesPlayed + 1));
+               gamesPlayed++;
+            } else {
+
+
+            fighter2.setEvasions(fighter.getEvasion());
+
+         
+
+
+
+            //THE ENEMY's shit needs to go here in a while loop!
+             
+
+
+
+
+
+               //MAGE HEALINGSTAFF
+               if (playerClass1 == 3 && has1W3){
+                  fighter.setHP(useSpecial);
+                  System.out.println("Your Healing Staff healed you by 5 HP!");
+               }
+
+
+            }
+
+         //System.out.println("Your weapons inventory has been wiped clean");
+            if(fighterLost == true) {
+               break;
+            }
+         
+         
+         
+         
+         
+         
+         
+         
+         
+         
+         
+         
+         
+         
+         
+         
+         }//passed while loop
+            if(fighterLost == true) {
+               break;
+            }
+
+      }//end in game
+      if(fighterLost == true) {
+         System.out.println("\n\nGG no re.");
+      }
+
+
+
+
+
 
    }
+
+
+
+
 
    public static int scanCheck(int min, int max, Scanner scan){
       int innerChoice = 0;
