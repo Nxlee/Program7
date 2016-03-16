@@ -23,21 +23,28 @@ public class PVP {
    private static int gamesPlayed = 0;
    private static int gamesToPlay = 3;
    private static boolean passed;
-   private static int playerClass1 = 0;
-   private static int playerClass2 = 0;
+
    private static List<Items> itemList1 = new ArrayList<Items>();
    private static List<Weapon> weaponList1 = new ArrayList<Weapon>();
    private static List<Items> itemList2 = new ArrayList<Items>();
    private static List<Weapon> weaponList2 = new ArrayList<Weapon>();
+   private static Weapon W1;
+   private static Weapon W2;
+   private static Weapon W3;
    private static boolean has1W1;
    private static boolean has1W2;
    private static boolean has1W3;
    private static boolean usedItem1 = false;
+   private static Cash money1 = new Cash();
 
+   private static Weapon W12;
+   private static Weapon W22;
+   private static Weapon W32;
    private static boolean has2W1;
    private static boolean has2W2;
    private static boolean has2W3;
    private static boolean usedItem2 = false;
+   private static Cash money2 = new Cash();;
 
 
 
@@ -47,7 +54,7 @@ public class PVP {
       fighter1GamesWon = 0;
       
       PlayerSelection();
-
+      ShopPhase();
 
    }
 
@@ -796,7 +803,7 @@ public class PVP {
          System.out.println("\nPlease select a class: \n(1) = Archer\n(2) = Warrior" 
             + "\n(3) = Mage \n(4) - Game Instructions");
 
-         playerClass1 = scanCheck(1, 5, scan);
+         playerClass1 = scanCheck(1, 4, scan);
 
          if (playerClass1 == 1){
             fighter = new Archer();
@@ -816,7 +823,6 @@ public class PVP {
                + " and master of the elements; until the fire nation attacked");
             break;
          } else if (playerClass1 == 4){ 
-            /*
             System.out.println("This is how to play Program 7:\n"
                + "After leaving these instructions, you will be asked to chose a class:\n"
                + "\tArcher \n\tWarrior \n\tMage \n\nEach class has its own stregths and"
@@ -831,7 +837,6 @@ public class PVP {
                + "The game has 3 rounds to it, each harder than before, that you must" 
                + " survive in to win.\n\nThe entire game uses numbers to select options."
                + "\n\nGood Luck!"); 
-            */
          } 
    }
 
@@ -846,7 +851,7 @@ public class PVP {
          System.out.println("\nPlease select a class: \n(1) = Archer\n(2) = Warrior" 
             + "\n(3) = Mage \n(4) - Game Instructions");
 
-         playerClass2 = scanCheck(1, 5, scan);
+         playerClass2 = scanCheck(1, 4, scan);
 
          if (playerClass2 == 1){
             fighter2 = new Archer();
@@ -866,7 +871,6 @@ public class PVP {
                + " and master of the elements; until the fire nation attacked");
             break;
          } else if (playerClass2 == 4){ 
-            /*
             System.out.println("This is how to play Program 7:\n"
                + "After leaving these instructions, you will be asked to chose a class:\n"
                + "\tArcher \n\tWarrior \n\tMage \n\nEach class has its own stregths and"
@@ -881,7 +885,6 @@ public class PVP {
                + "The game has 3 rounds to it, each harder than before, that you must" 
                + " survive in to win.\n\nThe entire game uses numbers to select options."
                + "\n\nGood Luck!"); 
-            */
          } 
       }
    }
@@ -896,9 +899,9 @@ public class PVP {
          int choice = 0; 
          passed = false; 
 
-         Weapon W1 = null;
-         Weapon W2 = null;
-         Weapon W3 = null;
+         W1 = null;
+         W2 = null;
+         W3 = null;
 
          //Potion potion = new Potion();
          //Elixir elixir = new Elixir();
@@ -907,7 +910,7 @@ public class PVP {
 
          while(true) {
             //in shop. If key is pressed, break
-            System.out.println("\n\nWelcome to the Shop.\nHere you can purchase"
+            System.out.println("\n\nWelcome to the Shop, " + player1 +"\nHere you can purchase"
                + " weapons and items for your fight!" );
             System.out.println("Please note: you will lose your weapons after each match,"
                + " but not items.");
@@ -915,25 +918,6 @@ public class PVP {
             System.out.println("(1) Go to the store \n(2) Exit to fight");
 
             choice = scanCheck(1, 2, scan);
-            while(true) {
-               if(scan.hasNextInt()) {
-                  choice = scan.nextInt();
-                  scan.nextLine();
-               } else if (scan.hasNextDouble()) {
-                  scan.nextLine();
-                  //System.out.println("Wrong Command, Dipshit");
-               } else if (scan.hasNext()) {
-                  scan.nextLine();
-                  //System.out.println("Wrong Command, Dipshit");
-               }
-
-               if(choice == 1 || choice == 2) {
-                  break;
-               } else {
-                  System.out.println("Wrong Command, Dipshit");
-               }
-            } 
-
             while(choice == 1) {
                System.out.println("\n\nReady to buy! \nYou have " + money1.getCash() + " gold\n");
 
@@ -961,9 +945,9 @@ public class PVP {
                int price6 = 0;
 
 
-               Weapon W1 = null;
-               Weapon W2 = null;
-               Weapon W3 = null;
+               W1 = null;
+               W2 = null;
+               W3 = null;
 
                Potion potion = new Potion();
                Elixir elixir = new Elixir();
@@ -1152,10 +1136,259 @@ public class PVP {
             }
          if(choice == 2) {
             System.out.println("Ready to fight");
-            break; //start fight
+            break; //To Player 2
          }
       }
+      weaponList2.clear(); //resets weapon list
+         weaponList2.add(new Fist(0));
+         fighter.reset();
+         has2W1 = false;
+         has2W2 = false;
+         has2W3 = false;
+         int choice2 = 0; 
+         passed = false; 
 
+         W12 = null;
+         W22 = null;
+         W32 = null;
+
+         //Potion potion = new Potion();
+         //Elixir elixir = new Elixir();
+         //SmokeBomb smokeBomb = new SmokeBomb();
+
+
+         while(true) {
+            //in shop. If key is pressed, break
+            System.out.println("\n\nWelcome to the Shop, " + player2 + "\nHere you can purchase"
+               + " weapons and items for your fight!" );
+            System.out.println("Please note: you will lose your weapons after each match,"
+               + " but not items.");
+            System.out.println("\nWhat would you like to do?");
+            System.out.println("(1) Go to the store \n(2) Exit to fight");
+
+            choice2 = scanCheck(1, 2, scan);
+            while(choice2 == 1) {
+               System.out.println("\n\nReady to buy! \nYou have " + money2.getCash() + " gold\n");
+
+               if (weaponList2.size() == 0){
+                  System.out.println("Your weapon inventory is currently empty");
+               } else if (weaponList2.get(0).getClass().getName().equals("Fist") &&
+                     weaponList2.size() == 1){
+                  System.out.println("Your only weapons are your bare hands!");
+               } else {
+                  System.out.println(weaponList2);
+               }
+
+               if (itemList2.size() == 0){
+                  System.out.println("Your item inventory is currently empty");
+               } else {
+                  System.out.println(itemList2);
+               }
+
+               int buy = 0;
+               int price1 = 0;
+               int price2 = 0;
+               int price3 = 0;
+               int price4 = 0;
+               int price5 = 0;
+               int price6 = 0;
+
+
+               W12 = null;
+               W22 = null;
+               W32 = null;
+
+               Potion potion = new Potion();
+               Elixir elixir = new Elixir();
+               SmokeBomb smokeBomb = new SmokeBomb();
+
+               System.out.println("\n");
+
+               if (playerClass2 == 1){ //archer
+                  W12 = new ShortBow(0);
+                  W22 = new LongBow(0);
+                  W32 = new Wolf(0);
+
+                  System.out.println("Chose what you would like to buy: \nWeapons:");
+
+                     System.out.println("\t(1) Short Bow (Power: " + W12.getPower() + ")"
+                        + " -- PRICE: " + W12.getCost());
+
+                     System.out.println("\t(2) Long Bow (Power: " + W22.getPower() + ")"
+                        + " -- PRICE: " + W22.getCost());
+
+                     System.out.println("\t(3) Wolf (Power: " + W32.getPower() + ")"
+                        + " -- PRICE: " + W32.getCost());
+
+
+                  System.out.println("Items:");
+
+                     System.out.println("\t(4) Potion -- PRICE: " + potion.getCost() 
+                        + "\t\tHeals " + potion.does() + " HP (Hit Points)");
+                     System.out.println("\t(5) Elixir -- PRICE: " + elixir.getCost()
+                        + "\t\tRestores " + elixir.does() + " SP (Skill Points)");
+                     System.out.println("\t(6) SmokeBomb -- PRICE: " + smokeBomb.getCost()
+                        + "\tIncreases Evasion by " + smokeBomb.does());
+               }
+
+               else if (playerClass2 == 2){ //warrior
+                  W12 = new OneHandSword(0);
+                  W22 = new TwoHandSword(0);
+                  W32 = new Shield(0);
+
+                  System.out.println("Chose what you would like to buy: \nWeapons:");
+
+                     System.out.println("\t(1) One Hand Sword (Power: " + W12.getPower() + ")"
+                        + " -- PRICE: " + W12.getCost());
+
+                     System.out.println("\t(2) Two Hand Sword (Power: " + W22.getPower() + ")"
+                        + " -- PRICE: " + W22.getCost());
+
+                     System.out.println("\t(3) Shield (Power: " + W32.getPower() + ")"
+                        + " -- PRICE: " + W32.getCost());
+
+
+                  System.out.println("Items:");
+
+                     System.out.println("\t(4) Potion -- PRICE: " + potion.getCost() 
+                        + "\t\tHeals " + potion.does() + " HP (Hit Points)");
+                     System.out.println("\t(5) Elixir -- PRICE: " + elixir.getCost()
+                        + "\t\tRestores " + elixir.does() + " SP (Skill Points)");
+                     System.out.println("\t(6) SmokeBomb -- PRICE: " + smokeBomb.getCost()
+                        + "\tIncreases Evasion by " + smokeBomb.does());
+               }
+
+
+               else if (playerClass2 == 3){ //mage
+                  W12 = new ElementalStaff(0);
+                  W22 = new HolyStaff(0);
+                  W32 = new HealingStaff(0);
+
+                  System.out.println("Chose what you would like to buy: \nWeapons:");
+
+                     System.out.println("\t(1) Elemental Staff (Power: " + W12.getPower() + ")"
+                        + " -- PRICE: " + W12.getCost());
+
+                     System.out.println("\t(2) Holy Staff (Power: " + W22.getPower() + ")"
+                        + " -- PRICE: " + W22.getCost());
+
+                     System.out.println("\t(3) Healing Staff (Power: " + W32.getPower() + ")"
+                        + " -- PRICE: " + W32.getCost());
+
+
+                  System.out.println("Items:");
+
+                     System.out.println("\t(4) Potion -- PRICE: " + potion.getCost() 
+                        + "\t\tHeals " + potion.does() + " HP (Hit Points)");
+                     System.out.println("\t(5) Elixir -- PRICE: " + elixir.getCost()
+                        + "\t\tRestores " + elixir.does() + " SP (Skill Points)");
+                     System.out.println("\t(6) SmokeBomb -- PRICE: " + smokeBomb.getCost()
+                        + "\tIncreases Evasion by " + smokeBomb.does());
+               }
+
+               System.out.println("(7) exit");//option to exit
+
+               buy = scanCheck(1,7,scan); //checks the input
+
+               price1 = W12.getCost(); //gets the cost of the class's weapons
+               price2 = W22.getCost();
+               price3 = W32.getCost();
+
+               price4 = potion.getCost();
+               price5 = elixir.getCost();
+               price6 = smokeBomb.getCost();
+
+
+               if (buy == 1){ //weapon 1. works for all classes
+                  if (money2.getCash() < price1){
+                     System.out.println("You do not have enough gold to buy this!");
+                  }
+                  if(has2W1 == false && has2W2 == false) {
+                     money2.buyWeapon(W12);
+                     System.out.println("\nRemaining balance: " + money2.getCash());
+                     weaponList2.set(0, W12);
+                     fighter2.addWeapon1(W12);
+                     has2W1 = true;
+                  } else {
+                     System.out.println("You already have a weapon!");
+                  }
+               }
+
+               else if (buy == 2){ //weapon 2. works for all classes
+                  if (money2.getCash() < price2){
+                     System.out.println("You do not have enough gold to buy this!");
+                  }
+                  if(has2W1 == false && has2W2 == false) {
+                     money2.buyWeapon(W22);
+                     System.out.println("\nRemaining balance: " + money2.getCash());
+                     weaponList2.set(0, W22);
+                     fighter2.addWeapon1(W22);
+                     has2W2 = true;
+                  } else {
+                     System.out.println("You already have a weapon!");
+                  }
+               }
+
+               else if (buy == 3){ //weapon 3. works for all classes
+                  if (money2.getCash() < price3){
+                     System.out.println("You do not have enough gold to buy this!");
+                  }
+                  if(has2W3 == false) {
+                     money2.buyWeapon(W32);
+                     System.out.println("\nRemaining balance: " + money2.getCash());
+                     weaponList2.add(W32);
+                     fighter2.addWeapon2(W32);
+                     has2W3 = true;
+                  } else {
+                     System.out.println("You already have this special weapon!");
+                  }
+               }
+
+               else if (buy == 4){ //weapon 4. works for all classes
+                  if (money2.getCash() < price4){
+                     System.out.println("You do not have enough gold to buy this!");
+                  } else {
+                     money2.buyItem(potion);
+                     System.out.println("\nRemaining balance: " + money2.getCash());
+                     itemList2.add(potion);
+                     fighter2.addPotion();
+                  }
+               }
+
+               else if (buy == 5){ //weapon 5. works for all classes
+                  if (money2.getCash() < price5){
+                     System.out.println("You do not have enough gold to buy this!");
+                  } else {
+                     money2.buyItem(elixir);
+                     System.out.println("\nRemaining balance: " + money2.getCash());
+                     itemList2.add(elixir);
+                     fighter2.addElixir();
+                  }
+               }
+
+               else if (buy == 6){ //weapon 6. works for all classes
+                  if (money2.getCash() < price6){
+                     System.out.println("You do not have enough gold to buy this!");
+                  } else {
+                     money2.buyItem(smokeBomb);
+                     System.out.println("\nRemaining balance: " + money2.getCash());
+                     itemList2.add(smokeBomb);
+                     fighter2.addSmokeBomb();
+                  }
+               }
+
+               else if (buy == 7){
+                  choice2 = 2;
+               }
+
+
+            }
+         if(choice2 == 2) {
+            System.out.println("Ready to fight");
+            break; //To Player 2
+         }
+         }
+ 
    }
 
 
