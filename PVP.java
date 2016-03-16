@@ -23,17 +23,17 @@ public class PVP {
       int playerClass2 = 0;
       List<Items> itemList1 = new ArrayList<Items>();
       List<Weapon> weaponList1 = new ArrayList<Weapon>();
-      List<Items> itemList1 = new ArrayList<Items>();
-      List<Weapon> weaponList1 = new ArrayList<Weapon>();
+      List<Items> itemList2 = new ArrayList<Items>();
+      List<Weapon> weaponList2 = new ArrayList<Weapon>();
       boolean has1W1;
       boolean has1W2;
       boolean has1W3;
-      boolean 1usedItem = false;
+      boolean usedItem1 = false;
 
       boolean has2W1;
       boolean has2W2;
       boolean has2W3;
-      boolean 2usedItem = false;
+      boolean usedItem2 = false;
       //int shieldBlock;
 
 
@@ -60,11 +60,11 @@ public class PVP {
          System.out.println("\nPlease select a class: \n(1) = Archer\n(2) = Warrior" 
             + "\n(3) = Mage \n(4) - Game Instructions\n(5) - HighScores");
 
-         playerClass = scanCheck(1, 5, scan);
+         playerClass1 = scanCheck(1, 5, scan);
          /*
             while(true) {
                if(scan.hasNextInt()) {
-                  playerClass = scan.nextInt();
+                  playerClass1 = scan.nextInt();
                   scan.nextLine();
                } else if (scan.hasNextDouble()) {
                   scan.nextLine();
@@ -74,7 +74,7 @@ public class PVP {
                   //System.out.println("Wrong Command, Dipshit");
                }
 
-               if(playerClass >= 1 && playerClass <= 3) {
+               if(playerClass1 >= 1 && playerClass <= 3) {
                   break;
                } else {
                   System.out.println("Wrong Command, Dipshit");
@@ -82,31 +82,31 @@ public class PVP {
             }
          */
 
-         if (playerClass == 1){
+         if (playerClass1 == 1){
             fighter = new Archer();
             System.out.print("\nYou have chosen to be the Archer, master of the Bow" 
                + " and one with nature - like that one guy who keeps trying to get\n"
                + "you to do yoga with him because he says it makes you \"One with" 
                + " nature\" -- \"One with nature\" my ass");
             break;
-         } else if (playerClass == 2){
+         } else if (playerClass1 == 2){
             fighter = new Warrior();
             System.out.print("\nYou have chosen to be the Warrior, master of the Blade" 
                + " and the stronger than a sterotypical frat boy");
             break;
-         } else if (playerClass == 3){
+         } else if (playerClass1 == 3){
             fighter = new Mage();
             System.out.print("\nYou have chosen to be the Mage, master of the Staff" 
                + " and master of the elements; until the fire nation attacked");
             break;
-         } else if (playerClass == 4){ 
+         } else if (playerClass1 == 4){ 
             System.out.println("This is how to play Program 7:\n"
                + "After leaving these instructions, you will be asked to chose a class:\n"
                + "\tArcher \n\tWarrior \n\tMage \n\nEach class has its own stregths and"
                + " perks, so choose wisely and experiment! \n\nAfter you choose a class"
                + ", you will be brought to the Shop where you can purchase weapons and "
                + "items for your battles.\nWhile in the shop, you have access to "
-               + money.getCash() + " gold, but be warned, this is a set amount and it" 
+               + money1.getCash() + " gold, but be warned, this is a set amount and it" 
                + "must last you through all three (3) roounds!\n\nAfter each round, your"
                + " weapons inventory gets reset, so you must either buy another weapon or"
                + " use the default Fist, which is the weakest in the game, but free. \n"
@@ -114,7 +114,7 @@ public class PVP {
                + "The game has 3 rounds to it, each harder than before, that you must" 
                + " survive in to win.\n\nThe entire game uses numbers to select options."
                + "\n\nGood Luck!"); 
-         } else if (playerClass == 5){
+         } else if (playerClass1 == 5){
             System.out.println("HighScores:");
 
 
@@ -203,15 +203,15 @@ public class PVP {
       }
 
       while(gamesPlayed < gamesToPlay) {//In game
-         weaponList.clear(); //resets weapon list
-         weaponList.add(new Fist(0));
+         weaponList1.clear(); //resets weapon list
+         weaponList1.add(new Fist(0));
          //fighter.setHP(fighter.getStartHP()); //resets HP
          //fighter.setSP(fighter.getStartSP()); //resets SP
          //fighter.setEvasion(0);
          fighter.reset();
-         hasW1 = false;
-         hasW2 = false;
-         hasW3 = false;
+         has1W1 = false;
+         has1W2 = false;
+         has1W3 = false;
          int choice = 0; 
          passed = false; 
 
@@ -256,21 +256,21 @@ public class PVP {
             */
 
             while(choice == 1) {
-               System.out.println("\n\nReady to buy! \nYou have " + money.getCash() + " gold\n");
+               System.out.println("\n\nReady to buy! \nYou have " + money1.getCash() + " gold\n");
 
-               if (weaponList.size() == 0){
+               if (weaponList1.size() == 0){
                   System.out.println("Your weapon inventory is currently empty");
-               } else if (weaponList.get(0).getClass().getName().equals("Fist") &&
-                     weaponList.size() == 1){
+               } else if (weaponList1.get(0).getClass().getName().equals("Fist") &&
+                     weaponList1.size() == 1){
                   System.out.println("Your only weapons are your bare hands!");
                } else {
-                  System.out.println(weaponList);
+                  System.out.println(weaponList1);
                }
 
-               if (itemList.size() == 0){
+               if (itemList1.size() == 0){
                   System.out.println("Your item inventory is currently empty");
                } else {
-                  System.out.println(itemList);
+                  System.out.println(itemList1);
                }
 
                int buy = 0;
@@ -292,7 +292,7 @@ public class PVP {
 */
                System.out.println("\n");
 
-               if (playerClass == 1){ //archer
+               if (playerClass1 == 1){ //archer
                   W1 = new ShortBow(0);
                   W2 = new LongBow(0);
                   W3 = new Wolf(0);
@@ -319,7 +319,7 @@ public class PVP {
                         + "\tIncreases Evasion by " + smokeBomb.does());
                }
 
-               else if (playerClass == 2){ //warrior
+               else if (playerClass1 == 2){ //warrior
                   W1 = new OneHandSword(0);
                   W2 = new TwoHandSword(0);
                   W3 = new Shield(0);
@@ -347,7 +347,7 @@ public class PVP {
                }
 
 
-               else if (playerClass == 3){ //mage
+               else if (playerClass1 == 3){ //mage
                   W1 = new ElementalStaff(0);
                   W2 = new HolyStaff(0);
                   W3 = new HealingStaff(0);
@@ -388,79 +388,79 @@ public class PVP {
 
 
                if (buy == 1){ //weapon 1. works for all classes
-                  if (money.getCash() < price1){
+                  if (money1.getCash() < price1){
                      System.out.println("You do not have enough gold to buy this!");
                   }
-                  if(hasW1 == false && hasW2 == false) {
-                     money.buyWeapon(W1);
-                     System.out.println("\nRemaining balance: " + money.getCash());
-                     weaponList.set(0, W1);
+                  if(has1W1 == false && has1W2 == false) {
+                     money1.buyWeapon(W1);
+                     System.out.println("\nRemaining balance: " + money1.getCash());
+                     weaponList1.set(0, W1);
                      fighter.addWeapon1(W1);
-                     hasW1 = true;
+                     has1W1 = true;
                   } else {
                      System.out.println("You already have a weapon!");
                   }
                }
 
                else if (buy == 2){ //weapon 2. works for all classes
-                  if (money.getCash() < price2){
+                  if (money1.getCash() < price2){
                      System.out.println("You do not have enough gold to buy this!");
                   }
-                  if(hasW1 == false && hasW2 == false) {
-                     money.buyWeapon(W2);
-                     System.out.println("\nRemaining balance: " + money.getCash());
-                     weaponList.set(0, W2);
+                  if(has1W1 == false && has1W2 == false) {
+                     money1.buyWeapon(W2);
+                     System.out.println("\nRemaining balance: " + money1.getCash());
+                     weaponList1.set(0, W2);
                      fighter.addWeapon1(W2);
-                     hasW2 = true;
+                     has1W2 = true;
                   } else {
                      System.out.println("You already have a weapon!");
                   }
                }
 
                else if (buy == 3){ //weapon 3. works for all classes
-                  if (money.getCash() < price3){
+                  if (money1.getCash() < price3){
                      System.out.println("You do not have enough gold to buy this!");
                   }
-                  if(hasW3 == false) {
-                     money.buyWeapon(W3);
-                     System.out.println("\nRemaining balance: " + money.getCash());
-                     weaponList.add(W3);
+                  if(has1W3 == false) {
+                     money1.buyWeapon(W3);
+                     System.out.println("\nRemaining balance: " + money1.getCash());
+                     weaponList1.add(W3);
                      fighter.addWeapon2(W3);
-                     hasW3 = true;
+                     has1W3 = true;
                   } else {
                      System.out.println("You already have this special weapon!");
                   }
                }
 
                else if (buy == 4){ //weapon 4. works for all classes
-                  if (money.getCash() < price4){
+                  if (money1.getCash() < price4){
                      System.out.println("You do not have enough gold to buy this!");
                   } else {
-                     money.buyItem(potion);
-                     System.out.println("\nRemaining balance: " + money.getCash());
-                     itemList.add(potion);
+                     money1.buyItem(potion);
+                     System.out.println("\nRemaining balance: " + money1.getCash());
+                     itemList1.add(potion);
                      fighter.addPotion();
                   }
                }
 
                else if (buy == 5){ //weapon 5. works for all classes
-                  if (money.getCash() < price5){
+                  if (money1.getCash() < price5){
                      System.out.println("You do not have enough gold to buy this!");
                   } else {
-                     money.buyItem(elixir);
-                     System.out.println("\nRemaining balance: " + money.getCash());
-                     itemList.add(elixir);
+                     money1.buyItem(elixir);
+                     System.out.println("\nRemaining balance: " + money1.getCash());
+                     itemList1.add(elixir);
                      fighter.addElixir();
                   }
                }
 
                else if (buy == 6){ //weapon 6. works for all classes
-                  if (money.getCash() < price6){
+                  if (money1.getCash() < price6){
                      System.out.println("You do not have enough gold to buy this!");
                   } else {
-                     money.buyItem(smokeBomb);
-                     System.out.println("\nRemaining balance: " + money.getCash());
-                     itemList.add(smokeBomb);
+                     money1.buyItem(smokeBomb);
+                     System.out.println("\nRemaining balance: " + money1.getCash());
+                     itemList1.add(smokeBomb);
                      fighter.addSmokeBomb();
                   }
                }
@@ -473,8 +473,8 @@ public class PVP {
 
             }
 
-               //money.buyWeapon(new LongBow(10));
-               //System.out.println("After buy: " +money.getCash());
+               //money1.buyWeapon(new LongBow(10));
+               //System.out.println("After buy: " +money1.getCash());
 
          //}
          if(choice == 2) {
@@ -525,16 +525,16 @@ public class PVP {
 
 
                int Command = 0;
-               if(usedItem == false) {
+               if(usedItem1 == false) {
                
                   System.out.println("(1) Fight   (2) Use Item   (3) Rest");
                   Command = scanCheck(1,3,scan);
                   if(Command == 2) {
-                     if (itemList.size() == 0){
+                     if (itemList1.size() == 0){
                         System.out.println("You have no items to use!");
                      } else {
                         int use = 0;
-                        System.out.println("Items: " + itemList);
+                        System.out.println("Items: " + itemList1);
                         //List options for items and use item
                         System.out.println("What would you like to use?" 
                            + "\n(1) Potion \n(2) Elixir\n(3) SmokeBomb\n"
@@ -555,8 +555,8 @@ public class PVP {
                                  fighter.usePotion();
                                  System.out.println("Potions left: " + fighter.getPotions());
                                  toUse = false;
-                                 usedItem = true;
-                                 itemList.remove(potion);
+                                 usedItem1 = true;
+                                 itemList1.remove(potion);
                               }
                            }
 
@@ -570,8 +570,8 @@ public class PVP {
                                  fighter.useElixir();
                                  System.out.println("Elixirs left: " + fighter.getElixir());
                                  toUse = false;
-                                 usedItem = true;
-                                 itemList.remove(elixir);
+                                 usedItem1 = true;
+                                 itemList1.remove(elixir);
                               }
                            }
 
@@ -585,8 +585,8 @@ public class PVP {
                                  fighter.useSmokeBomb();
                                  System.out.println("Smoke Bombs left: " + fighter.getSmokeBomb());
                                  toUse = false;
-                                 usedItem = true;
-                                 itemList.remove(smokeBomb);
+                                 usedItem1 = true;
+                                 itemList1.remove(smokeBomb);
                               }
                            }
 
@@ -599,7 +599,7 @@ public class PVP {
                         }
 
                      }
-                        //usedItem = true;
+                        //usedItem1 = true;
                      
                   }
 
@@ -774,7 +774,7 @@ public class PVP {
                         holder = false;
                         playerTurn = false;
                      }
-                  usedItem = false;
+                  usedItem1 = false;
                   }
                   if (opp.getHp() <= 0){
                      passed = true;
@@ -788,17 +788,17 @@ public class PVP {
 
 
             }
-            int useSpecial = fighter.useSpecialWeapon(hasW3);
+            int useSpecial = fighter.useSpecialWeapon(has1W3);
             int shieldBlock = 0;
             if (!win){
-               if (playerClass == 2 && hasW3){
+               if (playerClass1 == 2 && has1W3){
                   shieldBlock = useSpecial;
                   //System.out.println("Your Shield blocked 5 damage!");
-               } else if (playerClass == 1 && hasW3){
+               } else if (playerClass1 == 1 && has1W3){
                   opp.setHP((-1) * useSpecial);
                   System.out.println("Your wolf companion totally fucked that guy's face up!"
                      + " He lost like 5 damage!");
-               } else if (playerClass == 3){
+               } else if (playerClass1 == 3){
                   //fighter.setHP(useSpecial);
                   //System.out.println("Your Healing Staff healed you by 5 HP!");
                }
@@ -993,7 +993,7 @@ public class PVP {
 
 
                //MAGE HEALINGSTAFF
-               if (playerClass == 3 && hasW3){
+               if (playerClass1 == 3 && has1W3){
                   fighter.setHP(useSpecial);
                   System.out.println("Your Healing Staff healed you by 5 HP!");
                }
@@ -1017,7 +1017,7 @@ public class PVP {
          //System.out.println(playerName);
          System.out.println("What is your name?");
          String playerName = scan.nextLine();
-         double highScore = ((double)money.getCash()+ 100)/(double)(totalCount) * 10000;
+         double highScore = ((double)money1.getCash()+ 100)/(double)(totalCount) * 10000;
          try{
             FileWriter fw = new FileWriter("HighScores.txt", true);
             fw.write(highScore + " - " + playerName + "\n");
@@ -1030,7 +1030,7 @@ public class PVP {
          System.out.println("You have bested every opponent!\n");
          System.out.println("What is your name?");
          String playerName = scan.nextLine();
-         double highScore = ((double)money.getCash()+ 100)/(double)(totalCount) * 10000;
+         double highScore = ((double)money1.getCash()+ 100)/(double)(totalCount) * 10000;
          try{
             FileWriter fw = new FileWriter("HighScores.txt", true);
             fw.write(highScore + " - " + playerName + "\n");
@@ -1044,7 +1044,7 @@ public class PVP {
 
    private static int enemyMove(int level) {
       Random rand = new Random();
-      //boolean usedItem = false;
+      //boolean usedItem1 = false;
       if(level == 1) { //Random AI for level 1
          while(true) {
             if(opp.getHp() <= 25 && opp.getPotions() > 0) { //use potion if hp < 25
