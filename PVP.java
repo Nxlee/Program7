@@ -17,10 +17,32 @@ public class PVP {
    private static String player1;
    private static String player2;
    private static Scanner scan = new Scanner(System.in);
+
+
+   private static int gamesPlayed = 0;
+   private static int gamesToPlay = 3;
+   private static boolean passed;
+   private static int playerClass1 = 0;
+   private static int playerClass2 = 0;
+   private static List<Items> itemList1 = new ArrayList<Items>();
+   private static List<Weapon> weaponList1 = new ArrayList<Weapon>();
+   private static List<Items> itemList2 = new ArrayList<Items>();
+   private static List<Weapon> weaponList2 = new ArrayList<Weapon>();
+   private static boolean has1W1;
+   private static boolean has1W2;
+   private static boolean has1W3;
+   private static boolean usedItem1 = false;
+
+   private static boolean has2W1;
+   private static boolean has2W2;
+   private static boolean has2W3;
+   private static boolean usedItem2 = false;
+
+
+
+
    public static void playPVP() {
       PlayerSelection();
-
-
 
 
    }
@@ -1133,6 +1155,7 @@ public class PVP {
    }
 
    public static void Battle() {
+
    }
 
    public static int scanCheck(int min, int max, Scanner scan){
