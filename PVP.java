@@ -1746,11 +1746,13 @@ public class PVP {
             if (win1){
                System.out.println ("Congratulations! " + player1 + "  won game number: " + (gamesPlayed + 1));
                gamesPlayed++;
+               fighter1GamesWon++;
                playerTurn = 0;
             } 
             if (win2){
                System.out.println ("Congratulations! " + player2 + " won game number: " + (gamesPlayed + 1));
                gamesPlayed++;
+               fighter2GamesWon++;
                playerTurn = 0;
             }
 
@@ -2101,10 +2103,12 @@ public class PVP {
 
             if (win1){
                System.out.println ("Congratulations! " + player1 + "  won game number: " + (gamesPlayed + 1));
+               fighter1GamesWon++;
                gamesPlayed++;
             } 
             if (win2){
                System.out.println ("Congratulations! " + player2 + " won game number: " + (gamesPlayed + 1));
+               fighter1GamesWon++;
                gamesPlayed++;
             }else {
 
