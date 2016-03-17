@@ -678,7 +678,7 @@ public class PVP {
             break; //To Player 2
          }
          }
-   System.out.println("----------------------------------------" + fighter.getWeapon1Name());
+ 
    }
 
 
@@ -707,7 +707,6 @@ public class PVP {
             while(playerTurn == 1) { //player turn
 
                usedItem1 = false;
-               System.out.println(fighter.getWeapon1Name());
 
                System.out.println(player1 + "'s Turn!");
                System.out.println("\nTurn: " + turnCount);
@@ -1011,7 +1010,7 @@ public class PVP {
                      System.out.println(player2 + "'s Shield blocked 5 damage!");
                   } if (playerClass1 == 1 && has1W3){
                      fighter2.setHP((-1) * useSpecial);
-                     System.out.println("Your wolf companion totally fucked that guy's face up!"
+                     System.out.println(player1 + "'s wolf companion totally fucked that guy's face up!"
                         + " He lost like 5 damage!");
 
                      if (damageDone == 0 && playerClass2 == 2 && has2W3){
@@ -1368,7 +1367,7 @@ public class PVP {
                      System.out.println(player1 + "'s Shield blocked 5 damage!");
                   } if (playerClass2 == 1 && has2W3){
                      fighter.setHP((-1) * useSpecial);
-                     System.out.println("Your wolf companion totally fucked that guy's face up!"
+                     System.out.println(player2 + "'s wolf companion totally fucked that guy's face up!"
                         + " He lost like 5 damage!");
 
                      if (damageDone == 0 && playerClass1 == 2 && has1W3){
