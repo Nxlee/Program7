@@ -1,9 +1,21 @@
+/**
+ *Wolf "Special" weapon used by archer
+ *
+ *@author Nick Lee, Jake Veazey
+ *@version Program7
+ */
+
 public class Wolf extends Weapon {
    private DamageCalc Calc;
    //private int enemyEvasion;
    private static final int COST = 75;
    private static final int POWER = 5;
 
+  /**
+   * Constructor for a wolf weapon.
+   *
+   * @param enemyEvasion Initializes a weapon with specific evasion if necessary
+   */
    public Wolf(int enemyEvasion) {
       super(COST, POWER, enemyEvasion);
       Calc = new DamageCalc();
