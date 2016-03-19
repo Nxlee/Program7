@@ -1,3 +1,9 @@
+/**
+ * Fighter class for the player
+ *
+ * @author Nick Lee, Jake Veazey
+ * @version Program7
+ */
 public class Fighter {
    private int hp;
    private int sp;
@@ -15,6 +21,10 @@ public class Fighter {
    private static final int SPECIALSP = -20;
 
 //Constructor for fighters
+  /**
+   * Constructor for a default fighter (player).
+   *
+   */
    public Fighter() {
       hp = STARTHP;
       sp = STARTSP;
@@ -25,7 +35,18 @@ public class Fighter {
       normalWeapon = new Fist(0);
       specialWeapon = null;
    }
-
+  /**
+   * Constructor for the AI fighter.
+   *
+   * @param hp Initial HP of the AI fighter
+   * @param sp Initial SP of the AI fighter
+   * @param evasion Initial evasion of the AI fighter
+   * @param potions Initial number of potions the AI fighter has
+   * @param elixirs Initial number of elixirs the AI fighter has
+   * @param bombs Initial number of smokebombs the AI fighter has
+   * @param nWeap The basic weapon the AI fighter has
+   * @param sWeap The special weapon the AI fighter has
+   */
    public Fighter(int hp, int sp, int evasion, int potions, 
             int elixirs, int bombs, Weapon nWeap, Weapon sWeap) {
       this.hp = hp;
@@ -39,6 +60,11 @@ public class Fighter {
    }
 
 //rest skip turn but gain 15 sp and hp
+  /**
+   * Rest command for the fighter.
+   * Resting will increase hp by 2 and SP by 10.
+   *
+   */
    public void rest() {
       if(hp >= 98) {
          hp= 100;
@@ -54,6 +80,11 @@ public class Fighter {
    }
 
 //Method to set HP
+  /**
+   * Increases or decreases HP.
+   *
+   * @param value The amount in which HP will either be increase(+) or decrease(-)
+   */
    public void setHP(int value) {
       if(hp + value > 100) {
          hp= 100;
@@ -63,6 +94,11 @@ public class Fighter {
    }
 
 //Method to set SP
+  /**
+   * Increases or decreases SP.
+   *
+   * @param value The amount in which SP will either increase(+) or decrase(-)
+   */
    public void setSP(int value) {
       if(sp + value > 100) {
          sp = 100;
@@ -72,6 +108,11 @@ public class Fighter {
    }
 
 //Method to set evasion
+  /**
+   * Increases or decrases evasion.
+   *
+   * @param value the amount in which evasion will either increase(+) or decrease(-)
+   */
    public void setEvasion(int value) {
       if(evasion + value > 100) {
          evasion = 100;
@@ -83,52 +124,101 @@ public class Fighter {
    }
 
 //returns number of potions
+  /**
+   * Returns the number of potions a fighter has.
+   *
+   * @return The amount of potions a fighter has
+   */
    public int getPotions() {
       return p.getItem();
    }
 
 //adds potion to count
+  /**
+   * Adds a potion to the amount a fighter has.
+   *
+   */
    public void addPotion(){
       p.buy(1);
    }
 
 //returns number of potions
+ /**
+  * Returns the number of elixirs a fighter has.
+  *
+  * @return The amount of elixirs a fighter has
+  */
    public int getElixir() {
       return e.getItem();
    }
 
 //adds potion to count
+  /**
+   * Adds an elixir to the amount a fighter has.
+   *
+   */
    public void addElixir(){
       e.buy(1);
    }
 
 
 //returns number of potions
+  /**
+   * Returns the number of smokebombs a fighter has.
+   *
+   * @return the amount of smokebombs a fighter has
+   */
    public int getSmokeBomb() {
       return s.getItem();
    }
 
 //adds potion to count
+  /**
+   * Adds a smokebomb to the amount a fighter has.
+   *
+   */
    public void addSmokeBomb(){
       s.buy(1);
    }
 
+  /**
+   * Makes the fighter use a potion and recieve its effects.
+   *
+   */
    public void usePotion(){
       p.boost(this);
    }
 
+  /**
+   * Makes the fighter use an elixir and recieve its effects.
+   *
+   */
    public void useElixir(){
       e.boost(this);
    }
 
+  /**
+   * Makes the fighter use a smokebomb and recieve its effects.
+   *
+   */
    public void useSmokeBomb(){
       s.boost(this);
    }
 
+  /**
+   * Gives the fighter's starting hp.
+   *
+   * @return The fighter's initial starting hp of type int
+   */
    public int getStartHP(){
       return STARTHP;
    }
 
+  /**
+   * Gives the fighter's starting sp.
+   *
+   * @return The fighter's initial starting sp of type int.
+   */
    public int getStartSP(){
       return STARTSP;
    }
