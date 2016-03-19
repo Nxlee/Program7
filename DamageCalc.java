@@ -1,6 +1,10 @@
-/*
-* Version: 2
+/**
+* This is the damage calculator algorithm class.
+*
+* @author Jake Veazey, Nick Lee
+* @version Program7
 */
+
 
 public class DamageCalc {
    private int damage;
@@ -14,6 +18,17 @@ public class DamageCalc {
 
       calc the amount of damage that will be put on a fighter
    */
+/**
+*
+* Calculates the damage that a certain attack will do with respect to which
+* weapon the player is using. Each weapon will administer a different amount
+* of damage.
+*
+* @param attackType This is the type of attack the player chooses. 1 - Basic, 2 - Strong
+* 3 - Special.
+* @param multi This is the power multiplier of the weapon 
+*
+*/
    public void attackDamage(int attackType, double multi){
       //int damage = 0;
       //int chance = 0;
@@ -55,6 +70,17 @@ public class DamageCalc {
       //damage = 5; //testing
    }
 
+/**
+*
+* Calculates the damage that a certain attack will do with respect to which
+* weapon the player is using. Each weapon will administer a different amount
+* of damage.
+*
+* @param attackType This is the type of attack the player chooses. 1 - Basic, 2 - Strong
+* 3 - Special.
+* @param multi This is the power multiplier of the weapon.
+*
+*/
    public void evasionChance(int evasion){
       chanceEvasion = 1;
       int chance = 0;

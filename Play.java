@@ -1,3 +1,13 @@
+/**
+* This is the Play class that runs the AI code and the PVP code. 
+* Inside this class will be the AI. PVP code will be in PVP.
+*
+* @author Jake Veazey, Nick Lee
+* @version Program7
+*/
+
+
+
 import java.util.Scanner;
 import java.util.List;
 import java.util.ArrayList;
@@ -16,6 +26,14 @@ public class Play {
    private static int turnCount;
    private static int totalCount;
    private static Scanner scan = new Scanner(System.in);
+
+/**
+*
+* Main method that prompts the user what type of game to play (PVE or PVP)
+*  and runs houses the PVE code.
+*  
+*  @param args Generic main stuff.
+*/
    public static void main(String[] args) {
       System.out.println("What gamemode would you like to play?\n(1) Single Player " +
          "(2) MultiPlayer");
@@ -814,7 +832,7 @@ public class Play {
                hasEvasion = false;
                trackSmoke = 0;
             }
-            System.out.println(turnCount % 2);
+            //System.out.println(turnCount % 2);
             if (trackSmoke > 0){
                if (turnCount % trackSmoke == 2){
                   fighter.setEvasion(-5);
@@ -1045,6 +1063,13 @@ public class Play {
       }
    }//end main
 
+/**
+*
+* Enemy AI code, seperated into three levels of difficulty.
+*
+* @param level This is an int of the level AI to play.
+* @return What command to run in the Main code for the AI.  
+*/
    private static int enemyMove(int level) {
       Random rand = new Random();
       //boolean usedItem = false;
@@ -1209,7 +1234,16 @@ public class Play {
 
 
 
-
+/**
+*
+* This checks the input of the user into the game and will not accept anything
+* outside of the limits or a char value
+*
+* @param min The minimum int repsonse that the user can input.
+* @param max The maximum int repsonse that the user can input.
+* @param scan The scanner to use.
+* @return The int input of the user
+*/
 
    public static int scanCheck(int min, int max, Scanner scan){
       int innerChoice = 0;
