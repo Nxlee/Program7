@@ -47,8 +47,7 @@ public class SmokeBomb implements Items{
    * To be used to remove evasion after a set amount of turns.
    * Not incorporated currently.
    *
-   * @return A String description of what the smoke bomb does
-   *
+   *@param fighter of Type Fighter
    */
    public void end(Fighter fighter){ // to be called after a turn when it should be removed from play
       fighter.setEvasion((-1) * EVASION);

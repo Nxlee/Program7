@@ -71,15 +71,9 @@ public class DamageCalc {
    }
 
 /**
+*Calculates the chance an enemy will evade and attack.
 *
-* Calculates the damage that a certain attack will do with respect to which
-* weapon the player is using. Each weapon will administer a different amount
-* of damage.
-*
-* @param attackType This is the type of attack the player chooses. 1 - Basic, 2 - Strong
-* 3 - Special.
-* @param multi This is the power multiplier of the weapon.
-*
+*@param evasion int value of the enemy evasion.
 */
    public void evasionChance(int evasion){
       chanceEvasion = 1;
