@@ -1,9 +1,20 @@
+/**
+ *OneHandSword weapon used by Warrior.
+ *
+ *@author Nick Lee, Jake Veazey
+ *@version Program7
+ */
 public class OneHandSword extends Weapon {
    private DamageCalc Calc;
    //private int enemyEvasion;
    private static final int COST = 50;
    private static final int POWER = 10;
 
+  /**
+   * Constructor for a OneHandSword weapon.
+   *
+   * @param enemyEvasion Initializes a weapon with specific evasion if necessary
+   */
    public OneHandSword(int enemyEvasion) {
       super(COST, POWER, enemyEvasion);
       Calc = new DamageCalc();
