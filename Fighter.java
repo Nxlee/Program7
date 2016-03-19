@@ -223,24 +223,47 @@ public class Fighter {
       return STARTSP;
    }
 
-//returns hp
+/**
+*Get the HP value of the fighter.
+*
+*@return int value of the fighter's HP
+*/
    public int getHp() {
       return hp;
    }
-//returns sp
+
+/**
+*Get the SP value of the fighter.
+*
+*@return int value of the fighter's SP
+*/
    public int getSp() {
       return sp;
    }
 
+/**
+*Get the evasion value of the fighter.
+*
+*@return int value of the fighter's evasion
+*/
    public int getEvasion(){
       return evasion;
    }
 
+/**
+*Sets the evasion of the enemy to the weapons of the fighter.
+*
+*@param evasionVal int value of the enemy
+*/
    public void setEvasions(int evasionVal){
       normalWeapon.setEnemyEvasion(evasionVal);
       //specialWeapon.setEnemyEvasion(evasionVal);
    }
 
+/**
+* Rests the data of the fighter after each round. Resets the HP, SP, Evasions
+* and each weapon.
+*/
    public void reset(){
       hp = STARTHP;
       sp = STARTSP;
@@ -249,47 +272,100 @@ public class Fighter {
       specialWeapon = null;
    }
 
+/**
+* add the normal  weapon to the fighter.
+*
+* @param weapon of type Weapon that is the normal weapon to add to the fighter.
+*/
    public void addWeapon1(Weapon weapon){
       normalWeapon = weapon;
    }
-
+/**
+* add the special weapon to the fighter.
+*
+* @param weapon of type Weapon that is the special weapon to add to the fighter.
+*/
    public void addWeapon2(Weapon weapon){
       specialWeapon = weapon;
    }
 
+/**
+* the name if the fighter's normal weapon.
+*
+* @return the name of the normal wepon.
+*/
    public String getWeapon1Name(){
       return normalWeapon.toString();
    }
 
+/**
+* the name if the fighter's special weapon.
+*
+* @return the name of the special weapon.
+*/
    public String getWeapon2Name(){
       return specialWeapon.toString();
    }
-//
+
+/**
+* SP for a basic attack.
+*
+* @return the int amnount of SP for a basic attack.
+*/
    public int basicSP(){
       return BASICSP;
    }
 
+/**
+* SP for a strong attack.
+*
+* @return the int amnount of SP for a strong attack.
+*/
    public int strongSP(){
       return STRONGSP;
    }
 
+/**
+* SP for a special attack.
+*
+* @return the int amnount of SP for a special attack.
+*/
    public int specialSP(){
       return SPECIALSP;
    }
 
-
+/**
+* Fighter uses the basic Attack.
+*
+* @return the damage done by a basic attack.
+*/
    public int basicAttack(){
       return normalWeapon.totalDamage(1);
    }
 
+/**
+* Fighter uses the Strong Attack.
+*
+* @return the damage done by a strong attack.
+*/
    public int strongAttack(){
       return normalWeapon.totalDamage(2);
    }
 
+/**
+* Fighter uses the Special Attack.
+*
+* @return the damage done by a special attack.
+*/
    public int specialAttack(){
       return normalWeapon.totalDamage(3);
    }
-   
+
+/**
+* Fighter to use the special weapon in the way that their class uses it.
+*
+* @param hasW3 Boolean value to check if the player has a special weapon
+*/
    public int useSpecialWeapon(boolean hasW3){
       if (!hasW3){
          return 0;
