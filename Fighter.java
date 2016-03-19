@@ -214,19 +214,11 @@ public class Fighter {
       return STARTHP;
    }
 
-<<<<<<< HEAD
-/**
-*Get the strating SP value of the fighter.
-*
-*@return int value of the fighter's starting SP
-*/
-=======
   /**
    * Gives the fighter's starting sp.
    *
    * @return The fighter's initial starting sp of type int.
    */
->>>>>>> 33dab4f5b34b4c7541b75ba6fc9cf4aeaa2560ba
    public int getStartSP(){
       return STARTSP;
    }
