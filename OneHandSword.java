@@ -7,7 +7,7 @@
 public class OneHandSword extends Weapon {
    private DamageCalc Calc;
    //private int enemyEvasion;
-   private static final int COST = 50;
+   private static final int COST = 25;
    private static final int POWER = 10;
 
   /**
